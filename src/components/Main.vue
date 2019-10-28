@@ -19,9 +19,9 @@
         </div>
       </section>
       <section class="gray">
-        <div class="container">
+        <div id="advantages" class="container">
           <h1>{{second}}</h1>
-          <div id="adv" class="row">
+          <div class="row">
             <div>
               <h3>{{sf}}</h3>
               <p>{{sff}}</p>
@@ -155,7 +155,7 @@ p {
 .row {
   padding-top: 20px;
 }
-#adv {
+#advantages {
   padding-bottom: 20px;
 }
 #image {
