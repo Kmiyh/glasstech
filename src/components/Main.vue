@@ -3,7 +3,10 @@
     <my-header></my-header>
     <main>
       <section>
-        <div id="image"></div>
+        <div id="image">
+          <h1>GlassTech</h1>
+          <h3>Лучший производитель защитных стекол в России</h3>
+        </div>
       </section>
       <section>
         <div class="container">
@@ -171,9 +174,10 @@ p {
 }
 #image2 {
   background-image: url("../../static/image/zxc.png");
-  min-height: 655px;
-  min-width: 635px;
-  margin-bottom: 10px;
+  min-height: 350px;
+  min-width: 350px;
+  margin-bottom: 20px;
+  margin-left: 30px;
 }
 .container {
   text-align: center;
@@ -182,7 +186,7 @@ p {
   background-color: #dddddd;
 }
 #info {
-  padding-top: 100px;
+  padding-top: 10px;
   text-align: left;
   max-width: 500px;
   font-size: 20px;
