@@ -21,17 +21,36 @@
       <section class="gray">
         <div class="container">
           <h1>{{second}}</h1>
-          <div id="advantages" class="row centered">
+          <div class="row">
             <div>
               <h3>{{sf}}</h3>
+              <p>{{sff}}</p>
             </div>
             <div>
               <h3>{{ss}}</h3>
+              <p>{{ssf}}</p>
             </div>
             <div>
               <h3>{{st}}</h3>
+              <p>{{stf}}</p>
             </div>
           </div>
+          <div class="row">
+            <div class="ico">
+              <img src="../../static/image/cup.png" />
+            </div>
+            <div class="ico">
+              <img src="../../static/image/cup.png" />
+            </div>
+            <div class="ico">
+              <img src="../../static/image/cup.png" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="container">
+          <h1>{{third}}</h1>
         </div>
       </section>
     </main>
@@ -69,6 +88,23 @@ export default {
 </script>
 
 <style scoped>
+.ico {
+  width: 380px;
+}
+img {
+  padding-bottom: 20px;
+}
+h1 {
+  padding-top: 20px;
+}
+p {
+  width: 380px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.row {
+  padding-top: 20px;
+}
 #image {
   background-image: url("../../static/image/main.jpg");
   background-position: center;
@@ -83,7 +119,6 @@ export default {
 }
 .container {
   text-align: center;
-  padding-top: 20px;
 }
 .gray {
   background-color: #dddddd;
