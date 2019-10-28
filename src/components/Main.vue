@@ -3,10 +3,7 @@
     <my-header></my-header>
     <main>
       <section>
-        <div id="image">
-          <h1>GlassTech</h1>
-          <h3>Лучший производитель защитных стекол в России</h3>
-        </div>
+        <div id="image"></div>
       </section>
       <section>
         <div class="container">
@@ -24,29 +21,21 @@
       <section class="gray">
         <div class="container">
           <h1>{{second}}</h1>
-          <div class="row">
+          <div id="adv" class="row">
             <div>
               <h3>{{sf}}</h3>
               <p>{{sff}}</p>
+              <i class="fa fa-trophy"></i>
             </div>
             <div>
               <h3>{{ss}}</h3>
               <p>{{ssf}}</p>
+              <i class="fa fa-trophy"></i>
             </div>
             <div>
               <h3>{{st}}</h3>
               <p>{{stf}}</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="ico">
-              <img src="../../static/image/cup.png" />
-            </div>
-            <div class="ico">
-              <img src="../../static/image/cup.png" />
-            </div>
-            <div class="ico">
-              <img src="../../static/image/cup.png" />
+              <i class="fa fa-trophy"></i>
             </div>
           </div>
         </div>
@@ -131,7 +120,7 @@ export default {
       ss: "Мониторинг рынка",
       st: "Самые низкие цены",
       sff:
-        "­­Реализуемые нами защитные стекла производятся на собственной фабрике! Мы не сотрудничаем с поставщиками стекол, потому что можем гарантировать качество только выпущенной нами продукции. Доверие клиентов – то, чем мы очень дорожим.",
+        "­­Реализуемые нами защитные стекла производятся на собственной фабрике! Мы можеем гарантировать качество выпущенной нами продукции.",
       ssf:
         "Мы в курсе всех тенденций на рынке мобильных устройств! Смартфонам с самыми хрупкими экранами – самые надежные защитные стекла.",
       stf:
@@ -166,15 +155,19 @@ p {
 .row {
   padding-top: 20px;
 }
+#adv {
+  padding-bottom: 20px;
+}
 #image {
   background-image: url("../../static/image/main.jpg");
   background-position: center;
   min-height: 680px;
   width: 100%;
+  text-align: center;
 }
 #image2 {
   background-image: url("../../static/image/zxc.png");
-  min-height: 350px;
+  min-height: 360px;
   min-width: 350px;
   margin-bottom: 20px;
   margin-left: 30px;
@@ -187,8 +180,9 @@ p {
 }
 #info {
   padding-top: 10px;
+  padding-left: 10px;
   text-align: left;
-  max-width: 500px;
+  max-width: 700px;
   font-size: 20px;
 }
 #order {
