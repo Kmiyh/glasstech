@@ -9,9 +9,18 @@
         <div class="container">
           <h1 v-html="first"></h1>
           <div class="row centered">
-            <div id="info">{{ff}}</div>
-            <button id="order" class="btn btn-warning">{{button}}</button>
+            <div id="info">
+              {{ff}}
+              <br />
+              <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
+            </div>
+            <div id="image2"></div>
           </div>
+        </div>
+      </section>
+      <section class="gray">
+        <div class="container">
+          <h1>{{second}}</h1>
         </div>
       </section>
     </main>
@@ -27,7 +36,7 @@ export default {
       button: "СДЕЛАТЬ ЗАКАЗ",
       first: "ЗАЩИТНЫЕ СТЕКЛА ДЛЯ<br>МОБИЛЬНЫХ ТЕЛЕФОНОВ",
       ff:
-        'Наша компания занимается оптовой продажей защитных стекол для смартфонов по всей России. У нас Вы можете выбрать защитное стекло для многих марок смартфонов. Мы гарантируем высокое качество защитных стекол и самые низкие цены на них. Оформите заказ в несколько шагов, нажав "сделать заказ"',
+        'Наша компания занимается оптовой продажей защитных стекол для смартфонов по всей России. У нас Вы можете выбрать защитное стекло для следующих марок смартфонов: Apple, Sony, Samsung, Xiaomi, Huawei, Lenovo, Meizu, Nokia, Microsoft, Alcatel, HTC, ASUS. Также в продаже имеются стекла к Apple iWatch и Apple iPad. Мы гарантируем высокое качество защитных стекол и самые низкие цены на них. Оформите заказ в несколько шагов, нажав «Сделать Заказ»."',
       second: "Наши преимущества",
       sf: "Собственное производство",
       ss: "мониторинг рынка",
@@ -53,15 +62,26 @@ export default {
   min-height: 680px;
   width: 100%;
 }
+#image2 {
+  background-image: url("../../static/image/zxc.png");
+  min-height: 655px;
+  min-width: 635px;
+  margin-bottom: 10px;
+}
 .container {
   text-align: center;
   padding-top: 20px;
 }
+.gray {
+  background-color: #dddddd;
+}
 #info {
   text-align: left;
-  max-width: 700px;
+  max-width: 500px;
+  font-size: 20px;
 }
 #order {
+  text-align: left;
   margin-top: 10px;
   margin-bottom: 20px;
 }
