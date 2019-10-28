@@ -52,6 +52,39 @@
         <div class="container">
           <h1>{{third}}</h1>
         </div>
+        <div class="container">
+          <div id="sliderBigImages" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="../../static/image/1.jpg" class="d-block w-100" alt="Природа" />
+              </div>
+              <div class="carousel-item">
+                <img src="../../static/image/1.jpg" class="d-block w-100" alt="Природа" />
+              </div>
+              <div class="carousel-item">
+                <img src="../../static/image/1.jpg" class="d-block w-100" alt="Природа" />
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#sliderBigImages"
+              role="button"
+              data-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#sliderBigImages"
+              role="button"
+              data-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
       </section>
     </main>
     <my-footer></my-footer>
@@ -88,6 +121,9 @@ export default {
 </script>
 
 <style scoped>
+.carouselExampleControls {
+  width: auto;
+}
 .ico {
   width: 380px;
 }
