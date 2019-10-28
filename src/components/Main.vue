@@ -21,14 +21,27 @@
       <section class="gray">
         <div class="container">
           <h1>{{second}}</h1>
+          <div id="advantages" class="row centered">
+            <div>
+              <h3>{{sf}}</h3>
+            </div>
+            <div>
+              <h3>{{ss}}</h3>
+            </div>
+            <div>
+              <h3>{{st}}</h3>
+            </div>
+          </div>
         </div>
       </section>
     </main>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script>
 import MyHeader from "./Header.vue";
+import MyFooter from "./Footer.vue";
 export default {
   name: "imain",
   data() {
@@ -39,7 +52,7 @@ export default {
         'Наша компания занимается оптовой продажей защитных стекол для смартфонов по всей России. У нас Вы можете выбрать защитное стекло для следующих марок смартфонов: Apple, Sony, Samsung, Xiaomi, Huawei, Lenovo, Meizu, Nokia, Microsoft, Alcatel, HTC, ASUS. Также в продаже имеются стекла к Apple iWatch и Apple iPad. Мы гарантируем высокое качество защитных стекол и самые низкие цены на них. Оформите заказ в несколько шагов, нажав «Сделать Заказ»."',
       second: "Наши преимущества",
       sf: "Собственное производство",
-      ss: "мониторинг рынка",
+      ss: "Мониторинг рынка",
       st: "Самые низкие цены",
       sff:
         "­­Реализуемые нами защитные стекла производятся на собственной фабрике! Мы не сотрудничаем с поставщиками стекол, потому что можем гарантировать качество только выпущенной нами продукции. Доверие клиентов – то, чем мы очень дорожим.",
@@ -51,7 +64,7 @@ export default {
       fourth: "Понравилось?"
     };
   },
-  components: { MyHeader }
+  components: { MyHeader, MyFooter }
 };
 </script>
 
@@ -76,6 +89,7 @@ export default {
   background-color: #dddddd;
 }
 #info {
+  padding-top: 100px;
   text-align: left;
   max-width: 500px;
   font-size: 20px;
