@@ -86,6 +86,15 @@
           </div>
         </div>
       </section>
+      <section class="gray">
+        <div class="container">
+          <h1>{{fourth}}</h1>
+          <h5>{{fs}}</h5>
+          <div>
+            <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
+          </div>
+        </div>
+      </section>
     </main>
     <my-footer></my-footer>
   </div>
@@ -113,7 +122,8 @@ export default {
       stf:
         "Мы гарантируем не только высокое качество продукции, но и самые низкие цены на защитные стекла. Цена товара Вас приятно удивит!­­ ",
       third: "Виды защитных стекол",
-      fourth: "Понравилось?"
+      fourth: "Понравилось?",
+      fs: "При первом заказе скидка 10%"
     };
   },
   components: { MyHeader, MyFooter }
