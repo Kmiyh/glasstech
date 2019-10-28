@@ -1,8 +1,6 @@
 <template>
-  <footer class="page-footer font-small cyan darken-3">
-    <div class="container">
-      <div class="row">
-        <div id="footer" class="col-md-12">
+    <div id="footer" class="container">
+      <div class="row"></div>
           <div class="ftr">
             <!-- Facebook -->
             <a class="fb-ic">
@@ -19,8 +17,6 @@
             <!-- <p>&copy; Copyright: Pavel Galiguzov</p> -->
           </div>
         </div>
-      </div>
-    </div>
   </footer>
 </template>
 
