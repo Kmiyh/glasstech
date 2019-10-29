@@ -6,7 +6,7 @@
         <div class="parallax-container">
           <h1 class="parallax-title">
             GlassTech
-            <br />Лучший производитель защитных стекол на телефоны в России
+            <h5>Лучший производитель защитных стекол в России</h5>
           </h1>
           <parallax :speed-factor="0.3" breakpoint="(min-width: 80px)">
             <img
