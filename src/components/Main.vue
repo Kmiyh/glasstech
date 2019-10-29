@@ -2,9 +2,9 @@
   <div>
     <my-header></my-header>
     <main>
-      <!-- <section>
+      <section>
         <div id="image"></div>
-      </section>-->
+      </section>
       <section>
         <div class="container">
           <h1 v-html="first"></h1>
