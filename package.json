@@ -15,7 +15,8 @@
   "dependencies": {
     "vue": "^2.5.2",
     "vue-parallaxy": "^1.1.1",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-scroll-reveal": "^1.0.11"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
