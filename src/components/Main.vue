@@ -12,7 +12,7 @@
             <div id="info">
               {{ff}}
               <br />
-              <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
+              <button class="order btn btn-warning btn-lg">{{button}}</button>
             </div>
             <div id="image2"></div>
           </div>
@@ -48,20 +48,44 @@
           <div class="row centered">
             <div class="cd">
               <div class="image_glass">
-                <img class = "none" src="../../static/image/3d.png" />
-                <div class="text"> Такое защитное стекло устанавливается на весь экран смартфона за счет закругленных краев. Оно идеально облегает дисплей смартфона и органично на нем выглядит.</div>
+                <img class="none" src="../../static/image/3d.png" />
+                <div>
+                  <button class="order btn order_cd btn-warning btn-lg">
+                    3D СТЕКЛО
+                    <h6>от 125 руб.</h6>
+                  </button>
+                </div>
+                <div
+                  class="text"
+                >Устанавливается на весь экран смартфона за счет закругленных краев. Оно идеально облегает дисплей смартфона и органично на нем выглядит.</div>
               </div>
             </div>
             <div class="cd ctr">
               <div class="image_glass">
-                <img class = "none" src="../../static/image/3d_fiber.png" />
-                <div class="text"> Главная особенность данного вида защитных стекол – окантовка может быть выполнена из силикона под цвет экрана. Клейкая основа наносится исключительно на стекло. </div>
+                <img class="none" src="../../static/image/3d_fiber.png" />
+                <div>
+                  <button class="order order_cd btn btn-warning btn-lg">
+                    3D FIBER
+                    <h6>от 65 руб.</h6>
+                  </button>
+                </div>
+                <div
+                  class="text"
+                >Главная особенность данного вида защитных стекол – окантовка может быть выполнена из силикона под цвет экрана. Клейкая основа наносится исключительно на стекло.</div>
               </div>
             </div>
             <div class="cd ctr">
               <div class="image_glass">
-                <img class = "none" src="../../static/image/silk_screen.png" />
-                <div class="text"> Silk Screen 2,5D защитные стекла имеют слегка округленные края, благодаря чему превосходно смотрятся на смартфонах с изогнутым экраном. Такие стекла отличаются отличной эргономичностью и высокой прочностью. </div>
+                <img class="none" src="../../static/image/silk_screen.png" />
+                <div>
+                  <button class="order btn order_cd btn-warning btn-lg">
+                    SILK SCREEN
+                    <h6>от 65 руб.</h6>
+                  </button>
+                </div>
+                <div
+                  class="text"
+                >Silk Screen 2,5D защитные стекла имеют слегка округленные края. Такие стекла отличаются отличной эргономичностью и высокой прочностью.</div>
               </div>
             </div>
           </div>
@@ -72,7 +96,7 @@
           <h1>{{fourth}}</h1>
           <h5>{{fs}}</h5>
           <div>
-            <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
+            <button class="order btn btn-warning btn-lg">{{button}}</button>
           </div>
         </div>
       </section>
@@ -124,6 +148,14 @@ export default {
 </script>
 
 <style scoped>
+.order_cd {
+  padding-bottom: 0px;
+  padding-top: 0px;
+  min-width: 300px;
+  margin-top: 0px !important;
+  margin-bottom: 10px !important;
+  border-radius: 0em !important;
+}
 .ctr {
   margin-left: 20px;
 }
@@ -187,10 +219,15 @@ p {
   max-width: 700px;
   font-size: 20px;
 }
-#order {
-  text-align: left;
+.order {
+  text-align: center;
   margin-top: 10px;
   margin-bottom: 20px;
+  /* max-width: 298px; */
+  /* padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  padding-top: 0px; */
 }
 .btn-warning {
   background: #e5ae09;
