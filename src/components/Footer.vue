@@ -1,22 +1,20 @@
 <template>
+<div class="f">
     <div id="footer" class="container">
       <div class="row"></div>
           <div class="ftr">
-            <!-- Facebook -->
             <a class="fb-ic">
               <i class="fa fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
             </a>
-            <!-- Twitter -->
             <a class="tw-ic">
               <i class="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
             </a>
-            <!--Instagram-->
             <a class="ins-ic">
               <i class="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
             </a>
-            <!-- <p>&copy; Copyright: Pavel Galiguzov</p> -->
           </div>
         </div>
+  </div>
   </footer>
 </template>
 
@@ -35,6 +33,9 @@ export default {
   padding-bottom: 20px !important;
   padding-top: 20px !important;
   text-align: center;
+}
+.f {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 i:hover {
   color: #f1890b;
