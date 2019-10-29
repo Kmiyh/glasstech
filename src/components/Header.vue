@@ -84,6 +84,9 @@ a {
   font-size: 24px;
   font-family: "Montserrat", sans-serif;
 }
+a:hover {
+  color: #f1890b !important;
+}
 li {
   padding-bottom: 0px;
 }

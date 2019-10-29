@@ -36,6 +36,9 @@ export default {
   padding-top: 20px !important;
   text-align: center;
 }
+i:hover {
+  color: #f1890b;
+}
 .container {
   min-height: 40px;
 }

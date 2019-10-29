@@ -229,7 +229,8 @@ p {
 #info {
   padding-top: 10px;
   padding-left: 10px;
-  text-align: left;
+  padding-right: 10px;
+  text-align: center;
   max-width: 700px;
   font-size: 20px;
   font-family: "Montserrat", sans-serif;
