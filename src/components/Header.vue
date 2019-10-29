@@ -32,8 +32,13 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-primary btn-md" type="submit">Поиск</button>
+        <input
+          class="sr form-control mr-sm-2"
+          type="search"
+          placeholder="Искать"
+          aria-label="Search"
+        />
+        <button class="sr btn btn-primary btn-md" type="submit">Поиск</button>
       </form>
     </div>
   </nav>
@@ -50,6 +55,9 @@ export default {
 };
 </script>
 <style scoped>
+.sr {
+  margin-bottom: 5px;
+}
 .navbar-brand {
   font-size: 36px;
   color: #3b5998;

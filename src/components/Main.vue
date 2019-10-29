@@ -45,54 +45,25 @@
           <h1>{{third}}</h1>
         </div>
         <div class="container">
-          <div id="sliderBigImages" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="../../static/image/1.jpg" class="d-block w-100" alt="Природа" />
-                <div class="carousel-caption d-none d-md-block">
-                  <h3>3D СТЕКЛО</h3>
-                  <h5>Такое защитное стекло устанавливается на весь экран смартфона за счет закругленных краев. Оно идеально облегает дисплей смартфона и органично на нем выглядит.</h5>
-                  <h6>от 65 руб.</h6>
-                  <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="../../static/image/1.jpg" class="d-block w-100" alt="Природа" />
-                <div class="carousel-caption d-none d-md-block">
-                  <h3>3D FIBER</h3>
-                  <h5>Главная особенность данного вида защитных стекол – окантовка может быть выполнена из силикона под цвет экрана. Клейкая основа наносится исключительно на стекло.</h5>
-                  <h6>от 125 руб.</h6>
-                  <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="../../static/image/1.jpg" class="d-block w-100" alt="Природа" />
-                <div class="carousel-caption d-none d-md-block">
-                  <h3>SILK SCREEN 2,5D</h3>
-                  <h5>Защитные стекла имеют слегка округленные края, благодаря чему превосходно смотрятся на смартфонах с изогнутым экраном. Такие стекла отличаются отличной эргономичностью и высокой прочностью.</h5>
-                  <h6>от 65 руб.</h6>
-                  <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
-                </div>
+          <div class="row centered">
+            <div class="cd">
+              <div class="image_glass">
+                <img class = "none" src="../../static/image/3d.png" />
+                <div class="text"> Такое защитное стекло устанавливается на весь экран смартфона за счет закругленных краев. Оно идеально облегает дисплей смартфона и органично на нем выглядит.</div>
               </div>
             </div>
-            <a
-              class="carousel-control-prev"
-              href="#sliderBigImages"
-              role="button"
-              data-slide="prev"
-            >
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a
-              class="carousel-control-next"
-              href="#sliderBigImages"
-              role="button"
-              data-slide="next"
-            >
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+            <div class="cd ctr">
+              <div class="image_glass">
+                <img class = "none" src="../../static/image/3d_fiber.png" />
+                <div class="text"> Главная особенность данного вида защитных стекол – окантовка может быть выполнена из силикона под цвет экрана. Клейкая основа наносится исключительно на стекло. </div>
+              </div>
+            </div>
+            <div class="cd ctr">
+              <div class="image_glass">
+                <img class = "none" src="../../static/image/silk_screen.png" />
+                <div class="text"> Silk Screen 2,5D защитные стекла имеют слегка округленные края, благодаря чему превосходно смотрятся на смартфонах с изогнутым экраном. Такие стекла отличаются отличной эргономичностью и высокой прочностью. </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -153,14 +124,27 @@ export default {
 </script>
 
 <style scoped>
+.ctr {
+  margin-left: 20px;
+}
+.row {
+  display: inline-flex;
+}
+.text {
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-bottom: 20px;
+  border: 2px;
+}
+.cd {
+  max-width: 298px;
+  max-height: 520px;
+}
 .carouselExampleControls {
   width: auto;
 }
 .ico {
   width: 380px;
-}
-img {
-  padding-bottom: 20px;
 }
 h1 {
   padding-top: 20px;
@@ -245,52 +229,6 @@ p {
   animation: AnimationName 3s ease infinite;
   border: medium none;
   color: #fff !important;
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
-  }
-  50% {
-    background-position: 100% 70%;
-  }
-  100% {
-    background-position: 0% 31%;
-  }
-}
-.btn-outline-light:hover {
-  color: #3f345f;
-}
-.btn-outline-warning:hover {
-  color: #ffffff;
-}
-.btn-sm {
-  font-size: 12px;
-  padding: 11px 25px;
-}
-.elements-page-btn .btn {
-  margin: 6px 3px;
-}
-@-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
-  }
-  50% {
-    background-position: 100% 70%;
-  }
-  100% {
-    background-position: 0% 31%;
-  }
-}
-@-moz-keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
-  }
-  50% {
-    background-position: 100% 70%;
-  }
-  100% {
-    background-position: 0% 31%;
-  }
 }
 @keyframes AnimationName {
   0% {
