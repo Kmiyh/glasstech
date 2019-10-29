@@ -49,12 +49,30 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <img src="../../static/image/1.jpg" class="d-block w-100" alt="Природа" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>3D СТЕКЛО</h3>
+                  <h5>Такое защитное стекло устанавливается на весь экран смартфона за счет закругленных краев. Оно идеально облегает дисплей смартфона и органично на нем выглядит.</h5>
+                  <h6>от 65 руб.</h6>
+                  <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
+                </div>
               </div>
               <div class="carousel-item">
                 <img src="../../static/image/1.jpg" class="d-block w-100" alt="Природа" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>3D FIBER</h3>
+                  <h5>Главная особенность данного вида защитных стекол – окантовка может быть выполнена из силикона под цвет экрана. Клейкая основа наносится исключительно на стекло.</h5>
+                  <h6>от 125 руб.</h6>
+                  <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
+                </div>
               </div>
               <div class="carousel-item">
                 <img src="../../static/image/1.jpg" class="d-block w-100" alt="Природа" />
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>SILK SCREEN 2,5D</h3>
+                  <h5>Защитные стекла имеют слегка округленные края, благодаря чему превосходно смотрятся на смартфонах с изогнутым экраном. Такие стекла отличаются отличной эргономичностью и высокой прочностью.</h5>
+                  <h6>от 65 руб.</h6>
+                  <button id="order" class="btn btn-warning btn-lg">{{button}}</button>
+                </div>
               </div>
             </div>
             <a
