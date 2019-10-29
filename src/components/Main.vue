@@ -159,9 +159,6 @@ export default {
 .ctr {
   margin-left: 20px;
 }
-.row {
-  display: inline-flex;
-}
 .text {
   padding-right: 5px;
   padding-left: 5px;
@@ -171,6 +168,7 @@ export default {
 .cd {
   max-width: 298px;
   max-height: 520px;
+  margin: auto;
 }
 .carouselExampleControls {
   width: auto;
