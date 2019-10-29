@@ -1,45 +1,47 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">{{sitename}}</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="container">
+      <a class="navbar-brand" href="#">{{sitename}}</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">
-            Главная
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Продукты</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Новости</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Контакты</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input
-          class="sr form-control mr-sm-2"
-          type="search"
-          placeholder="Искать"
-          aria-label="Search"
-        />
-        <button class="sr btn btn-primary btn-md" type="submit">Поиск</button>
-      </form>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">
+              Главная
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Продукты</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Новости</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Контакты</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="sr form-control mr-sm-2"
+            type="search"
+            placeholder="Искать"
+            aria-label="Search"
+          />
+          <button class="sr btn btn-primary btn-md" type="submit">Поиск</button>
+        </form>
+      </div>
     </div>
   </nav>
 </template>
@@ -56,6 +58,10 @@ export default {
 </script>
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
+.container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
 button {
   font-family: "Montserrat", sans-serif;
 }
@@ -67,14 +73,16 @@ nav {
   margin-bottom: 5px;
 }
 .navbar-brand {
-  font-size: 36px;
+  font-size: 40px;
   color: #3b5998;
   padding-bottom: 7px !important;
+  font-weight: bold;
 }
 a {
   color: #3b5998 !important;
   padding-bottom: 0px !important;
   font-size: 24px;
+  font-family: "Montserrat", sans-serif;
 }
 li {
   padding-bottom: 0px;

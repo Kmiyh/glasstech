@@ -183,6 +183,7 @@ h1 {
   max-width: 298px;
   max-height: 520px;
   margin: auto;
+  margin-top: 10px;
 }
 .carouselExampleControls {
   width: auto;
