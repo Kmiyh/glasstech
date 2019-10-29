@@ -19,7 +19,7 @@
         <div class="container">
           <h1 v-html="first"></h1>
           <div class="row centered">
-            <div id="info" class="font">
+            <div id="info" class="font" v-scroll-reveal="{ delay: 200, duration:1000}">
               {{ff}}
               <br />
               <button class="order btn btn-warning btn-lg">{{button}}</button>
@@ -32,17 +32,17 @@
         <div id="advantages" class="container">
           <h1 class="second">{{second}}</h1>
           <div class="row">
-            <div class="font">
+            <div class="font" v-scroll-reveal="{ delay: 200, duration:1500}">
               <h3>{{sf}}</h3>
               <p>{{sff}}</p>
               <i class="fa fa-trophy"></i>
             </div>
-            <div class="font">
+            <div class="font" v-scroll-reveal="{ delay: 600, duration:1500}">
               <h3>{{ss}}</h3>
               <p>{{ssf}}</p>
               <i class="fa fa-trophy"></i>
             </div>
-            <div class="font">
+            <div class="font" v-scroll-reveal="{ delay: 1000, duration:1500}">
               <h3>{{st}}</h3>
               <p>{{stf}}</p>
               <i class="fa fa-trophy"></i>
@@ -54,7 +54,7 @@
         <div class="container">
           <h1>{{third}}</h1>
         </div>
-        <div class="container">
+        <div class="container" v-scroll-reveal="{ delay: 200, duration: 1000}">
           <div class="row centered">
             <div class="cd">
               <div class="image_glass">
