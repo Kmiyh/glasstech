@@ -2,9 +2,9 @@
   <div>
     <my-header></my-header>
     <main>
-      <section>
+      <!-- <section>
         <div id="image"></div>
-      </section>
+      </section>-->
       <section>
         <div class="container">
           <h1 v-html="first"></h1>
@@ -227,6 +227,52 @@ p {
   animation: AnimationName 3s ease infinite;
   border: medium none;
   color: #fff !important;
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 31%;
+  }
+  50% {
+    background-position: 100% 70%;
+  }
+  100% {
+    background-position: 0% 31%;
+  }
+}
+.btn-outline-light:hover {
+  color: #3f345f;
+}
+.btn-outline-warning:hover {
+  color: #ffffff;
+}
+.btn-sm {
+  font-size: 12px;
+  padding: 11px 25px;
+}
+.elements-page-btn .btn {
+  margin: 6px 3px;
+}
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 31%;
+  }
+  50% {
+    background-position: 100% 70%;
+  }
+  100% {
+    background-position: 0% 31%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 31%;
+  }
+  50% {
+    background-position: 100% 70%;
+  }
+  100% {
+    background-position: 0% 31%;
+  }
 }
 @keyframes AnimationName {
   0% {
