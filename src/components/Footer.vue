@@ -30,6 +30,7 @@ export default {
 </script>
 
 <style scope>
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap');
 #footer {
   padding-bottom: 20px !important;
   padding-top: 20px !important;

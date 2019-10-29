@@ -55,6 +55,10 @@ export default {
 };
 </script>
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
+button {
+  font-family: "Montserrat", sans-serif;
+}
 nav {
   position: sticky;
   top: 0;

@@ -2,14 +2,12 @@
   <div>
     <my-header></my-header>
     <main>
-      <section>
-        <div id="image"></div>
-      </section>
-      <section>
+      <!-- <section id="image"></section> -->
+      <section class="gray">
         <div class="container">
           <h1 v-html="first"></h1>
           <div class="row centered">
-            <div id="info">
+            <div id="info" class="font">
               {{ff}}
               <br />
               <button class="order btn btn-warning btn-lg">{{button}}</button>
@@ -18,21 +16,21 @@
           </div>
         </div>
       </section>
-      <section class="gray">
+      <section>
         <div id="advantages" class="container">
-          <h1>{{second}}</h1>
+          <h1 class="second">{{second}}</h1>
           <div class="row">
-            <div>
+            <div class="font">
               <h3>{{sf}}</h3>
               <p>{{sff}}</p>
               <i class="fa fa-trophy"></i>
             </div>
-            <div>
+            <div class="font">
               <h3>{{ss}}</h3>
               <p>{{ssf}}</p>
               <i class="fa fa-trophy"></i>
             </div>
-            <div>
+            <div class="font">
               <h3>{{st}}</h3>
               <p>{{stf}}</p>
               <i class="fa fa-trophy"></i>
@@ -40,7 +38,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section class="gray">
         <div class="container">
           <h1>{{third}}</h1>
         </div>
@@ -91,7 +89,7 @@
           </div>
         </div>
       </section>
-      <section class="gray">
+      <section>
         <div class="container">
           <h1>{{fourth}}</h1>
           <h5>{{fs}}</h5>
@@ -125,7 +123,7 @@ export default {
   data() {
     return {
       button: "СДЕЛАТЬ ЗАКАЗ",
-      first: "ЗАЩИТНЫЕ СТЕКЛА ДЛЯ<br>МОБИЛЬНЫХ ТЕЛЕФОНОВ",
+      first: "Защитные стекла для телефонов",
       ff:
         'Наша компания занимается оптовой продажей защитных стекол для смартфонов по всей России. У нас Вы можете выбрать защитное стекло для следующих марок смартфонов: Apple, Sony, Samsung, Xiaomi, Huawei, Lenovo, Meizu, Nokia, Microsoft, Alcatel, HTC, ASUS. Также в продаже имеются стекла к Apple iWatch и Apple iPad. Мы гарантируем высокое качество защитных стекол и самые низкие цены на них. Оформите заказ в несколько шагов, нажав «Сделать Заказ»."',
       second: "Наши преимущества",
@@ -148,6 +146,21 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
+button {
+  font-family: "Montserrat", sans-serif;
+}
+.font {
+  margin: auto;
+}
+h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 28px;
+}
+h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 48px;
+}
 .order_cd {
   padding-bottom: 0px;
   padding-top: 0px;
@@ -164,6 +177,7 @@ export default {
   padding-left: 5px;
   padding-bottom: 20px;
   border: 2px;
+  font-family: "Montserrat", sans-serif;
 }
 .cd {
   max-width: 298px;
@@ -183,6 +197,7 @@ p {
   width: 380px;
   padding-right: 10px;
   padding-left: 10px;
+  font-family: "Montserrat", sans-serif;
 }
 .row {
   padding-top: 20px;
@@ -201,11 +216,11 @@ p {
   background-image: url("../../static/image/zxc.png");
   min-height: 360px;
   min-width: 350px;
-  margin-bottom: 20px;
-  margin-left: 30px;
+  margin: auto;
 }
 .container {
   text-align: center;
+  padding-bottom: 20px;
 }
 .gray {
   background-color: #dddddd;
@@ -216,6 +231,7 @@ p {
   text-align: left;
   max-width: 700px;
   font-size: 20px;
+  font-family: "Montserrat", sans-serif;
 }
 .order {
   text-align: center;
