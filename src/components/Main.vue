@@ -2,7 +2,19 @@
   <div>
     <my-header></my-header>
     <main>
-      <!-- <section id="image"></section> -->
+      <section>
+        <div class="parallax-container">
+          <h1 class="parallax-title">
+            GlassTech
+            <br />Лучший производитель защитных стекол на телефоны в России
+          </h1>
+          <parallax :speed-factor="0.3" breakpoint="(min-width: 80px)">
+            <img
+              src="https://tech4mag.com/wp-content/uploads/2019/07/androidpit-honor-20-review-hero-2.jpg"
+            />
+          </parallax>
+        </div>
+      </section>
       <section class="gray">
         <div class="container">
           <h1 v-html="first"></h1>
@@ -118,6 +130,7 @@
 <script>
 import MyHeader from "./Header.vue";
 import MyFooter from "./Footer.vue";
+import Parallax from "vue-parallaxy";
 export default {
   name: "imain",
   data() {
@@ -141,12 +154,25 @@ export default {
       fs: "При первом заказе скидка 10%"
     };
   },
-  components: { MyHeader, MyFooter }
+  components: { MyHeader, MyFooter, Parallax }
 };
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
+.parallax-container {
+  position: relative;
+}
+.parallax-title {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+}
 button {
   font-family: "Montserrat", sans-serif;
 }
