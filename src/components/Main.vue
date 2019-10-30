@@ -101,7 +101,90 @@
           </div>
         </div>
       </section>
-      <section>
+      <section id="reviwes">
+        <div class="container">
+          <h1 class="text-center">Отзывы наших клиентов</h1>
+          <div id="carouselReviews" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselReviews" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselReviews" data-slide-to="1"></li>
+              <li data-target="#carouselReviews" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row">
+                  <div class="offset-sm-2 col-sm-3 col-md-2">
+                    <img
+                      src="http://html-plus.in.ua/wp-content/uploads/2019/01/lara.jpg"
+                      class="img-fluid rounded-circle d-block m-auto pb-3"
+                      alt="Лариса Уварова"
+                    />
+                  </div>
+                  <div class="offset-md-1 col-md-5 col-sm-5">
+                    <div class="review">
+                      Спасибо за быстрый заказ. Отличный сервис. С менеджером было легко и приятно общаться.
+                      <div class="review-author">Лариса Уварова</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="offset-sm-2 col-sm-3 col-md-2">
+                    <img
+                      src="http://html-plus.in.ua/wp-content/uploads/2019/01/igor.jpg"
+                      class="img-fluid rounded-circle d-block m-auto pb-3"
+                      alt="Игорь Минаев"
+                    />
+                  </div>
+                  <div class="offset-md-1 col-md-5 col-sm-5">
+                    <div class="review">
+                      Отличный уровень сервиса. Доставили посылку за пару дней. А цены очень приемлемые за подобную доставку.
+                      <div class="review-author">Игорь Минаев</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row">
+                  <div class="offset-sm-2 col-sm-3 col-md-2">
+                    <img
+                      src="http://html-plus.in.ua/wp-content/uploads/2019/01/mila.jpg"
+                      class="img-fluid rounded-circle d-block m-auto pb-3"
+                      alt="Мила Синицина"
+                    />
+                  </div>
+                  <div class="offset-md-1 col-md-5 col-sm-5">
+                    <div class="review">
+                      Очень понравился товар. Посылка пришла быстро. Заказывыла подруге в подарок. Теперь хочу для себя.
+                      <div class="review-author">Мила Синицина</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#carouselReviews"
+              role="button"
+              data-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselReviews"
+              role="button"
+              data-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="gray">
         <div class="container">
           <h1>{{fourth}}</h1>
           <h5>{{fs}}</h5>
@@ -160,6 +243,50 @@ export default {
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
+#reviwes {
+  padding-top: 40px;
+  padding-bottom: 80px;
+  font-family: "Rubik", sans-serif;
+}
+.review-author {
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 30px;
+  text-transform: uppercase;
+}
+
+.carousel-indicators {
+  bottom: -58px;
+}
+
+.carousel-indicators li {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-indicators .active {
+  background-color: #000;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+@media (max-width: 575px) {
+  .review {
+    padding-left: 40px;
+    padding-right: 20px;
+  }
+}
 .parallax-container {
   position: relative;
 }
