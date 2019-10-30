@@ -13,10 +13,12 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "firebase": "^7.2.2",
     "vue": "^2.5.2",
     "vue-parallaxy": "^1.1.1",
     "vue-router": "^3.0.1",
-    "vue-scroll-reveal": "^1.0.11"
+    "vue-scroll-reveal": "^1.0.11",
+    "vuefire": "^2.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
