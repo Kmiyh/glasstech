@@ -3,11 +3,15 @@
     <my-header></my-header>
     <main>
       <div v-for="product in products">
-        <div class="row">
-          <div class="col-md-5 col-md-offset-0">
-            <figure>
-              <img :src="product.image" />
-            </figure>
+        <div class="container">
+          <div class="card">
+            <div class="row">
+              <div class="col-md-5 col-md-offset-0">
+                <figure>
+                  <img :src="product.image" />
+                </figure>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -35,3 +39,11 @@ export default {
   components: { MyHeader, MyFooter }
 };
 </script>
+
+<style>
+.card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+}
+</style>
