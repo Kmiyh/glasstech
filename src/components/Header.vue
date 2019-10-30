@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="#">{{sitename}}</a>
+      <h1 class="navbar-brand">
+        <router-link class="navbar-brand" :to="{name:'iMain'}">{{sitename}}</router-link>
+      </h1>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,20 +18,14 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              Главная
-              <span class="sr-only">(current)</span>
-            </a>
+          <li class="nav-item">
+            <a class="nav-link" @click="showProducts">Продукты</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Продукты</a>
+            <a class="nav-link">Новости</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Новости</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Контакты</a>
+            <a class="nav-link">Контакты</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -53,6 +49,11 @@ export default {
     return {
       sitename: "GlassTech"
     };
+  },
+  methods: {
+    showProducts() {
+      this.$router.push({ name: "Products" });
+    }
   }
 };
 </script>
@@ -77,7 +78,7 @@ nav {
 .navbar-brand {
   font-size: 40px;
   color: #3b5998;
-  padding-bottom: 7px !important;
+  /* padding-bottom: 7px !important; */
   font-weight: bold;
 }
 a {
