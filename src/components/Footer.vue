@@ -3,7 +3,7 @@
     <div id="footer" class="container">
       <div class="row"></div>
           <div class="ftr">
-            <a class="fb-ic">
+            <a class="fb-ic" style="padding-left: 40px;">
               <i class="fa fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
             </a>
             <a class="tw-ic">

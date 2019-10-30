@@ -9,9 +9,7 @@
             <h5>Лучший производитель защитных стекол в России</h5>
           </h1>
           <parallax :speed-factor="0.3" breakpoint="(min-width: 80px)">
-            <img
-              src="https://tech4mag.com/wp-content/uploads/2019/07/androidpit-honor-20-review-hero-2.jpg"
-            />
+            <img src="../../static/image/main.jpg" />
           </parallax>
         </div>
       </section>
@@ -244,8 +242,8 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
 #reviwes {
-  padding-top: 40px;
-  padding-bottom: 80px;
+  padding-top: 0px;
+  padding-bottom: 40px;
   font-family: "Rubik", sans-serif;
 }
 .review-author {
