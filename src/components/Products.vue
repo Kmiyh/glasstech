@@ -46,4 +46,7 @@ export default {
   margin-bottom: 10px;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
 }
+figure {
+  margin: 5px 5px 5px 5px;
+}
 </style>
