@@ -2,20 +2,21 @@
   <div>
     <my-header></my-header>
     <main>
-      <div v-for="product in products">
-        <div class="container">
-          <div class="card">
-            <div class="row">
-              <div>
-                <figure>
-                  <img :src="product.image" />
-                </figure>
+      <div class="container">
+        <div class="row">
+          <div class="inf" v-for="product in products">
+            <div class="card">
+              <div class="row">
+                <div>
+                  <figure>
+                    <img :src="product.image" />
+                  </figure>
+                </div>
+                <div class="title">
+                  <h3>{{product.title}}</h3>
+                  <p>{{product.description}}</p>
+                </div>
               </div>
-              <div class="title">
-                <h3>{{product.title}}</h3>
-                <p>{{product.description}}</p>
-              </div>
-              <div></div>
             </div>
           </div>
         </div>
@@ -47,6 +48,9 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
+.inf {
+  margin: auto;
+}
 .title {
   padding-top: 10px;
   padding-right: 30px;
@@ -57,7 +61,7 @@ export default {
   margin-top: 10px;
   margin-bottom: 10px;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
-  max-width: 500px;
+  max-width: 550px;
 }
 figure {
   margin: 5px 5px 5px 5px;
