@@ -7,7 +7,7 @@
           <div class="inf" v-for="product in products">
             <div class="card">
               <div class="row">
-                <div>
+                <div class="picture">
                   <figure>
                     <img :src="product.image" />
                   </figure>
@@ -46,8 +46,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
+h3 {
+  text-align: center;
+}
+.picture,
 .inf {
   margin: auto;
 }
