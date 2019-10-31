@@ -246,7 +246,7 @@
               </button>
             </div>
             <div class="modal-body">
-              <form @submit="addOrder(email, country, town, address, index, brand, model)">
+              <form>
                 <h5>Укажите контактные данные</h5>
                 <div class="form-row">
                   <div class="form-group col-md-12">
@@ -316,7 +316,11 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="submit" class="btn btn-primary order btn btn-warning btn-lg">Заказать</button>
+              <button
+                v-on:click="addOrder(email, country, town, address, index, brand, model, glass)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-lg"
+              >Заказать</button>
             </div>
           </div>
         </div>
