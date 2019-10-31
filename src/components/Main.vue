@@ -20,7 +20,11 @@
             <div id="info" class="font" v-scroll-reveal="{ delay: 200, duration:1000}">
               {{ff}}
               <br />
-              <button class="order btn btn-warning btn-lg">{{button}}</button>
+              <button
+                class="order btn btn-warning btn-lg"
+                data-toggle="modal"
+                data-target="#exampleModalCenter"
+              >{{button}}</button>
             </div>
             <div id="image2"></div>
           </div>
@@ -225,6 +229,98 @@
           ></iframe>
         </div>
       </section>
+      <div
+        class="modal fade"
+        id="exampleModalCenter"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Создание заказа</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form @submit="addOrder(email, country, town, address, index, brand, model)">
+                <h5>Укажите контактные данные</h5>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="inputEmail4">Email</label>
+                    <input
+                      v-model="email"
+                      type="email"
+                      class="form-control"
+                      id="inputEmail4"
+                      placeholder="Email"
+                    />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputCity">Страна</label>
+                    <select v-model="country" id="inputState" class="form-control">
+                      <option v-for="country in countries">{{country.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputCity">Город</label>
+                    <select v-model="town" id="inputTown" class="form-control">
+                      <option v-for="town in towns">{{town.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-10">
+                    <label for="inputAddress">Адрес</label>
+                    <input
+                      v-model="address"
+                      type="text"
+                      class="form-control"
+                      id="inputAddress"
+                      placeholder="1234 Main St"
+                    />
+                  </div>
+                  <div class="form-group col-md-2">
+                    <label for="inputZip">Индекс</label>
+                    <input v-model="index" type="text" class="form-control" id="inputZip" />
+                  </div>
+                </div>
+                <h5>Выберете продукт</h5>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputState">Производитель</label>
+                    <select v-model="brand" id="inputManufacturer" class="form-control">
+                      <option v-for="brand in brands">{{brand.name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputState">Модель устройства</label>
+                    <select v-model="model" id="inputModel" class="form-control">
+                      <option v-for="model in models">{{model.name}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="inputState">Тип стекла</label>
+                    <select v-model="glass" id="inputGlass" class="form-control">
+                      <option v-for="glass in glasses">{{glass.name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary order btn btn-warning btn-lg">Заказать</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <my-footer></my-footer>
   </div>
@@ -234,10 +330,25 @@
 import MyHeader from "./Header.vue";
 import MyFooter from "./Footer.vue";
 import Parallax from "vue-parallaxy";
+import { db } from "../main.js";
 export default {
   name: "imain",
   data() {
     return {
+      countries: [],
+      towns: [],
+      brands: [],
+      models: [],
+      glasses: [],
+      orders: [],
+      email: "",
+      country: "",
+      town: "",
+      address: "",
+      index: "",
+      brand: "",
+      model: "",
+      glass: "",
       button: "СДЕЛАТЬ ЗАКАЗ",
       first: "Защитные стекла для телефонов",
       ff:
@@ -256,6 +367,30 @@ export default {
       fourth: "Понравилось?",
       fs: "При первом заказе скидка 10%"
     };
+  },
+  firestore() {
+    return {
+      countries: db.collection("countries").orderBy("name"),
+      towns: db.collection("towns").orderBy("name"),
+      brands: db.collection("brands").orderBy("name"),
+      models: db.collection("models").orderBy("name"),
+      glasses: db.collection("glasses").orderBy("name"),
+      orders: db.collection("orders").orderBy("email")
+    };
+  },
+  methods: {
+    addOrder(email, country, town, address, index, brand, model, glass) {
+      db.collection("orders").add({
+        email,
+        country,
+        town,
+        address,
+        index,
+        brand,
+        model,
+        glass
+      });
+    }
   },
   components: { MyHeader, MyFooter, Parallax }
 };
