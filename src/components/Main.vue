@@ -99,7 +99,29 @@
           </div>
         </div>
       </section>
-      <section id="reviwes">
+      <section>
+        <div id="advantages" class="container">
+          <h1 class="second">Что вы получите</h1>
+          <div class="row">
+            <div class="font" v-scroll-reveal="{ delay: 200, duration:1500}">
+              <h3>Индивидуальные заказы</h3>
+              <p>Мы принимаем заказы на изготовление нестандартных защитных стекол. Клиентоориентированность – одно из наших многочисленных достоинств.</p>
+              <i class="fa fa-bolt"></i>
+            </div>
+            <div class="font" v-scroll-reveal="{ delay: 600, duration:1500}">
+              <h3>Быстрая доставка</h3>
+              <p>От производства до рук клиента – один шаг. Мы изо всех сил стараемся, чтобы защитные стекла находили свои смартфоны как можно быстрее</p>
+              <i class="fa fa-truck"></i>
+            </div>
+            <div class="font" v-scroll-reveal="{ delay: 1000, duration:1500}">
+              <h3>Всегда в наличии</h3>
+              <p>Благодаря огромному ассортименту стекол, которые всегда доступны для заказа, Вы можете купить любые модели средним или крупным оптом.</p>
+              <i class="fa fa-thumbs-up"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="reviwes" class="gray">
         <div class="container">
           <h1 class="text-center">Отзывы наших клиентов</h1>
           <div id="carouselReviews" class="carousel slide" data-ride="carousel">
@@ -182,7 +204,7 @@
           </div>
         </div>
       </section>
-      <section class="gray">
+      <section>
         <div class="container">
           <h1>{{fourth}}</h1>
           <h5>{{fs}}</h5>
