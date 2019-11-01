@@ -18,9 +18,9 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" @click="showProducts">Продукты</a>
-          </li>
+          </li>-->
           <li class="nav-item">
             <a class="nav-link">Новости</a>
           </li>
@@ -28,15 +28,12 @@
             <a class="nav-link">Контакты</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="sr form-control mr-sm-2"
-            type="search"
-            placeholder="Искать"
-            aria-label="Search"
-          />
-          <button class="sr btn btn-primary btn-md" type="submit">Поиск</button>
-        </form>
+        <button
+          class="sr btn btn-primary btn-lg"
+          type="submit"
+          data-toggle="modal"
+          data-target="#exampleModalCenter"
+        >СДЕЛАТЬ ЗАКАЗ</button>
       </div>
     </div>
   </nav>
@@ -49,12 +46,12 @@ export default {
     return {
       sitename: "GlassTech"
     };
-  },
-  methods: {
-    showProducts() {
-      this.$router.push({ name: "Products" });
-    }
   }
+  // methods: {
+  //   showProducts() {
+  //     this.$router.push({ name: "Products" });
+  //   }
+  // }
 };
 </script>
 <style scoped>

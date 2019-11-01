@@ -13,11 +13,11 @@ export default new Router({
       component: Main,
       props: true
     },
-    {
-      path: "/products",
-      name: "Products",
-      component: Products,
-      props: true
-    }
+    // {
+    //   path: "/products",
+    //   name: "Products",
+    //   component: Products,
+    //   props: true
+    // }
   ]
 });
