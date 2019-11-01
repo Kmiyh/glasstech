@@ -261,13 +261,7 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="inputCity">Страна</label>
-                    <select v-model="country" id="inputState" class="form-control">
-                      <option v-for="country in countries">{{country.name}}</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <label for="inputCity">Город</label>
                     <select v-model="town" id="inputTown" class="form-control">
                       <option v-for="town in towns">{{town.name}}</option>
@@ -293,20 +287,12 @@
                 <h5>Выберете продукт</h5>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="inputState">Производитель</label>
-                    <select v-model="brand" id="inputManufacturer" class="form-control">
-                      <option v-for="brand in brands">{{brand.name}}</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-6">
                     <label for="inputState">Модель устройства</label>
                     <select v-model="model" id="inputModel" class="form-control">
                       <option v-for="model in models">{{model.name}}</option>
                     </select>
                   </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6">
                     <label for="inputState">Тип стекла</label>
                     <select v-model="glass" id="inputGlass" class="form-control">
                       <option v-for="glass in glasses">{{glass.name}}</option>
@@ -317,9 +303,11 @@
             </div>
             <div class="modal-footer">
               <button
-                v-on:click="addOrder(email, country, town, address, index, brand, model, glass)"
+                id="make"
+                v-on:click="addOrder(email, town, address, index, model, glass)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
+                data-dismiss="modal"
               >Заказать</button>
             </div>
           </div>
@@ -346,11 +334,9 @@ export default {
       glasses: [],
       orders: [],
       email: "",
-      country: "",
       town: "",
       address: "",
       index: "",
-      brand: "",
       model: "",
       glass: "",
       button: "СДЕЛАТЬ ЗАКАЗ",
@@ -374,26 +360,23 @@ export default {
   },
   firestore() {
     return {
-      countries: db.collection("countries").orderBy("name"),
       towns: db.collection("towns").orderBy("name"),
-      brands: db.collection("brands").orderBy("name"),
       models: db.collection("models").orderBy("name"),
       glasses: db.collection("glasses").orderBy("name"),
       orders: db.collection("orders").orderBy("email")
     };
   },
   methods: {
-    addOrder(email, country, town, address, index, brand, model, glass) {
+    addOrder(email, town, address, index, model, glass) {
       db.collection("orders").add({
         email,
-        country,
         town,
         address,
         index,
-        brand,
         model,
         glass
       });
+      alert("Ваш заказ принят! Ожидайте ответа на указанную вами почту");
     }
   },
   components: { MyHeader, MyFooter, Parallax }
@@ -406,6 +389,14 @@ export default {
   padding-top: 0px;
   padding-bottom: 40px;
   font-family: "Rubik", sans-serif;
+}
+#make {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.modal-footer {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .review-author {
   font-size: 22px;
