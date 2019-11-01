@@ -213,7 +213,11 @@
           <h1>{{fourth}}</h1>
           <h5>{{fs}}</h5>
           <div>
-            <button class="order btn btn-warning btn-lg">{{button}}</button>
+            <button
+              class="order btn btn-warning btn-lg"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+            >{{button}}</button>
           </div>
         </div>
       </section>
@@ -363,18 +367,20 @@ export default {
       towns: db.collection("towns").orderBy("name"),
       models: db.collection("models").orderBy("name"),
       glasses: db.collection("glasses").orderBy("name"),
-      orders: db.collection("orders").orderBy("email")
+      orders: db.collection("orders").orderBy("date")
     };
   },
   methods: {
     addOrder(email, town, address, index, model, glass) {
+      const date = new Date();
       db.collection("orders").add({
         email,
         town,
         address,
         index,
         model,
-        glass
+        glass,
+        date
       });
       alert("Ваш заказ принят! Ожидайте ответа на указанную вами почту");
     }
