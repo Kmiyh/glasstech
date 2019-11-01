@@ -308,6 +308,12 @@
             <div class="modal-footer">
               <button
                 id="make"
+                v-on:click="checkForm(email, town, address, index, model, glass)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-lg"
+              >Проверьте заполненное</button>
+              <button
+                id="make"
                 v-on:click="addOrder(email, town, address, index, model, glass)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
@@ -371,6 +377,18 @@ export default {
     };
   },
   methods: {
+    checkForm(email, town, address, index, model, glass) {
+      if (
+        email == "" ||
+        town == "" ||
+        address == "" ||
+        index == "" ||
+        model == "" ||
+        glass == ""
+      ) {
+        alert("Заполните все поля!");
+      }
+    },
     addOrder(email, town, address, index, model, glass) {
       const date = new Date();
       db.collection("orders").add({
