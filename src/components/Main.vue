@@ -351,6 +351,7 @@ export default {
   name: "imain",
   data() {
     return {
+      er: true,
       err_email: true,
       err_town: true,
       err_address: true,
@@ -402,6 +403,11 @@ export default {
   methods: {
     checkForm(email, town, address, index, model, glass, count, phone) {
       var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      if (reg.test(email) == false) {
+        this.err_email = false;
+      } else {
+        this.err_email = true;
+      }
       if (town == "") {
         this.err_town = false;
       } else {
@@ -437,10 +443,16 @@ export default {
       } else {
         this.err_count = true;
       }
-      if (reg.test(email) == false) {
-        this.err_email = false;
-        return false;
-      } else {
+      if (
+        this.err_email == true &&
+        this.err_town == true &&
+        this.err_phone == true &&
+        this.err_address == true &&
+        this.err_index == true &&
+        this.err_model == true &&
+        this.err_glass == true &&
+        this.err_count == true
+      ) {
         const date = new Date();
         db.collection("orders").add({
           email,
@@ -453,7 +465,6 @@ export default {
           date,
           phone
         });
-        this.err_email = true;
         this.alert = false;
         this.email = "";
         this.town = "";
