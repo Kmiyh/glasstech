@@ -311,13 +311,6 @@
                 v-on:click="checkForm(email, town, address, index, model, glass)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
-              >Проверьте заполненное</button>
-              <button
-                id="make"
-                v-on:click="addOrder(email, town, address, index, model, glass)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-lg"
-                data-dismiss="modal"
               >Заказать</button>
             </div>
           </div>
@@ -393,22 +386,34 @@ export default {
         alert("Введите корректный e-mail");
         return false;
       } else {
-        alert("Все данные заполнены корректно!");
+        const date = new Date();
+        db.collection("orders").add({
+          email,
+          town,
+          address,
+          index,
+          model,
+          glass,
+          date
+        });
+        alert(
+          "Все данные заполнены корректно. Ваш заказ принят, ожмдайте ответа на указанную вами почту!"
+        );
       }
-    },
-    addOrder(email, town, address, index, model, glass) {
-      const date = new Date();
-      db.collection("orders").add({
-        email,
-        town,
-        address,
-        index,
-        model,
-        glass,
-        date
-      });
-      alert("Ваш заказ принят! Ожидайте ответа на указанную вами почту");
     }
+    // addOrder(email, town, address, index, model, glass) {
+    //   const date = new Date();
+    //   db.collection("orders").add({
+    //     email,
+    //     town,
+    //     address,
+    //     index,
+    //     model,
+    //     glass,
+    //     date
+    //   });
+    //   alert("Ваш заказ принят! Ожидайте ответа на указанную вами почту");
+    // }
   },
   components: { MyHeader, MyFooter, Parallax }
 };
