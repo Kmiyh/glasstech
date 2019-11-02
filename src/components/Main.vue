@@ -384,18 +384,28 @@ export default {
       var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
       if (town == "") {
         this.err_town = false;
+      } else {
+        this.err_town = true;
       }
       if (address == "") {
         this.err_address = false;
+      } else {
+        this.err_address = true;
       }
       if (index == "") {
         this.err_index = false;
+      } else {
+        this.err_index = true;
       }
       if (model == "") {
         this.err_model = false;
+      } else {
+        this.err_model = true;
       }
       if (glass == "") {
         this.err_glass = false;
+      } else {
+        this.err_glass = true;
       }
       if (reg.test(email) == false) {
         this.err_email = false;
