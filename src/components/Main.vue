@@ -235,30 +235,36 @@
               </p>
             </div>
             <div class="card col-md-8">
-              <form action>
+              <form>
                 <h3>Cвяжитесь с нами</h3>
                 <div class="form-group col-md-12">
                   <label for="inputName">Имя</label>
-                  <input type="text" class="form-control" id="inputName" />
+                  <input v-model="firstname" type="text" class="form-control" id="inputName" />
                   <small>Укажите адрес</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputSurname">Фамилия</label>
-                  <input type="text" class="form-control" id="inputSurname" />
+                  <input v-model="lastname" type="text" class="form-control" id="inputSurname" />
                   <small>Укажите адрес</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Тема сообщения</label>
-                  <select id="inputQuestion" class="form-control">
+                  <select v-model="theme" id="inputQuestion" class="form-control">
                     <option v-for="model in models">{{model.name}}</option>
                   </select>
                   <small>Укажите модель телефона</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Текст сообщения</label>
-                  <textarea class="col-md-12" rows="5"></textarea>
+                  <textarea v-model="text" class="col-md-12" rows="5"></textarea>
                 </div>
               </form>
+              <button
+                id="do"
+                v-on:click="checkFeedback(firstname, lastname, theme, text)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-lg"
+              >Заказать</button>
             </div>
           </div>
         </div>
@@ -411,6 +417,7 @@ export default {
       models: [],
       glasses: [],
       orders: [],
+      feedbacks: [],
       email: "",
       town: "",
       address: "",
@@ -447,7 +454,8 @@ export default {
       towns: db.collection("towns").orderBy("name"),
       models: db.collection("models").orderBy("name"),
       glasses: db.collection("glasses").orderBy("name"),
-      orders: db.collection("orders").orderBy("date")
+      orders: db.collection("orders").orderBy("date"),
+      feedbacks: db.collection("feedbacks").orderBy("date")
     };
   },
   methods: {
@@ -558,7 +566,8 @@ export default {
           firstname,
           lastname,
           theme,
-          text
+          text,
+          date
         });
       }
     }
