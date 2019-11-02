@@ -299,9 +299,19 @@
                 </div>
                 <div
                   v-if="!alert"
-                  class="alert alert-success"
+                  class="alert alert-success alert-dismissible fade show"
                   role="alert"
-                >Ваш заказ принят, ожидайте ответа на указанную вами почту!</div>
+                >
+                  Ваш заказ принят, ожидайте ответа на указанную вами почту!
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
               </form>
             </div>
             <div class="modal-footer">
@@ -417,6 +427,12 @@ export default {
         });
         this.err_email = true;
         this.alert = false;
+        this.email = "";
+        this.town = "";
+        this.address = "";
+        this.index = "";
+        this.model = "";
+        this.glass = "";
       }
     }
   },
