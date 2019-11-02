@@ -282,19 +282,26 @@
                 </div>
                 <h5>Выберете продукт</h5>
                 <div class="form-row">
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <label for="inputState">Модель устройства</label>
                     <select v-model="model" id="inputModel" class="form-control">
                       <option v-for="model in models">{{model.name}}</option>
                     </select>
                     <small v-if="!err_model">Укажите модель телефона</small>
                   </div>
+                </div>
+                <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputState">Тип стекла</label>
                     <select v-model="glass" id="inputGlass" class="form-control">
                       <option v-for="glass in glasses">{{glass.name}}</option>
                     </select>
                     <small v-if="!err_glass">Укажите тип стекла</small>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputCount">Количество</label>
+                    <input v-model="count" type="text" class="form-control" id="inputCount" />
+                    <small v-if="!err_count">Укажите количество</small>
                   </div>
                 </div>
                 <div
@@ -317,7 +324,7 @@
             <div class="modal-footer">
               <button
                 id="make"
-                v-on:click="checkForm(email, town, address, index, model, glass)"
+                v-on:click="checkForm(email, town, address, index, model, glass,count)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
               >Заказать</button>
@@ -345,6 +352,7 @@ export default {
       err_index: true,
       err_model: true,
       err_glass: true,
+      err_count: true,
       alert: true,
       towns: [],
       models: [],
@@ -356,6 +364,7 @@ export default {
       index: "",
       model: "",
       glass: "",
+      count: "",
       button: "СДЕЛАТЬ ЗАКАЗ",
       first: "Защитные стекла для телефонов",
       ff:
@@ -384,7 +393,7 @@ export default {
     };
   },
   methods: {
-    checkForm(email, town, address, index, model, glass) {
+    checkForm(email, town, address, index, model, glass, count) {
       var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
       if (town == "") {
         this.err_town = false;
@@ -411,6 +420,11 @@ export default {
       } else {
         this.err_glass = true;
       }
+      if (count == "") {
+        this.err_count = false;
+      } else {
+        this.err_count = true;
+      }
       if (reg.test(email) == false) {
         this.err_email = false;
         return false;
@@ -423,6 +437,7 @@ export default {
           index,
           model,
           glass,
+          count,
           date
         });
         this.err_email = true;
@@ -433,6 +448,7 @@ export default {
         this.index = "";
         this.model = "";
         this.glass = "";
+        this.count = "";
       }
     }
   },
