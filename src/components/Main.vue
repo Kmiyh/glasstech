@@ -262,6 +262,7 @@
                       id="inputEmail4"
                       placeholder="Email"
                     />
+                    <small v-if="!err_email">Укажите корректный email</small>
                   </div>
                 </div>
                 <div class="form-row">
@@ -270,10 +271,11 @@
                     <select v-model="town" id="inputTown" class="form-control">
                       <option v-for="town in towns">{{town.name}}</option>
                     </select>
+                    <small v-if="!err_town">Укажите город</small>
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-10">
+                  <div class="form-group col-md-8">
                     <label for="inputAddress">Адрес</label>
                     <input
                       v-model="address"
@@ -282,10 +284,12 @@
                       id="inputAddress"
                       placeholder="1234 Main St"
                     />
+                    <small v-if="!err_address">Укажите адрес</small>
                   </div>
-                  <div class="form-group col-md-2">
+                  <div class="form-group col-md-4">
                     <label for="inputZip">Индекс</label>
                     <input v-model="index" type="text" class="form-control" id="inputZip" />
+                    <small v-if="!err_index">Укажите индекс</small>
                   </div>
                 </div>
                 <h5>Выберете продукт</h5>
@@ -295,12 +299,14 @@
                     <select v-model="model" id="inputModel" class="form-control">
                       <option v-for="model in models">{{model.name}}</option>
                     </select>
+                    <small v-if="!err_model">Укажите модель телефона</small>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputState">Тип стекла</label>
                     <select v-model="glass" id="inputGlass" class="form-control">
                       <option v-for="glass in glasses">{{glass.name}}</option>
                     </select>
+                    <small v-if="!err_glass">Укажите тип стекла</small>
                   </div>
                 </div>
               </form>
@@ -330,9 +336,13 @@ export default {
   name: "imain",
   data() {
     return {
-      countries: [],
+      err_email: true,
+      err_town: true,
+      err_address: true,
+      err_index: true,
+      err_model: true,
+      err_glass: true,
       towns: [],
-      brands: [],
       models: [],
       glasses: [],
       orders: [],
@@ -372,18 +382,23 @@ export default {
   methods: {
     checkForm(email, town, address, index, model, glass) {
       var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-      if (
-        email == "" ||
-        town == "" ||
-        address == "" ||
-        index == "" ||
-        model == "" ||
-        glass == ""
-      ) {
-        alert("Заполните все поля!");
+      if (town == "") {
+        this.err_town = false;
+      }
+      if (address == "") {
+        this.err_address = false;
+      }
+      if (index == "") {
+        this.err_index = false;
+      }
+      if (model == "") {
+        this.err_model = false;
+      }
+      if (glass == "") {
+        this.err_glass = false;
       }
       if (reg.test(email) == false) {
-        alert("Введите корректный e-mail");
+        this.err_email = false;
         return false;
       } else {
         const date = new Date();
@@ -401,19 +416,6 @@ export default {
         );
       }
     }
-    // addOrder(email, town, address, index, model, glass) {
-    //   const date = new Date();
-    //   db.collection("orders").add({
-    //     email,
-    //     town,
-    //     address,
-    //     index,
-    //     model,
-    //     glass,
-    //     date
-    //   });
-    //   alert("Ваш заказ принят! Ожидайте ответа на указанную вами почту");
-    // }
   },
   components: { MyHeader, MyFooter, Parallax }
 };
