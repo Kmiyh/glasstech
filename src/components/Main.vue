@@ -534,7 +534,7 @@ export default {
         this.phone = "";
       }
     },
-    checkFeedback(firstname, surname, theme, text) {
+    checkFeedback(firstname, lastname, theme, text) {
       if (firstname == "") {
         this.err_firstname = false;
       } else {
