@@ -255,13 +255,7 @@
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label for="inputEmail4">Email</label>
-                    <input
-                      v-model="email"
-                      type="email"
-                      class="form-control"
-                      id="inputEmail4"
-                      placeholder="Email"
-                    />
+                    <input v-model="email" type="email" class="form-control" id="inputEmail4" />
                     <small v-if="!err_email">Укажите корректный email</small>
                   </div>
                 </div>
@@ -277,13 +271,7 @@
                 <div class="form-row">
                   <div class="form-group col-md-8">
                     <label for="inputAddress">Адрес</label>
-                    <input
-                      v-model="address"
-                      type="text"
-                      class="form-control"
-                      id="inputAddress"
-                      placeholder="1234 Main St"
-                    />
+                    <input v-model="address" type="text" class="form-control" id="inputAddress" />
                     <small v-if="!err_address">Укажите адрес</small>
                   </div>
                   <div class="form-group col-md-4">
