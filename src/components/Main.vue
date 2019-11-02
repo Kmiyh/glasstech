@@ -297,6 +297,11 @@
                     <small v-if="!err_glass">Укажите тип стекла</small>
                   </div>
                 </div>
+                <div
+                  v-if="!alert"
+                  class="alert alert-success"
+                  role="alert"
+                >Ваш заказ принят, ожидайте ответа на указанную вами почту!</div>
               </form>
             </div>
             <div class="modal-footer">
@@ -330,6 +335,7 @@ export default {
       err_index: true,
       err_model: true,
       err_glass: true,
+      alert: true,
       towns: [],
       models: [],
       glasses: [],
@@ -410,9 +416,7 @@ export default {
           date
         });
         this.err_email = true;
-        alert(
-          "Все данные заполнены корректно. Ваш заказ принят, ожидайте ответа на указанную вами почту!"
-        );
+        this.alert = false;
       }
     }
   },
