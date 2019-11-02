@@ -13,7 +13,7 @@
           </parallax>
         </div>
       </section>
-      <section class="gray">
+      <section>
         <div class="container">
           <h1 v-html="first"></h1>
           <div class="row centered">
@@ -30,7 +30,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section class="gray">
         <div id="advantages" class="container">
           <h1 class="second">{{second}}</h1>
           <div class="row">
@@ -52,7 +52,7 @@
           </div>
         </div>
       </section>
-      <section class="gray" id="products">
+      <section id="products">
         <div class="container">
           <h1>{{third}}</h1>
         </div>
@@ -103,7 +103,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section class="gray">
         <div id="advantages" class="container">
           <h1 class="second">Что вы получите</h1>
           <div class="row">
@@ -125,7 +125,7 @@
           </div>
         </div>
       </section>
-      <section id="reviwes" class="gray">
+      <section id="reviwes">
         <div class="container">
           <h1 class="text-center">Отзывы наших клиентов</h1>
           <div id="carouselReviews" class="carousel slide" data-ride="carousel">
@@ -208,7 +208,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section class="gray">
         <div class="container">
           <h1>{{fourth}}</h1>
           <h5>{{fs}}</h5>
@@ -239,26 +239,33 @@
                 <h3>Cвяжитесь с нами</h3>
                 <div class="form-group col-md-12">
                   <label for="inputName">Имя</label>
-                  <input type="text" class="form-control" id="inputName" />
-                  <small>Укажите адрес</small>
+                  <input v-model="firstname" type="text" class="form-control" id="inputName" />
+                  <small v-if="!err_firstname">Укажите имя</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputSurname">Фамилия</label>
-                  <input type="text" class="form-control" id="inputSurname" />
-                  <small>Укажите адрес</small>
+                  <input v-model="lastname" type="text" class="form-control" id="inputSurname" />
+                  <small v-if="!err_lastname">Укажите фамилию</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Тема сообщения</label>
-                  <select id="inputQuestion" class="form-control">
+                  <select v-model="theme" id="inputQuestion" class="form-control">
                     <option v-for="model in models">{{model.name}}</option>
                   </select>
-                  <small>Укажите модель телефона</small>
+                  <small v-if="!err_theme">Укажите тему письма</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Текст сообщения</label>
-                  <textarea class="col-md-12" rows="5"></textarea>
+                  <textarea v-model="text" class="col-md-12" rows="5"></textarea>
+                  <small v-if="!err_text">Введите текст</small>
                 </div>
               </form>
+              <button
+                id="do"
+                v-on:click="checkFeedback(firstname, lastname, theme, text)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-lg"
+              >Отправить</button>
             </div>
           </div>
         </div>
@@ -402,11 +409,16 @@ export default {
       err_glass: true,
       err_count: true,
       err_phone: true,
+      err_firstname: true,
+      err_lastname: true,
+      err_theme: true,
+      err_text: true,
       alert: true,
       towns: [],
       models: [],
       glasses: [],
       orders: [],
+      feedbacks: [],
       email: "",
       town: "",
       address: "",
@@ -415,6 +427,10 @@ export default {
       glass: "",
       count: "",
       phone: "",
+      firstname: "",
+      lastname: "",
+      theme: "",
+      text: "",
       button: "СДЕЛАТЬ ЗАКАЗ",
       first: "Защитные стекла для телефонов",
       ff:
@@ -439,7 +455,8 @@ export default {
       towns: db.collection("towns").orderBy("name"),
       models: db.collection("models").orderBy("name"),
       glasses: db.collection("glasses").orderBy("name"),
-      orders: db.collection("orders").orderBy("date")
+      orders: db.collection("orders").orderBy("date"),
+      feedbacks: db.collection("feedbacks").orderBy("date")
     };
   },
   methods: {
@@ -517,9 +534,47 @@ export default {
         this.count = "";
         this.phone = "";
       }
-    }
-  },
-  components: { MyHeader, MyFooter, Parallax }
+    },
+    checkFeedback(firstname, surname, theme, text) {
+      if (firstname == "") {
+        this.err_firstname = false;
+      } else {
+        this.err_firstname = true;
+      }
+      if (lastname == "") {
+        this.err_lastname = false;
+      } else {
+        this.err_lastname = true;
+      }
+      if (theme == "") {
+        this.err_theme = false;
+      } else {
+        this.err_theme = true;
+      }
+      if (text == "") {
+        this.err_text = false;
+      } else {
+        this.err_text = true;
+      }
+      if (
+        this.err_firstname == true &&
+        this.err_lastname == true &&
+        this.err_theme == true &&
+        this.err_text == true
+      ) {
+        const date = new Date();
+        db.collection("feedbacks").add({
+          firstname,
+          lastname,
+          theme,
+          text,
+          date
+        });
+        alert("sdvsdd");
+      }
+    },
+    components: { MyHeader, MyFooter, Parallax }
+  }
 };
 </script>
 
