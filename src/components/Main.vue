@@ -276,7 +276,7 @@
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputZip">Индекс</label>
-                    <input v-model="index" type="text" class="form-control" id="inputZip" />
+                    <input v-model="index" type="number" class="form-control" id="inputZip" />
                     <small v-if="!err_index">Укажите индекс</small>
                   </div>
                 </div>
@@ -300,7 +300,7 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputCount">Количество</label>
-                    <input v-model="count" type="text" class="form-control" id="inputCount" />
+                    <input v-model="count" type="number" class="form-control" id="inputCount" />
                     <small v-if="!err_count">Укажите количество</small>
                   </div>
                 </div>
@@ -324,7 +324,7 @@
             <div class="modal-footer">
               <button
                 id="make"
-                v-on:click="checkForm(email, town, address, index, model, glass,count)"
+                v-on:click="checkForm(email, town, address, index, model, glass, count)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
               >Заказать</button>
