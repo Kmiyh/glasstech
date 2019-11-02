@@ -462,6 +462,7 @@ export default {
         this.model = "";
         this.glass = "";
         this.count = "";
+        this.phone = "";
       }
     }
   },
