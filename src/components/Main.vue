@@ -260,12 +260,17 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-12">
+                  <div class="form-group col-md-6">
                     <label for="inputCity">Город</label>
                     <select v-model="town" id="inputTown" class="form-control">
                       <option v-for="town in towns">{{town.name}}</option>
                     </select>
                     <small v-if="!err_town">Укажите город</small>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPhone">Телефон</label>
+                    <input v-model="phone" type="number" class="form-control" id="inputPhone" />
+                    <small v-if="!err_phone">Укажите номер телефона</small>
                   </div>
                 </div>
                 <div class="form-row">
@@ -324,7 +329,7 @@
             <div class="modal-footer">
               <button
                 id="make"
-                v-on:click="checkForm(email, town, address, index, model, glass, count)"
+                v-on:click="checkForm(email, town, address, index, model, glass, count, phone)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
               >Заказать</button>
@@ -353,6 +358,7 @@ export default {
       err_model: true,
       err_glass: true,
       err_count: true,
+      err_phone: true,
       alert: true,
       towns: [],
       models: [],
@@ -365,6 +371,7 @@ export default {
       model: "",
       glass: "",
       count: "",
+      phone: "",
       button: "СДЕЛАТЬ ЗАКАЗ",
       first: "Защитные стекла для телефонов",
       ff:
@@ -393,12 +400,17 @@ export default {
     };
   },
   methods: {
-    checkForm(email, town, address, index, model, glass, count) {
+    checkForm(email, town, address, index, model, glass, count, phone) {
       var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
       if (town == "") {
         this.err_town = false;
       } else {
         this.err_town = true;
+      }
+      if (phone == "") {
+        this.err_phone = false;
+      } else {
+        this.err_phone = true;
       }
       if (address == "") {
         this.err_address = false;
@@ -438,7 +450,8 @@ export default {
           model,
           glass,
           count,
-          date
+          date,
+          phone
         });
         this.err_email = true;
         this.alert = false;
