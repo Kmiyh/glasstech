@@ -499,6 +499,9 @@ export default {
   color: white;
   text-align: center;
 }
+small {
+  color: #f1890b;
+}
 button {
   font-family: "Montserrat", sans-serif;
 }
