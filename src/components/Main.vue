@@ -378,6 +378,7 @@ export default {
   },
   methods: {
     checkForm(email, town, address, index, model, glass) {
+      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
       if (
         email == "" ||
         town == "" ||
@@ -387,6 +388,10 @@ export default {
         glass == ""
       ) {
         alert("Заполните все поля!");
+      }
+      if (reg.test(address) == false) {
+        alert("Введите корректный e-mail");
+        return false;
       }
     },
     addOrder(email, town, address, index, model, glass) {
