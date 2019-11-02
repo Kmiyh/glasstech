@@ -239,33 +239,26 @@
                 <h3>Cвяжитесь с нами</h3>
                 <div class="form-group col-md-12">
                   <label for="inputName">Имя</label>
-                  <input v-model="firstname" type="text" class="form-control" id="inputName" />
-                  <small v-if="!err_firstname">Укажите имя</small>
+                  <input type="text" class="form-control" id="inputName" />
+                  <small>Укажите адрес</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputSurname">Фамилия</label>
-                  <input v-model="lastname" type="text" class="form-control" id="inputSurname" />
-                  <small v-if="!err_lastname">Укажите фамилию</small>
+                  <input type="text" class="form-control" id="inputSurname" />
+                  <small>Укажите адрес</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Тема сообщения</label>
-                  <select v-model="theme" id="inputQuestion" class="form-control">
+                  <select id="inputQuestion" class="form-control">
                     <option v-for="model in models">{{model.name}}</option>
                   </select>
-                  <small v-if="!err_theme">Укажите тему письма</small>
+                  <small>Укажите модель телефона</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Текст сообщения</label>
-                  <textarea v-model="text" class="col-md-12" rows="5"></textarea>
-                  <small v-if="!err_text">Введите текст</small>
+                  <textarea class="col-md-12" rows="5"></textarea>
                 </div>
               </form>
-              <button
-                id="do"
-                v-on:click="checkFeedback(firstname, lastname, theme, text)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-lg"
-              >Отправить</button>
             </div>
           </div>
         </div>
@@ -418,7 +411,6 @@ export default {
       models: [],
       glasses: [],
       orders: [],
-      feedbacks: [],
       email: "",
       town: "",
       address: "",
@@ -455,8 +447,7 @@ export default {
       towns: db.collection("towns").orderBy("name"),
       models: db.collection("models").orderBy("name"),
       glasses: db.collection("glasses").orderBy("name"),
-      orders: db.collection("orders").orderBy("date"),
-      feedbacks: db.collection("feedbacks").orderBy("date")
+      orders: db.collection("orders").orderBy("date")
     };
   },
   methods: {
@@ -567,14 +558,12 @@ export default {
           firstname,
           lastname,
           theme,
-          text,
-          date
+          text
         });
-        alert("sdvsdd");
       }
-    },
-    components: { MyHeader, MyFooter, Parallax }
-  }
+    }
+  },
+  components: { MyHeader, MyFooter, Parallax }
 };
 </script>
 
