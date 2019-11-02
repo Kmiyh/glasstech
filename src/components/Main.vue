@@ -389,9 +389,11 @@ export default {
       ) {
         alert("Заполните все поля!");
       }
-      if (reg.test(address) == false) {
+      if (reg.test(email) == false) {
         alert("Введите корректный e-mail");
         return false;
+      } else {
+        alert("Все данные заполнены корректно!");
       }
     },
     addOrder(email, town, address, index, model, glass) {
