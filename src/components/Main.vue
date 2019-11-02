@@ -240,23 +240,24 @@
                 <div class="form-group col-md-12">
                   <label for="inputName">Имя</label>
                   <input v-model="firstname" type="text" class="form-control" id="inputName" />
-                  <small>Укажите адрес</small>
+                  <small v-if="!err_firstname">Укажите имя</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputSurname">Фамилия</label>
                   <input v-model="lastname" type="text" class="form-control" id="inputSurname" />
-                  <small>Укажите адрес</small>
+                  <small v-if="!err_lastname">Укажите фамилию</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Тема сообщения</label>
                   <select v-model="theme" id="inputQuestion" class="form-control">
                     <option v-for="model in models">{{model.name}}</option>
                   </select>
-                  <small>Укажите модель телефона</small>
+                  <small v-if="!err_theme">Укажите тему письма</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Текст сообщения</label>
                   <textarea v-model="text" class="col-md-12" rows="5"></textarea>
+                  <small v-if="!err_text">Укажите тему письма</small>
                 </div>
               </form>
               <button
@@ -264,7 +265,7 @@
                 v-on:click="checkFeedback(firstname, lastname, theme, text)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
-              >Заказать</button>
+              >Отправить</button>
             </div>
           </div>
         </div>
