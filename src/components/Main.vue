@@ -52,7 +52,7 @@
           </div>
         </div>
       </section>
-      <section class="gray">
+      <section class="gray" id="products">
         <div class="container">
           <h1>{{third}}</h1>
         </div>
@@ -218,6 +218,48 @@
               data-toggle="modal"
               data-target="#exampleModalCenter"
             >{{button}}</button>
+          </div>
+        </div>
+      </section>
+      <section id="contacts">
+        <div class="container cnt">
+          <h1>Наши контакты</h1>
+          <div>
+            <div class="col-md-12">
+              <p>
+                <strong>Телефон</strong>: 88005553535
+                <br />
+                <strong>Email</strong>: glasstech@gmail.com
+                <br />
+                <strong>Адрес</strong>: г.Орел, ул.Пушккина, д.35
+              </p>
+            </div>
+            <div class="card col-md-8">
+              <form action>
+                <h3>Cвяжитесь с нами</h3>
+                <div class="form-group col-md-12">
+                  <label for="inputName">Имя</label>
+                  <input type="text" class="form-control" id="inputName" />
+                  <small>Укажите адрес</small>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="inputSurname">Фамилия</label>
+                  <input type="text" class="form-control" id="inputSurname" />
+                  <small>Укажите адрес</small>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="inputQuestion">Тема сообщения</label>
+                  <select id="inputQuestion" class="form-control">
+                    <option v-for="model in models">{{model.name}}</option>
+                  </select>
+                  <small>Укажите модель телефона</small>
+                </div>
+                <div class="form-group col-md-12">
+                  <label for="inputQuestion">Текст сообщения</label>
+                  <textarea class="col-md-12" rows="5"></textarea>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -387,7 +429,7 @@ export default {
         "Мы в курсе всех тенденций на рынке мобильных устройств! Смартфонам с самыми хрупкими экранами – самые надежные защитные стекла.",
       stf:
         "Мы гарантируем не только высокое качество продукции, но и самые низкие цены на защитные стекла. Цена товара Вас приятно удивит!­­ ",
-      third: "Виды защитных стекол",
+      third: "Наши продукты",
       fourth: "Понравилось?",
       fs: "При первом заказе скидка 10%"
     };
@@ -492,6 +534,13 @@ export default {
   margin-bottom: 5px;
   margin-top: 5px;
 }
+.card {
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  max-width: 550px;
+}
 .modal-footer {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -588,6 +637,10 @@ h1 {
   max-height: 520px;
   margin: auto;
   margin-top: 10px;
+}
+p {
+  margin: auto;
+  margin-bottom: 20px;
 }
 .carouselExampleControls {
   width: auto;

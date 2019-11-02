@@ -1,11 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Main from "@/components/Main";
-import Products from "@/components/Products";
 import News from "@/components/News";
-import Contacts from "@/components/Contacts";
+import VueScrollTo from "vue-scrollto";
 
 Vue.use(Router);
+Vue.use(VueScrollTo);
 
 export default new Router({
   mode: "history",
@@ -16,21 +16,9 @@ export default new Router({
       props: true
     },
     {
-      path: "/products",
-      name: "Products",
-      component: Products,
-      props: true
-    },
-    {
       path: "/news",
       name: "News",
       component: News,
-      props: true
-    },
-    {
-      path: "/contacts",
-      name: "Contacts",
-      component: Contacts,
       props: true
     }
   ]

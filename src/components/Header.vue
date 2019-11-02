@@ -19,13 +19,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" @click="showProducts">Продукты</a>
+            <a class="nav-link" v-scroll-to="'#products'">Продукты</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" @click="showNews">Новости</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" @click="showContacts">Контакты</a>
+            <a class="nav-link" v-scroll-to="'#contacts'">Контакты</a>
           </li>
         </ul>
         <button
@@ -50,9 +50,6 @@ export default {
   methods: {
     showProducts() {
       this.$router.push({ name: "Products" });
-    },
-    showContacts() {
-      this.$router.push({ name: "Contacts" });
     },
     showNews() {
       this.$router.push({ name: "News" });
