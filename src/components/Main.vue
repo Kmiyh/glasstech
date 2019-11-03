@@ -248,6 +248,11 @@
                   <small v-if="!err_lastname">Укажите фамилию</small>
                 </div>
                 <div class="form-group col-md-12">
+                  <label for="inputSurname">Email</label>
+                  <input v-model="email2" type="email" class="form-control" id="inputSurname" />
+                  <small v-if="!err_email2">Укажите корректный email</small>
+                </div>
+                <div class="form-group col-md-12">
                   <label for="inputQuestion">Тема сообщения</label>
                   <select v-model="theme" id="inputQuestion" class="form-control">
                     <option v-for="model in models">{{model.name}}</option>
@@ -257,12 +262,27 @@
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Текст сообщения</label>
                   <textarea v-model="text" class="col-md-12" rows="5"></textarea>
-                  <small v-if="!err_text">Укажите тему письма</small>
+                  <small v-if="!err_text">Введите текст письма</small>
+                </div>
+                <div
+                  v-if="!alert2"
+                  class="alert alert-success alert-dismissible fade show"
+                  role="alert"
+                >
+                  Ваше письмо отправлено, ожидайте ответа на указанную вами почту!
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
               </form>
               <button
                 id="do"
-                v-on:click="checkFeedback(firstname, lastname, theme, text)"
+                v-on:click="checkFeedback(firstname, lastname, theme, text, email2)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
               >Отправить</button>
@@ -402,6 +422,7 @@ export default {
     return {
       er: true,
       err_email: true,
+      err_email2: true,
       err_town: true,
       err_address: true,
       err_index: true,
@@ -414,12 +435,14 @@ export default {
       err_theme: true,
       err_text: true,
       alert: true,
+      alert2: true,
       towns: [],
       models: [],
       glasses: [],
       orders: [],
       feedbacks: [],
       email: "",
+      email2: "",
       town: "",
       address: "",
       index: "",
@@ -535,7 +558,13 @@ export default {
         this.phone = "";
       }
     },
-    checkFeedback(firstname, lastname, theme, text) {
+    checkFeedback(firstname, lastname, theme, text, email2) {
+      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+      if (reg.test(email2) == false) {
+        this.err_email2 = false;
+      } else {
+        this.err_email2 = true;
+      }
       if (firstname == "") {
         this.err_firstname = false;
       } else {
@@ -560,7 +589,8 @@ export default {
         this.err_firstname == true &&
         this.err_lastname == true &&
         this.err_theme == true &&
-        this.err_text == true
+        this.err_text == true &&
+        this.err_email2 == true
       ) {
         const date = new Date();
         db.collection("feedbacks").add({
@@ -568,8 +598,15 @@ export default {
           lastname,
           theme,
           text,
-          date
+          date,
+          email2
         });
+        this.alert2 = false;
+        this.firstname = "";
+        this.lastname = "";
+        this.theme = "";
+        this.text = "";
+        this.email2 = "";
       }
     }
   },
