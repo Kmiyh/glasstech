@@ -2,7 +2,7 @@
   <div>
     <my-header></my-header>
     <main>
-      <section>
+      <section id="first">
         <div class="parallax-container">
           <h1 class="parallax-title">
             GlassTech
