@@ -255,7 +255,7 @@
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Тема сообщения</label>
                   <select v-model="theme" id="inputQuestion" class="form-control">
-                    <option v-for="model in models">{{model.name}}</option>
+                    <option v-for="theme in themes">{{theme.name}}</option>
                   </select>
                   <small v-if="!err_theme">Укажите тему письма</small>
                 </div>
@@ -443,6 +443,7 @@ export default {
       glasses: [],
       orders: [],
       feedbacks: [],
+      themes: [],
       posts: [],
       email: "",
       email2: "",
@@ -482,7 +483,8 @@ export default {
       models: db.collection("models").orderBy("name"),
       glasses: db.collection("glasses").orderBy("name"),
       orders: db.collection("orders").orderBy("date"),
-      feedbacks: db.collection("feedbacks").orderBy("date")
+      feedbacks: db.collection("feedbacks").orderBy("date"),
+      themes: db.collection("themes").orderBy("name")
     };
   },
   methods: {
