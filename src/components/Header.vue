@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
       <h1 class="navbar-brand">
-        <router-link class="navbar-brand" v-scroll-to="'#first'">{{sitename}}</router-link>
+        <a class="navbar-brand" v-scroll-to="'#first'">{{sitename}}</a>
       </h1>
       <button
         class="navbar-toggler"
