@@ -211,9 +211,9 @@
           <button @click="query()" class="sr btn btn-primary btn-sm" type="submit">БОЛЬШЕ ОТЗЫВОВ</button>
         </div>
         <div class="container" v-for="post in posts">
-          <div class="card">
+          <div class="card cdrw">
             <h5>{{post.firstname}} {{post.lastname}}</h5>
-            <p>{{post.text}}</p>
+            <p class="rewp">{{post.text}}</p>
           </div>
         </div>
       </section>
@@ -499,6 +499,8 @@ export default {
       let postsArray = [];
       db.collection("feedbacks")
         .where("theme", "==", "Отзыв")
+        .limit(10)
+        .orderBy("date", "desc")
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
@@ -654,6 +656,13 @@ export default {
 #make {
   margin-bottom: 5px;
   margin-top: 5px;
+}
+.cdrw {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.rewp {
+  width: auto;
 }
 .card {
   margin: auto;
