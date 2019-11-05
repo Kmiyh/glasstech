@@ -210,7 +210,7 @@
         <div class="container" id="rew">
           <button @click="query()" class="sr btn btn-primary btn-sm" type="submit">БОЛЬШЕ ОТЗЫВОВ</button>
         </div>
-        <div class="container" v-for="post in posts">
+        <div class="container" v-if="flag" v-for="post in posts">
           <div class="card cdrw">
             <h5>{{post.firstname}} {{post.lastname}}</h5>
             <p class="rewp">{{post.text}}</p>
@@ -429,6 +429,7 @@ export default {
   name: "imain",
   data() {
     return {
+      flag: false,
       er: true,
       err_email: true,
       err_email2: true,
@@ -512,6 +513,7 @@ export default {
           });
           this.posts = postsArray;
         });
+      this.flag = this.flag ? false : true;
     },
     checkForm(email, town, address, index, model, glass, count, phone) {
       var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
