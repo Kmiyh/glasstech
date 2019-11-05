@@ -207,6 +207,15 @@
             </a>
           </div>
         </div>
+        <div class="container" id="rew">
+          <button @click="query()" class="sr btn btn-primary btn-sm" type="submit">БОЛЬШЕ ОТЗЫВОВ</button>
+        </div>
+        <div class="container" v-for="post in posts">
+          <div class="card">
+            <h5>{{post.firstname}} {{post.lastname}}</h5>
+            <p>{{post.text}}</p>
+          </div>
+        </div>
       </section>
       <section class="gray">
         <div class="container">
@@ -302,8 +311,6 @@
           ></iframe>
         </div>
       </section>
-      <button @click="query()">Check</button>
-      <div v-for="post in posts">{{post.name}}</div>
       <div
         class="modal fade"
         id="exampleModalCenter"
@@ -490,8 +497,8 @@ export default {
   methods: {
     query() {
       let postsArray = [];
-      db.collection("glasses")
-        .where("price", "==", 125)
+      db.collection("feedbacks")
+        .where("theme", "==", "Отзыв")
         .get()
         .then(querySnapshot => {
           querySnapshot.forEach(doc => {
@@ -640,6 +647,9 @@ export default {
   padding-top: 0px;
   padding-bottom: 40px;
   font-family: "Rubik", sans-serif;
+}
+#rew {
+  margin-top: 40px;
 }
 #make {
   margin-bottom: 5px;
@@ -850,6 +860,93 @@ p {
   animation: AnimationName 3s ease infinite;
   border: medium none;
   color: #fff !important;
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 31%;
+  }
+  50% {
+    background-position: 100% 70%;
+  }
+  100% {
+    background-position: 0% 31%;
+  }
+}
+.btn-outline-light:hover {
+  color: #3f345f;
+}
+.btn-outline-warning:hover {
+  color: #ffffff;
+}
+.btn-sm {
+  font-size: 12px;
+  padding: 11px 25px;
+}
+.elements-page-btn .btn {
+  margin: 6px 3px;
+}
+.btn-primary {
+  background: #5a7ce2;
+  background: -moz-linear-gradient(
+    -45deg,
+    #5a7ce2 0%,
+    #8283e8 50%,
+    #5c5de8 51%,
+    #565bd8 71%,
+    #575cdb 100%
+  );
+  background: -webkit-linear-gradient(
+    -45deg,
+    #5a7ce2 0%,
+    #8283e8 50%,
+    #5c5de8 51%,
+    #565bd8 71%,
+    #575cdb 100%
+  );
+  background: linear-gradient(
+    135deg,
+    #5a7ce2 0%,
+    #8283e8 50%,
+    #5c5de8 51%,
+    #565bd8 71%,
+    #575cdb 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a7ce2', endColorstr='#575cdb',GradientType=1 );
+  background-size: 400% 400%;
+  -webkit-animation: AnimationName 3s ease infinite;
+  -moz-animation: AnimationName 3s ease infinite;
+  animation: AnimationName 3s ease infinite;
+  -webkit-animation: AnimationName 3s ease infinite;
+  -moz-animation: AnimationName 3s ease infinite;
+  animation: AnimationName 3s ease infinite;
+  border: medium none;
+}
+.btn-outline-primary:hover {
+  background-color: #5a7ce2;
+  border-color: #5a7ce2;
+  color: #fff;
+}
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 31%;
+  }
+  50% {
+    background-position: 100% 70%;
+  }
+  100% {
+    background-position: 0% 31%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 31%;
+  }
+  50% {
+    background-position: 100% 70%;
+  }
+  100% {
+    background-position: 0% 31%;
+  }
 }
 @keyframes AnimationName {
   0% {
