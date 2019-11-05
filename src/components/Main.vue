@@ -36,17 +36,17 @@
           <div class="row">
             <div class="font" v-scroll-reveal="{ delay: 200, duration:1500}">
               <h3>{{sf}}</h3>
-              <p>{{sff}}</p>
+              <p class="pinf">{{sff}}</p>
               <i class="fa fa-trophy"></i>
             </div>
             <div class="font" v-scroll-reveal="{ delay: 600, duration:1500}">
               <h3>{{ss}}</h3>
-              <p>{{ssf}}</p>
+              <p class="pinf">{{ssf}}</p>
               <i class="fa fa-trophy"></i>
             </div>
             <div class="font" v-scroll-reveal="{ delay: 1000, duration:1500}">
               <h3>{{st}}</h3>
-              <p>{{stf}}</p>
+              <p class="pinf">{{stf}}</p>
               <i class="fa fa-trophy"></i>
             </div>
           </div>
@@ -109,17 +109,23 @@
           <div class="row">
             <div class="font" v-scroll-reveal="{ delay: 200, duration:1500}">
               <h3>Индивидуальные заказы</h3>
-              <p>Мы принимаем заказы на изготовление нестандартных защитных стекол. Клиентоориентированность – одно из наших многочисленных достоинств.</p>
+              <p
+                class="pinf"
+              >Мы принимаем заказы на изготовление нестандартных защитных стекол. Клиентоориентированность – одно из наших многочисленных достоинств.</p>
               <i class="fa fa-bolt"></i>
             </div>
             <div class="font" v-scroll-reveal="{ delay: 600, duration:1500}">
               <h3>Быстрая доставка</h3>
-              <p>От производства до рук клиента – один шаг. Мы изо всех сил стараемся, чтобы защитные стекла находили свои смартфоны как можно быстрее</p>
+              <p
+                class="pinf"
+              >От производства до рук клиента – один шаг. Мы изо всех сил стараемся, чтобы защитные стекла находили свои смартфоны как можно быстрее</p>
               <i class="fa fa-truck"></i>
             </div>
             <div class="font" v-scroll-reveal="{ delay: 1000, duration:1500}">
               <h3>Всегда в наличии</h3>
-              <p>Благодаря огромному ассортименту стекол, которые всегда доступны для заказа, Вы можете купить любые модели средним или крупным оптом.</p>
+              <p
+                class="pinf"
+              >Благодаря огромному ассортименту стекол, которые всегда доступны для заказа, Вы можете купить любые модели средним или крупным оптом.</p>
               <i class="fa fa-thumbs-up"></i>
             </div>
           </div>
@@ -509,7 +515,7 @@ export default {
             let post = doc.data();
             post.id = doc.id;
             postsArray.push(post);
-            console.log(doc.data());
+            // console.log(doc.data());
           });
           this.posts = postsArray;
         });
@@ -772,6 +778,7 @@ h1 {
   margin-top: 10px;
 }
 p {
+  width: auto !important;
   margin: auto;
   margin-bottom: 20px;
 }
@@ -808,6 +815,9 @@ p {
   min-height: 360px;
   min-width: 350px;
   margin: auto;
+}
+.pinf {
+  max-width: 380px !important;
 }
 .container {
   text-align: center;
