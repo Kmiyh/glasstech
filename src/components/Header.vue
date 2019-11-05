@@ -25,6 +25,9 @@
             <a class="nav-link" @click="showNews">Новости</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" v-scroll-to="'#reviwes'">Oтзывы</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" v-scroll-to="'#contacts'">Контакты</a>
           </li>
         </ul>
