@@ -302,6 +302,8 @@
           ></iframe>
         </div>
       </section>
+      <button @click="query()">Check</button>
+      <div v-for="post in posts">{{post.name}}</div>
       <div
         class="modal fade"
         id="exampleModalCenter"
@@ -441,6 +443,7 @@ export default {
       glasses: [],
       orders: [],
       feedbacks: [],
+      posts: [],
       email: "",
       email2: "",
       town: "",
@@ -483,6 +486,21 @@ export default {
     };
   },
   methods: {
+    query() {
+      let postsArray = [];
+      db.collection("glasses")
+        .where("price", "==", 125)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            let post = doc.data();
+            post.id = doc.id;
+            postsArray.push(post);
+            console.log(doc.data());
+          });
+          this.posts = postsArray;
+        });
+    },
     checkForm(email, town, address, index, model, glass, count, phone) {
       var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
       if (reg.test(email) == false) {
