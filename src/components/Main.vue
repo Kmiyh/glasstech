@@ -382,16 +382,30 @@
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label for="inputState">Тип стекла</label>
-                    <select v-model="glass" id="inputGlass" class="form-control">
+                    <select
+                      @click="checkSum()"
+                      v-model="glass"
+                      id="inputGlass"
+                      class="form-control"
+                    >
                       <option v-for="glass in glasses">{{glass.name}}</option>
                     </select>
                     <small v-if="!err_glass">Укажите тип стекла</small>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputCount">Количество</label>
-                    <input v-model="count" type="number" class="form-control" id="inputCount" />
+                    <input
+                      @click="checkSum()"
+                      v-model="count"
+                      type="number"
+                      class="form-control"
+                      id="inputCount"
+                    />
                     <small v-if="!err_count">Укажите количество</small>
                   </div>
+                </div>
+                <div v-for="s in sum">
+                  <h6>Итого: {{s.price * count}} руб.</h6>
                 </div>
                 <div
                   v-if="!alert"
@@ -459,6 +473,7 @@ export default {
       feedbacks: [],
       themes: [],
       posts: [],
+      sum: [],
       email: "",
       email2: "",
       town: "",
@@ -503,6 +518,21 @@ export default {
     };
   },
   methods: {
+    checkSum() {
+      let smArray = [];
+      db.collection("glasses")
+        .where("name", "==", this.glass)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            let sm = doc.data();
+            sm.id = doc.id;
+            smArray.push(sm);
+            console.log(doc.data());
+          });
+          this.sum = smArray;
+        });
+    },
     query() {
       let postsArray = [];
       db.collection("feedbacks")
