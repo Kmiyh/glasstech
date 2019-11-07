@@ -438,7 +438,7 @@
             <div class="modal-footer">
               <button
                 id="make"
-                v-on:click="checkForm(email, town, address, index, model, glass, count, phone)"
+                v-on:click="checkForm(email, town, address, index, model, glass, count, phone, summa, nadb, itog)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
               >Заказать</button>
@@ -566,7 +566,19 @@ export default {
         });
       this.flag = this.flag ? false : true;
     },
-    checkForm(email, town, address, index, model, glass, count, phone) {
+    checkForm(
+      email,
+      town,
+      address,
+      index,
+      model,
+      glass,
+      count,
+      phone,
+      summa,
+      nadb,
+      itog
+    ) {
       let err_email = this.reg.test(email);
       let err_town = town != "";
       let err_phone = phone != "";
@@ -596,7 +608,10 @@ export default {
           glass,
           count,
           date,
-          phone
+          phone,
+          summa,
+          nadb,
+          itog
         });
         this.alert = false;
         this.email = "";
