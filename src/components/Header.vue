@@ -35,7 +35,7 @@
           data-target="#exampleModalCenter"
         >СДЕЛАТЬ ЗАКАЗ</button>
         <button
-          class="sr btn btn-primary btn-lg"
+          class="sr sl btn btn-primary btn-lg"
           type="submit"
           data-toggle="modal"
           data-target="#enter"
@@ -84,6 +84,10 @@ nav {
 }
 .sr {
   margin-bottom: 5px;
+}
+.sl {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .navbar-brand {
   font-size: 40px;
