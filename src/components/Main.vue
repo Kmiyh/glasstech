@@ -255,29 +255,29 @@
                 <div class="form-group col-md-12">
                   <label for="inputName">Имя</label>
                   <input v-model="firstname" type="text" class="form-control" id="inputName" />
-                  <small v-if="!err_firstname">Укажите имя</small>
+                  <small v-if="!firstname">Укажите имя</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputSurname">Фамилия</label>
                   <input v-model="lastname" type="text" class="form-control" id="inputSurname" />
-                  <small v-if="!err_lastname">Укажите фамилию</small>
+                  <small v-if="!lastname">Укажите фамилию</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputSurname">Email</label>
                   <input v-model="email2" type="email" class="form-control" id="inputSurname" />
-                  <small v-if="!err_email2">Укажите корректный email</small>
+                  <small v-if="!reg.test(email2)">Укажите корректный email</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Тема сообщения</label>
                   <select v-model="theme" id="inputQuestion" class="form-control">
                     <option v-for="theme in themes">{{theme.name}}</option>
                   </select>
-                  <small v-if="!err_theme">Укажите тему письма</small>
+                  <small v-if="!theme">Укажите тему письма</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputQuestion">Текст сообщения</label>
                   <textarea v-model="text" class="col-md-12" rows="5"></textarea>
-                  <small v-if="!err_text">Введите текст письма</small>
+                  <small v-if="!text">Введите текст письма</small>
                 </div>
                 <div
                   v-if="!alert2"
@@ -340,7 +340,7 @@
                   <div class="form-group col-md-12">
                     <label for="inputEmail4">Email</label>
                     <input v-model="email" type="email" class="form-control" id="inputEmail4" />
-                    <small v-if="!err_email">Укажите корректный email</small>
+                    <small v-if="!reg.test(email)">Укажите корректный email</small>
                   </div>
                 </div>
                 <div class="form-row">
@@ -349,24 +349,24 @@
                     <select v-model="town" id="inputTown" class="form-control">
                       <option v-for="town in towns">{{town.name}}</option>
                     </select>
-                    <small v-if="!err_town">Укажите город</small>
+                    <small v-if="!town">Укажите город</small>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputPhone">Телефон</label>
                     <input v-model="phone" type="number" class="form-control" id="inputPhone" />
-                    <small v-if="!err_phone">Укажите номер телефона</small>
+                    <small v-if="!phone">Укажите номер телефона</small>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-8">
                     <label for="inputAddress">Адрес</label>
                     <input v-model="address" type="text" class="form-control" id="inputAddress" />
-                    <small v-if="!err_address">Укажите адрес</small>
+                    <small v-if="!address">Укажите адрес</small>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputZip">Индекс</label>
                     <input v-model="index" type="number" class="form-control" id="inputZip" />
-                    <small v-if="!err_index">Укажите индекс</small>
+                    <small v-if="!index">Укажите индекс</small>
                   </div>
                 </div>
                 <h5>Выберете продукт</h5>
@@ -376,7 +376,7 @@
                     <select v-model="model" id="inputModel" class="form-control">
                       <option v-for="model in models">{{model.name}}</option>
                     </select>
-                    <small v-if="!err_model">Укажите модель телефона</small>
+                    <small v-if="!model">Укажите модель телефона</small>
                   </div>
                 </div>
                 <div class="form-row">
@@ -390,7 +390,7 @@
                     >
                       <option v-for="glass in glasses">{{glass.name}}</option>
                     </select>
-                    <small v-if="!err_glass">Укажите тип стекла</small>
+                    <small v-if="!glass">Укажите тип стекла</small>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputCount">Количество</label>
@@ -401,7 +401,7 @@
                       class="form-control"
                       id="inputCount"
                     />
-                    <small v-if="!err_count">Укажите количество</small>
+                    <small v-if="!count">Укажите количество</small>
                   </div>
                 </div>
                 <div v-for="s in sum">
@@ -449,21 +449,8 @@ export default {
   name: "imain",
   data() {
     return {
+      reg: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
       flag: false,
-      er: true,
-      err_email: true,
-      err_email2: true,
-      err_town: true,
-      err_address: true,
-      err_index: true,
-      err_model: true,
-      err_glass: true,
-      err_count: true,
-      err_phone: true,
-      err_firstname: true,
-      err_lastname: true,
-      err_theme: true,
-      err_text: true,
       alert: true,
       alert2: true,
       towns: [],
@@ -552,56 +539,24 @@ export default {
       this.flag = this.flag ? false : true;
     },
     checkForm(email, town, address, index, model, glass, count, phone) {
-      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-      if (reg.test(email) == false) {
-        this.err_email = false;
-      } else {
-        this.err_email = true;
-      }
-      if (town == "") {
-        this.err_town = false;
-      } else {
-        this.err_town = true;
-      }
-      if (phone == "") {
-        this.err_phone = false;
-      } else {
-        this.err_phone = true;
-      }
-      if (address == "") {
-        this.err_address = false;
-      } else {
-        this.err_address = true;
-      }
-      if (index == "") {
-        this.err_index = false;
-      } else {
-        this.err_index = true;
-      }
-      if (model == "") {
-        this.err_model = false;
-      } else {
-        this.err_model = true;
-      }
-      if (glass == "") {
-        this.err_glass = false;
-      } else {
-        this.err_glass = true;
-      }
-      if (count == "") {
-        this.err_count = false;
-      } else {
-        this.err_count = true;
-      }
+      let err_email = this.reg.test(email);
+      let err_town = town != "";
+      let err_phone = phone != "";
+      let err_address = address != "";
+      let err_index = index != "";
+      let err_model = model != "";
+      let err_glass = glass != "";
+      let err_count = count != "";
+
       if (
-        this.err_email == true &&
-        this.err_town == true &&
-        this.err_phone == true &&
-        this.err_address == true &&
-        this.err_index == true &&
-        this.err_model == true &&
-        this.err_glass == true &&
-        this.err_count == true
+        err_email &&
+        err_town &&
+        err_phone &&
+        err_address &&
+        err_index &&
+        err_model &&
+        err_glass &&
+        err_count
       ) {
         const date = new Date();
         db.collection("orders").add({
@@ -627,38 +582,18 @@ export default {
       }
     },
     checkFeedback(firstname, lastname, theme, text, email2) {
-      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-      if (reg.test(email2) == false) {
-        this.err_email2 = false;
-      } else {
-        this.err_email2 = true;
-      }
-      if (firstname == "") {
-        this.err_firstname = false;
-      } else {
-        this.err_firstname = true;
-      }
-      if (lastname == "") {
-        this.err_lastname = false;
-      } else {
-        this.err_lastname = true;
-      }
-      if (theme == "") {
-        this.err_theme = false;
-      } else {
-        this.err_theme = true;
-      }
-      if (text == "") {
-        this.err_text = false;
-      } else {
-        this.err_text = true;
-      }
+      let err_email2 = this.reg.test(email2);
+      let err_firstname = firstname != "";
+      let err_lastname = lastname != "";
+      let err_theme = theme != "";
+      let err_text = text != "";
+
       if (
-        this.err_firstname == true &&
-        this.err_lastname == true &&
-        this.err_theme == true &&
-        this.err_text == true &&
-        this.err_email2 == true
+        err_firstname &&
+        err_lastname &&
+        err_theme &&
+        err_text &&
+        err_email2
       ) {
         const date = new Date();
         db.collection("feedbacks").add({
