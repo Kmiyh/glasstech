@@ -373,7 +373,12 @@
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label for="inputState">Модель устройства</label>
-                    <select v-model="model" id="inputModel" class="form-control">
+                    <select
+                      @click="checkSum()"
+                      v-model="model"
+                      id="inputModel"
+                      class="form-control"
+                    >
                       <option v-for="model in models">{{model.name}}</option>
                     </select>
                     <small v-if="!model">Укажите модель телефона</small>
@@ -405,7 +410,13 @@
                   </div>
                 </div>
                 <div v-for="s in sum">
-                  <h6>Итого: {{s.price * count}} руб.</h6>
+                  <h6>Итого: {{summa = s.price * count}} руб.</h6>
+                </div>
+                <div v-for="m in md">
+                  <h6>Надбавка за модель: {{nadb = m.plus * count}} руб.</h6>
+                </div>
+                <div>
+                  <h4>Всего: {{itog = nadb + summa}} руб.</h4>
                 </div>
                 <div
                   v-if="!alert"
@@ -461,6 +472,10 @@ export default {
       themes: [],
       posts: [],
       sum: [],
+      md: [],
+      summa: "",
+      nadb: "",
+      itog: "",
       email: "",
       email2: "",
       town: "",
@@ -518,6 +533,19 @@ export default {
             console.log(doc.data());
           });
           this.sum = smArray;
+        });
+      let mdArray = [];
+      db.collection("models")
+        .where("name", "==", this.model)
+        .get()
+        .then(query => {
+          query.forEach(doc => {
+            let md = doc.data();
+            md.id = doc.id;
+            mdArray.push(md);
+            console.log(doc.data());
+          });
+          this.md = mdArray;
         });
     },
     query() {
