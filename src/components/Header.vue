@@ -34,6 +34,12 @@
           data-toggle="modal"
           data-target="#exampleModalCenter"
         >СДЕЛАТЬ ЗАКАЗ</button>
+        <button
+          class="sr btn btn-primary btn-lg"
+          type="submit"
+          data-toggle="modal"
+          data-target="#enter"
+        >Войти</button>
         <button class="button logout" v-on:click="logout">Logout</button>
       </div>
     </div>
