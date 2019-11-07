@@ -515,8 +515,7 @@ export default {
       glasses: db.collection("glasses").orderBy("name"),
       orders: db.collection("orders").orderBy("date"),
       feedbacks: db.collection("feedbacks").orderBy("date"),
-      themes: db.collection("themes").orderBy("name"),
-      news: db.collection("news").orderBy("date")
+      themes: db.collection("themes").orderBy("name")
     };
   },
   methods: {

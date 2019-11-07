@@ -46,14 +46,6 @@ export default {
     return {
       sitename: "GlassTech"
     };
-  },
-  methods: {
-    showProducts() {
-      this.$router.push({ name: "Products" });
-    },
-    showNews() {
-      this.$router.push({ name: "News" });
-    }
   }
 };
 </script>
