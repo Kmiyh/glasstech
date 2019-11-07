@@ -457,7 +457,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="enter">Вход/Регистрация</h5>
+              <h5 class="modal-title" id="enter">Вход</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -466,58 +466,16 @@
               <div class="login">
                 <h3>Войти</h3>
                 <label for="inputE">Логин (E-mail)</label>
-                <input
-                  type="text"
-                  v-model="mail"
-                  placeholder="Email address"
-                  class="form-control"
-                  id="inputE"
-                  required
-                />
+                <input type="text" v-model="mail" class="form-control" id="inputE" required />
                 <br />
                 <label for="inputP">Пароль</label>
-                <input
-                  type="password"
-                  v-model="password"
-                  placeholder="Password"
-                  class="form-control"
-                  id="inputP"
-                  required
-                />
+                <input type="password" v-model="password" class="form-control" id="inputP" required />
                 <br />
                 <button
                   class="btn btn-primary order btn btn-warning btn-lg"
                   data-dismiss="modal"
                   v-on:click="login"
                 >Войти</button>
-              </div>
-              <hr />
-              <div class="sign-up">
-                <h3>Зарегистрироваться</h3>
-                <label for="inputRM">Введите E-mail</label>
-                <input
-                  v-model="login2"
-                  type="text"
-                  class="form-control"
-                  placeholder="Email"
-                  id="inputRM"
-                  required
-                />
-                <br />
-                <label for="inputRP">Придумайте пароль</label>
-                <input
-                  v-model="password2"
-                  type="password"
-                  class="form-control"
-                  placeholder="Password"
-                  id="inputRP"
-                  required
-                />
-                <br />
-                <button
-                  class="btn btn-primary order btn btn-warning btn-lg"
-                  v-on:click="signUp"
-                >Зарегистрироваться</button>
               </div>
             </div>
           </div>
@@ -605,17 +563,6 @@ export default {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.mail, this.password)
-        .then(user => {
-          this.$router.replace("/admin");
-        })
-        .catch(err => {
-          alert(err.message);
-        });
-    },
-    signUp() {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.login2, this.password2)
         .then(user => {
           this.$router.replace("/admin");
         })
