@@ -263,8 +263,8 @@
                   <small v-if="!lastname">Укажите фамилию</small>
                 </div>
                 <div class="form-group col-md-12">
-                  <label for="inputSurname">Email</label>
-                  <input v-model="email2" type="email" class="form-control" id="inputSurname" />
+                  <label for="inputMail">Email</label>
+                  <input v-model="email2" type="email" class="form-control" id="inputMail" />
                   <small v-if="!reg.test(email2)">Укажите корректный email</small>
                 </div>
                 <div class="form-group col-md-12">
@@ -305,6 +305,23 @@
           </div>
         </div>
       </section>
+      <div class="login">
+        <h3>DC Comics Rebirth - Covers</h3>
+        <input type="text" v-model="mail" placeholder="Email address" class="input" required />
+        <br />
+        <input type="password" v-model="password" placeholder="Password" class="input" required />
+        <br />
+        <button v-on:click="login" class="button">Enter</button>
+      </div>
+      <div class="sign-up">
+        <h3>Create a new account</h3>
+        <input v-model="login2" type="text" class="input" placeholder="Email" required />
+        <br />
+        <input v-model="password2" type="password" class="input" placeholder="Password" required />
+        <br />
+        <button v-on:click="signUp" class="button">Sign Up!</button>
+        <button class="button"></button>
+      </div>
       <section>
         <div>
           <iframe
@@ -456,6 +473,7 @@ import MyHeader from "./Header.vue";
 import MyFooter from "./Footer.vue";
 import Parallax from "vue-parallaxy";
 import { db } from "../main.js";
+import firebase from "firebase";
 export default {
   name: "imain",
   data() {
@@ -473,6 +491,10 @@ export default {
       posts: [],
       sum: [],
       md: [],
+      mail: "",
+      password: "",
+      login2: "",
+      password2: "",
       summa: "",
       nadb: "",
       itog: "",
@@ -519,6 +541,28 @@ export default {
     };
   },
   methods: {
+    login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.mail, this.password)
+        .then(user => {
+          this.$router.replace("/admin");
+        })
+        .catch(err => {
+          alert(err.message);
+        });
+    },
+    signUp() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.login2, this.password2)
+        .then(user => {
+          this.$router.replace("/admin");
+        })
+        .catch(err => {
+          alert(err.message);
+        });
+    },
     checkSum() {
       let smArray = [];
       db.collection("glasses")

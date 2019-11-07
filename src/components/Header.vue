@@ -34,18 +34,30 @@
           data-toggle="modal"
           data-target="#exampleModalCenter"
         >СДЕЛАТЬ ЗАКАЗ</button>
+        <button class="button logout" v-on:click="logout">Logout</button>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import firebase from "firebase";
 export default {
   name: "my-header",
   data() {
     return {
       sitename: "GlassTech"
     };
+  },
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace("/");
+        });
+    }
   }
 };
 </script>
