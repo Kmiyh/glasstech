@@ -1,6 +1,6 @@
 <template>
   <div>
-    <my-header></my-header>
+    <my-header :key="key"></my-header>
     <main>
       <section id="first">
         <div class="parallax-container">
@@ -497,6 +497,7 @@ export default {
   data() {
     return {
       reg: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+      key: false,
       flag: false,
       alert: true,
       alert2: true,
@@ -569,6 +570,7 @@ export default {
         .catch(err => {
           alert(err.message);
         });
+      this.key = true;
     },
     checkSum() {
       let smArray = [];

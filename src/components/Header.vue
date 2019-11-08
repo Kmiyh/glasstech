@@ -40,7 +40,7 @@
           data-toggle="modal"
           data-target="#enter"
         >Войти</button>
-        <button class="button logout" v-on:click="logout">Logout</button>
+        <button v-if="!key" class="sr btn btn-primary btn-lg" v-on:click="logout">Logout</button>
       </div>
     </div>
   </nav>
