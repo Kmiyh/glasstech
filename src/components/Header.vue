@@ -34,13 +34,13 @@
           data-toggle="modal"
           data-target="#exampleModalCenter"
         >СДЕЛАТЬ ЗАКАЗ</button>
-        <button
+        <!-- <button
           class="sr sl btn btn-primary btn-lg"
           type="submit"
           data-toggle="modal"
           data-target="#enter"
         >Войти</button>
-        <button v-if="!key" class="sr btn btn-primary btn-lg" v-on:click="logout">Logout</button>
+        <button v-if="!key" class="sr btn btn-primary btn-lg" v-on:click="logout">Logout</button> -->
       </div>
     </div>
   </nav>
