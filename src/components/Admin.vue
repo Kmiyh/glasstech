@@ -4,6 +4,7 @@
     <main>
       <div class="container">
         <h1>Панель администратора</h1>
+        <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
         <div class="row">
           <div class="card col-md-12">
             <form>
@@ -119,6 +120,7 @@
 import MyHeader from "./Header.vue";
 import MyFooter from "./Footer.vue";
 import { db } from "../main.js";
+import firebase from "firebase";
 export default {
   name: "my-admin",
   data() {
@@ -143,6 +145,14 @@ export default {
     };
   },
   methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace("/");
+        });
+    },
     addModel(name, plus) {
       db.collection("models").add({ name, plus });
     },
