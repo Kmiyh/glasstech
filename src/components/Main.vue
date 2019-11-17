@@ -354,7 +354,13 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputPhone">Телефон</label>
-                    <input v-model="phone" type="number" class="form-control" id="inputPhone" />
+                    <input
+                      v-model="phone"
+                      type="number"
+                      min="0"
+                      class="form-control"
+                      id="inputPhone"
+                    />
                     <small v-if="!phone">Укажите номер телефона</small>
                   </div>
                 </div>
@@ -366,7 +372,7 @@
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputZip">Индекс</label>
-                    <input v-model="index" type="number" class="form-control" id="inputZip" />
+                    <input v-model="index" type="number" min="0" class="form-control" id="inputZip" />
                     <small v-if="!index">Укажите индекс</small>
                   </div>
                 </div>
@@ -401,7 +407,8 @@
                   <div class="form-group col-md-6">
                     <label for="inputCount">Количество</label>
                     <input
-                      @click="checkSum()"
+                      @click="checkSum(), checkDiscount()"
+                      min="1"
                       v-model="count"
                       type="number"
                       class="form-control"
@@ -417,7 +424,10 @@
                   <h6>Надбавка за модель: {{nadb = m.plus * count}} руб.</h6>
                 </div>
                 <div>
-                  <h4>Всего: {{itog = nadb + summa}} руб.</h4>
+                  <h6>Скидка: {{discount}} руб.</h6>
+                </div>
+                <div>
+                  <h4>Всего: {{itog = nadb + summa - discount}} руб.</h4>
                 </div>
                 <div
                   v-if="!alert"
@@ -518,6 +528,7 @@ export default {
       summa: "",
       nadb: "",
       itog: "",
+      discount: 0,
       email: "",
       email2: "",
       town: "",
@@ -573,6 +584,31 @@ export default {
         });
       this.key = true;
     },
+    checkDiscount() {
+      if (this.count >= 5 && this.count < 30) {
+        this.itog = this.nadb + this.summa;
+        this.discount = Math.round((this.itog / 100) * 10);
+        this.itog = Math.round(this.itog - (this.itog / 100) * 10);
+      } else {
+        this.discount = 0;
+      }
+      if (this.count >= 30 && this.count < 60) {
+        this.itog = this.nadb + this.summa;
+        this.discount = Math.round((this.itog / 100) * 15);
+        this.itog = Math.round(this.itog - (this.itog / 100) * 15);
+      }
+      if (this.count >= 60 && this.count < 100) {
+        this.itog = this.nadb + this.summa;
+        this.discount = Math.round((this.itog / 100) * 30);
+        this.itog = Math.round(this.itog - (this.itog / 100) * 30);
+      }
+      if (this.count >= 100) {
+        this.itog = this.nadb + this.summa;
+        this.discount = Math.round((this.itog / 100) * 50);
+        this.itog = Math.round(this.itog - (this.itog / 100) * 50);
+      }
+      console.log(this.itog, this.discount);
+    },
     checkSum() {
       let smArray = [];
       db.collection("glasses")
@@ -613,7 +649,7 @@ export default {
             let post = doc.data();
             post.id = doc.id;
             postsArray.push(post);
-            // console.log(doc.data());
+            console.log(doc.data());
           });
           this.posts = postsArray;
         });
@@ -675,6 +711,7 @@ export default {
         this.glass = "";
         this.count = "";
         this.phone = "";
+        this.discount = 0;
       }
     },
     checkFeedback(firstname, lastname, theme, text, email2) {
