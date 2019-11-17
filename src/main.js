@@ -4,6 +4,7 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router";
 import VueScrollReveal from "vue-scroll-reveal";
+import VueTelInput from 'vue-tel-input'
 require("./assets/app.css");
 import firebase from 'firebase/app';
 import 'firebase/firestore'
@@ -13,6 +14,7 @@ import {
 } from 'vuefire'
 
 Vue.use(VueScrollReveal);
+Vue.use(VueTelInput)
 Vue.use(firestorePlugin);
 firebase.initializeApp({
   apiKey: "AIzaSyBCujIkPsUMXrywaiAgU9JEzAj4XtaqFZo",

@@ -354,13 +354,14 @@
                   </div>
                   <div class="form-group col-md-6">
                     <label for="inputPhone">Телефон</label>
-                    <input
+                    <vue-tel-input
                       v-model="phone"
                       type="number"
                       min="0"
+                      placeholder=""
                       class="form-control"
                       id="inputPhone"
-                    />
+                    ></vue-tel-input>
                     <small v-if="!phone">Укажите номер телефона</small>
                   </div>
                 </div>
@@ -502,6 +503,7 @@ import MyHeader from "./Header.vue";
 import MyFooter from "./Footer.vue";
 import Parallax from "vue-parallaxy";
 import { db } from "../main.js";
+import { VueTelInput } from 'vue-tel-input'
 import firebase from "firebase";
 export default {
   name: "imain",
@@ -746,7 +748,7 @@ export default {
       }
     }
   },
-  components: { MyHeader, MyFooter, Parallax }
+  components: { MyHeader, MyFooter, Parallax, VueTelInput }
 };
 </script>
 
