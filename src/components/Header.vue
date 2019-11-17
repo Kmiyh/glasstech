@@ -34,12 +34,6 @@
           data-toggle="modal"
           data-target="#exampleModalCenter"
         >СДЕЛАТЬ ЗАКАЗ</button>
-        <button
-          class="sr sl btn btn-primary btn-lg"
-          type="submit"
-          data-toggle="modal"
-          data-target="#enter"
-        >Войти</button>
       </div>
     </div>
   </nav>
