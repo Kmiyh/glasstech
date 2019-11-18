@@ -62,7 +62,12 @@
               <div class="image_glass">
                 <img class="none" src="../../static/image/3d.png" />
                 <div>
-                  <button class="order btn order_cd btn-warning btn-lg">
+                  <button
+                    class="order btn order_cd btn-warning btn-lg"
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter"
+                    @click="glass = '3D'"
+                  >
                     3D СТЕКЛО
                     <h6>от 125 руб.</h6>
                   </button>
@@ -76,7 +81,12 @@
               <div class="image_glass">
                 <img class="none" src="../../static/image/3d_fiber.png" />
                 <div>
-                  <button class="order order_cd btn btn-warning btn-lg">
+                  <button
+                    class="order order_cd btn btn-warning btn-lg"
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter"
+                    @click="glass = '3D FIBER'"
+                  >
                     3D FIBER
                     <h6>от 65 руб.</h6>
                   </button>
@@ -91,9 +101,14 @@
               <div class="image_glass">
                 <img class="none" src="../../static/image/silk_screen.png" />
                 <div>
-                  <button class="order btn order_cd btn-warning btn-lg">
-                    SILK SCREEN
-                    <h6>от 65 руб.</h6>
+                  <button
+                    class="order btn order_cd btn-warning btn-lg"
+                    data-toggle="modal"
+                    data-target="#exampleModalCenter"
+                    @click="glass = 'SILK SCREEN 2,5D'"
+                  >
+                    SILK SCREEN 2,5D
+                    <h6>от 75 руб.</h6>
                   </button>
                 </div>
                 <div
@@ -340,7 +355,13 @@
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label for="inputEmail4">Email</label>
-                    <input v-model="email" type="email" class="form-control" id="inputEmail4" />
+                    <input
+                      v-model="email"
+                      @click="firstClient()"
+                      type="email"
+                      class="form-control"
+                      id="inputEmail4"
+                    />
                     <small v-if="!reg.test(email)">Укажите корректный email</small>
                   </div>
                 </div>
@@ -358,7 +379,7 @@
                       v-model="phone"
                       type="number"
                       min="0"
-                      placeholder=""
+                      placeholder
                       class="form-control"
                       id="inputPhone"
                     ></vue-tel-input>
@@ -382,7 +403,7 @@
                   <div class="form-group col-md-12">
                     <label for="inputState">Модель устройства</label>
                     <select
-                      @click="checkSum()"
+                      @click="checkSum(), firstClient(), checkDiscount()"
                       v-model="model"
                       id="inputModel"
                       class="form-control"
@@ -396,7 +417,7 @@
                   <div class="form-group col-md-6">
                     <label for="inputState">Тип стекла</label>
                     <select
-                      @click="checkSum()"
+                      @click="checkSum(), firstClient(), checkDiscount()"
                       v-model="glass"
                       id="inputGlass"
                       class="form-control"
@@ -408,7 +429,7 @@
                   <div class="form-group col-md-6">
                     <label for="inputCount">Количество</label>
                     <input
-                      @click="checkSum(), checkDiscount()"
+                      @click="checkSum(), firstClient(), checkDiscount()"
                       min="1"
                       v-model="count"
                       type="number"
@@ -503,8 +524,9 @@ import MyHeader from "./Header.vue";
 import MyFooter from "./Footer.vue";
 import Parallax from "vue-parallaxy";
 import { db } from "../main.js";
-import { VueTelInput } from 'vue-tel-input'
+import { VueTelInput } from "vue-tel-input";
 import firebase from "firebase";
+import { log } from "util";
 export default {
   name: "imain",
   data() {
@@ -514,6 +536,7 @@ export default {
       flag: false,
       alert: true,
       alert2: true,
+      new: false,
       towns: [],
       models: [],
       glasses: [],
@@ -523,6 +546,7 @@ export default {
       posts: [],
       sum: [],
       md: [],
+      cl: [],
       mail: "",
       password: "",
       login2: "",
@@ -586,28 +610,79 @@ export default {
         });
       this.key = true;
     },
+    firstClient() {
+      let clArray = [];
+      db.collection("orders")
+        .where("email", "==", this.email)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            let cli = doc.data();
+            cli.id = doc.id;
+            clArray.push(cli);
+            console.log(doc.data());
+          });
+          this.cl = clArray;
+        });
+      if (this.cl.length == 0 && this.email != "") {
+        this.new = true;
+        console.log(this.new);
+      } else {
+        this.new = false;
+        console.log(this.new);
+      }
+    },
     checkDiscount() {
-      if (this.count >= 5 && this.count < 30) {
+      if (this.count < 5 && this.new == true) {
         this.itog = this.nadb + this.summa;
         this.discount = Math.round((this.itog / 100) * 10);
         this.itog = Math.round(this.itog - (this.itog / 100) * 10);
       } else {
         this.discount = 0;
       }
+      if (this.count >= 5 && this.count < 30) {
+        if (this.new == true) {
+          this.itog = this.nadb + this.summa;
+          this.discount = Math.round((this.itog / 100) * 20);
+          this.itog = Math.round(this.itog - (this.itog / 100) * 20);
+        } else {
+          this.itog = this.nadb + this.summa;
+          this.discount = Math.round((this.itog / 100) * 10);
+          this.itog = Math.round(this.itog - (this.itog / 100) * 10);
+        }
+      }
       if (this.count >= 30 && this.count < 60) {
-        this.itog = this.nadb + this.summa;
-        this.discount = Math.round((this.itog / 100) * 15);
-        this.itog = Math.round(this.itog - (this.itog / 100) * 15);
+        if (this.new == true) {
+          this.itog = this.nadb + this.summa;
+          this.discount = Math.round((this.itog / 100) * 25);
+          this.itog = Math.round(this.itog - (this.itog / 100) * 25);
+        } else {
+          this.itog = this.nadb + this.summa;
+          this.discount = Math.round((this.itog / 100) * 15);
+          this.itog = Math.round(this.itog - (this.itog / 100) * 15);
+        }
       }
       if (this.count >= 60 && this.count < 100) {
-        this.itog = this.nadb + this.summa;
-        this.discount = Math.round((this.itog / 100) * 30);
-        this.itog = Math.round(this.itog - (this.itog / 100) * 30);
+        if (this.new == true) {
+          this.itog = this.nadb + this.summa;
+          this.discount = Math.round((this.itog / 100) * 40);
+          this.itog = Math.round(this.itog - (this.itog / 100) * 40);
+        } else {
+          this.itog = this.nadb + this.summa;
+          this.discount = Math.round((this.itog / 100) * 30);
+          this.itog = Math.round(this.itog - (this.itog / 100) * 30);
+        }
       }
       if (this.count >= 100) {
-        this.itog = this.nadb + this.summa;
-        this.discount = Math.round((this.itog / 100) * 50);
-        this.itog = Math.round(this.itog - (this.itog / 100) * 50);
+        if (this.new == true) {
+          this.itog = this.nadb + this.summa;
+          this.discount = Math.round((this.itog / 100) * 60);
+          this.itog = Math.round(this.itog - (this.itog / 100) * 60);
+        } else {
+          this.itog = this.nadb + this.summa;
+          this.discount = Math.round((this.itog / 100) * 50);
+          this.itog = Math.round(this.itog - (this.itog / 100) * 50);
+        }
       }
       console.log(this.itog, this.discount);
     },
