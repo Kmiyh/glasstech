@@ -6,7 +6,7 @@
         <h1>Панель администратора</h1>
         <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
         <div class="row">
-          <div class="card col-md-12">
+          <div class="card col-md-5">
             <form>
               <h5>Добавить модель телефона</h5>
               <div class="form-row">
@@ -27,9 +27,27 @@
               >Добавить</button>
             </form>
           </div>
+          <div class="card col-md-5">
+            <form>
+              <h5>Удалить модель</h5>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="inputMd">Модель</label>
+                  <select v-model="name_md" id="inputMd" class="form-control">
+                    <option v-for="model in models">{{model.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                v-on:click="deleteModel(name_md)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-md"
+              >Удалить</button>
+            </form>
+          </div>
         </div>
         <div class="row">
-          <div class="card col-md-12">
+          <div class="card col-md-5">
             <form>
               <h5>Добавить город</h5>
               <div class="form-row">
@@ -46,9 +64,27 @@
               >Добавить</button>
             </form>
           </div>
+          <div class="card col-md-5">
+            <form>
+              <h5>Удалить город</h5>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="inputTd">Город</label>
+                  <select v-model="name_td" id="inputTd" class="form-control">
+                    <option v-for="town in towns">{{town.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                v-on:click="deleteTown(name_td)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-md"
+              >Удалить</button>
+            </form>
+          </div>
         </div>
         <div class="row">
-          <div class="card col-md-12">
+          <div class="card col-md-5">
             <form>
               <h5>Добавить тему</h5>
               <div class="form-row">
@@ -63,6 +99,24 @@
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-md"
               >Добавить</button>
+            </form>
+          </div>
+          <div class="card col-md-5">
+            <form>
+              <h5>Удалить тему</h5>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="inputTh">Тема</label>
+                  <select v-model="name_th" id="inputTh" class="form-control">
+                    <option v-for="theme in themes">{{theme.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                v-on:click="deleteTheme(name_th)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-md"
+              >Удалить</button>
             </form>
           </div>
         </div>
@@ -125,12 +179,16 @@ export default {
   name: "my-admin",
   data() {
     return {
+      iden: "",
       flag_m: false,
       flag_t: false,
       flag_tm: false,
       name_m: "",
       name_t: "",
       name_tm: "",
+      name_md: "",
+      name_td: "",
+      name_th: "",
       plus: "",
       towns: [],
       models: [],
@@ -156,6 +214,14 @@ export default {
     addModel(name, plus) {
       db.collection("models").add({ name, plus });
     },
+    deleteModel(name) {
+      var del = db.collection("models").where("name", "==", name);
+      del.get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          doc.delete();
+        });
+      });
+    },
     addTown(name) {
       db.collection("towns").add({ name });
     },
@@ -180,6 +246,7 @@ export default {
   margin-bottom: 10px;
 }
 .card {
+  margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
