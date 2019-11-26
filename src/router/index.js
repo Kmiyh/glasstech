@@ -1,9 +1,10 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Main from "@/components/Main";
-import Admin from "@/components/Admin"
+import Admin from "@/components/Admin";
 import VueScrollTo from "vue-scrollto";
-import firebase from 'firebase'
+import firebase from "firebase";
+import { log } from "util";
 
 Vue.use(Router);
 Vue.use(VueScrollTo, {
@@ -12,7 +13,8 @@ Vue.use(VueScrollTo, {
 
 const router = new Router({
   mode: "history",
-  routes: [{
+  routes: [
+    {
       path: "/",
       name: "iMain",
       component: Main,
@@ -31,11 +33,29 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  let currentUser = firebase.auth().currentUser
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  firebase.auth();
+  firebase.auth().onAuthStateChanged(
+    user => {
+      let currentUser = user;
+      let requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  if (requiresAuth && !currentUser) next('/')
-  else if (!requiresAuth && currentUser) next('/admin')
-  else next()
-})
-export default router
+      console.log("curUser " + currentUser);
+      console.log("reqA " + requiresAuth);
+
+      if (requiresAuth && !currentUser) {
+        next("/");
+        console.log("not");
+      } else if (!requiresAuth && currentUser) {
+        next("/admin");
+        console.log("yesa");
+      } else {
+        next();
+        console.log("else");
+      }
+    },
+    error => {
+      console.log(error);
+    }
+  );
+});
+export default router;
