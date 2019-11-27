@@ -85,6 +85,7 @@ a {
 }
 a:hover {
   color: #f1890b !important;
+  cursor: pointer;
 }
 li {
   padding-bottom: 0px;

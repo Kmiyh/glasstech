@@ -41,6 +41,9 @@ export default {
   padding-top: 20px !important;
   text-align: center;
 }
+a {
+  cursor: pointer;
+}
 .cop {
   text-align: center;
 }
@@ -49,6 +52,7 @@ export default {
 }
 i:hover {
   color: #f1890b;
+  cursor: pointer;
 }
 .container {
   min-height: 40px;
