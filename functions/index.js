@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "pvlgaliguzov@gmail.com",
-    // pass: "ENTER CODE"
+    // pass: ""
   }
 });
 exports.sendEmail = functions.firestore
@@ -21,6 +21,7 @@ exports.sendEmail = functions.firestore
       to: snap.data().email,
       subject: "Ваш заказ на GlassTech",
       html: `<h1>Данные заказа</h1>
+              <h3>Номер заказа: ${snap.id}</h3>
               <div>
                 <h3>Ваши контактные данные</h3>
                 <b>Город: </b>${snap.data().town}<br>
