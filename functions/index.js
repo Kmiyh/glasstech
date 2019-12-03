@@ -8,8 +8,8 @@ var transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "pasha.tatarin57@gmail.com",
-    pass: "235687_Rossia"
+    user: "pvlgaliguzov@gmail.com",
+    // pass: "ENTER CODE"
   }
 });
 exports.sendEmail = functions.firestore
@@ -17,13 +17,27 @@ exports.sendEmail = functions.firestore
   .onCreate((snap, context) => {
     console.log("success");
     const mailOptions = {
-      from: "nefritenot@gmail.com",
+      from: "pvlgaliguzov@gmail.com",
       to: snap.data().email,
-      subject: "contact form message",
-      html: `<h1>Order Confirmation</h1>
-                                <p>
-                                   <b>Email: </b>${snap.data().email}<br>
-                                </p>`
+      subject: "Ваш заказ на GlassTech",
+      html: `<h1>Данные заказа</h1>
+              <div>
+                <h3>Ваши контактные данные</h3>
+                <b>Город: </b>${snap.data().town}<br>
+                <b>Адрес: </b>${snap.data().address}<br>
+                <b>Индекс: </b>${snap.data().index}<br>
+                <b>Телефон: </b>${snap.data().phone}<br>
+              </div>
+              <div>
+                <h3>Выбранный товар</h3>
+                <b>Модель: </b>${snap.data().model}<br>
+                <b>Тип стекла: </b>${snap.data().glass}<br>
+                <b>Количество: </b>${snap.data().count} шт.<br>
+              </div>
+              <hr>
+              <div>
+                <h3>ИТОГ: ${snap.data().itog} руб.</h3>
+              </div>`
     };
     return transporter.sendMail(mailOptions);
   });
