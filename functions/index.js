@@ -43,6 +43,37 @@ exports.sendEmail = functions.firestore
     return transporter.sendMail(mailOptions);
   });
 
+exports.updateOrder = functions.firestore
+  .document("orders/{orderId}")
+  .onUpdate((change, context) => {
+    console.log("success");
+    const mailOptions = {
+      from: "pvlgaliguzov@gmail.com",
+      to: change.after.data().email,
+      subject: "Ваш заказ на GlassTech",
+      html: `<h1>Данные заказа</h1>
+              <h3>Номер заказа: ${change.after.id}</h3>
+              <div>
+                <h3>Ваши контактные данные</h3>
+                <b>Город: </b>${change.after.data().town}<br>
+                <b>Адрес: </b>${change.after.data().address}<br>
+                <b>Индекс: </b>${change.after.data().index}<br>
+                <b>Телефон: </b>${change.after.data().phone}<br>
+              </div>
+              <div>
+                <h3>Выбранный товар</h3>
+                <b>Модель: </b>${change.after.data().model}<br>
+                <b>Тип стекла: </b>${change.after.data().glass}<br>
+                <b>Количество: </b>${change.after.data().count} шт.<br>
+              </div>
+              <hr>
+              <div>
+                <h3>ИТОГ: ${change.after.data().itog} руб.</h3>
+              </div>`
+    };
+    return transporter.sendMail(mailOptions);
+  });
+
 exports.sendFeedback = functions.firestore
   .document("feedbacks/{feedbackId}")
   .onCreate((snap, context) => {
