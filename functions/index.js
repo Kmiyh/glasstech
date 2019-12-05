@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "pvlgaliguzov@gmail.com",
-    // pass: ""
+    pass: ""
   }
 });
 exports.sendEmail = functions.firestore
@@ -38,6 +38,23 @@ exports.sendEmail = functions.firestore
               <hr>
               <div>
                 <h3>ИТОГ: ${snap.data().itog} руб.</h3>
+              </div>`
+    };
+    return transporter.sendMail(mailOptions);
+  });
+
+exports.sendFeedback = functions.firestore
+  .document("feedbacks/{feedbackId}")
+  .onCreate((snap, context) => {
+    console.log("success");
+    const mailOptions = {
+      from: snap.data().email2,
+      to: "pvlgaliguzov@gmail.com",
+      subject: "Обратная связь GlassTech",
+      html: `<h3>${snap.data().firstname} ${snap.data().lastname} - ${snap.data().email2}</h3>
+              <div>
+                <b>Тема письма: </b>${snap.data().theme}</br>
+                <p>${snap.data().text}</p>
               </div>`
     };
     return transporter.sendMail(mailOptions);
