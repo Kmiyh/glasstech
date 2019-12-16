@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "glass-6d5f0"
+    "default": "glass-6d5f0",
+    "glass": "glass-6d5f0"
   }
 }

@@ -32,6 +32,7 @@ exports.sendEmail = functions.firestore
               <div>
                 <h3>Выбранный товар</h3>
                 <b>Модель: </b>${snap.data().model}<br>
+                <b>Диагональ экрана (дюйм): </b>${snap.data().display}<br>
                 <b>Тип стекла: </b>${snap.data().glass}<br>
                 <b>Количество: </b>${snap.data().count} шт.<br>
               </div>
@@ -63,6 +64,7 @@ exports.updateOrder = functions.firestore
               <div>
                 <h3>Выбранный товар</h3>
                 <b>Модель: </b>${change.after.data().model}<br>
+                <b>Диагональ экрана (дюйм): </b>${snap.data().display}<br>
                 <b>Тип стекла: </b>${change.after.data().glass}<br>
                 <b>Количество: </b>${change.after.data().count} шт.<br>
               </div>

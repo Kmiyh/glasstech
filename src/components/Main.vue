@@ -9,7 +9,7 @@
             <h5>Лучший производитель защитных стекол в России</h5>
           </h1>
           <parallax :speed-factor="0.3" breakpoint="(min-width: 80px)">
-            <img src="../../static/image/main.jpg" />
+            <img src="../../static/image/main.jpg"/>
           </parallax>
         </div>
       </section>
@@ -19,19 +19,20 @@
           <div class="row centered">
             <div id="info" class="font" v-scroll-reveal="{ delay: 200, duration:1000}">
               {{ff}}
-              <br />
+              <br/>
               <button
                 class="order btn btn-warning btn-lg"
                 data-toggle="modal"
                 data-target="#exampleModalCenter"
-              >{{button}}</button>
+              >{{button}}
+              </button>
             </div>
             <div id="image2"></div>
           </div>
         </div>
       </section>
       <section class="gray">
-        <div id="advantages" class="container">
+        <div id="" class="container">
           <h1 class="second">{{second}}</h1>
           <div class="row">
             <div class="font" v-scroll-reveal="{ delay: 200, duration:1500}">
@@ -60,7 +61,7 @@
           <div class="row centered">
             <div class="cd">
               <div class="image_glass">
-                <img class="none" src="../../static/image/3d.png" />
+                <img class="none" src="../../static/image/3d.png"/>
                 <div>
                   <button
                     class="order btn order_cd btn-warning btn-lg"
@@ -74,12 +75,14 @@
                 </div>
                 <div
                   class="text"
-                >Устанавливается на экран смартфона за счет закругленных краев. Стекло облегает дисплей смартфона и органично выглядит.</div>
+                >Устанавливается на экран смартфона за счет закругленных краев. Стекло облегает дисплей смартфона и
+                  органично выглядит.
+                </div>
               </div>
             </div>
             <div class="cd ctr">
               <div class="image_glass">
-                <img class="none" src="../../static/image/3d_fiber.png" />
+                <img class="none" src="../../static/image/3d_fiber.png"/>
                 <div>
                   <button
                     class="order order_cd btn btn-warning btn-lg"
@@ -92,14 +95,15 @@
                   </button>
                 </div>
                 <div class="text">
-                  Главная особенность этого вида защитных стекол — окантовка может быть выполнена из силикона под цвет экрана. Клейкая основа наносится исключительно
+                  Главная особенность этого вида защитных стекол — окантовка может быть выполнена из силикона под цвет
+                  экрана. Клейкая основа наносится исключительно
                   на стекло.
                 </div>
               </div>
             </div>
             <div class="cd ctr">
               <div class="image_glass">
-                <img class="none" src="../../static/image/silk_screen.png" />
+                <img class="none" src="../../static/image/silk_screen.png"/>
                 <div>
                   <button
                     class="order btn order_cd btn-warning btn-lg"
@@ -113,7 +117,9 @@
                 </div>
                 <div
                   class="text"
-                >Silk Screen 2,5D защитные стекла имеют слегка округленные края. Такие стекла отличаются отличной эргономичностью и высокой прочностью.</div>
+                >Silk Screen 2,5D защитные стекла имеют слегка округленные края. Такие стекла отличаются отличной
+                  эргономичностью и высокой прочностью.
+                </div>
               </div>
             </div>
           </div>
@@ -127,21 +133,24 @@
               <h3>Индивидуальные заказы</h3>
               <p
                 class="pinf"
-              >Мы принимаем заказы на изготовление нестандартных защитных стекол. Клиентоориентированность — одно из наших многочисленных достоинств.</p>
+              >Мы принимаем заказы на изготовление нестандартных защитных стекол. Клиентоориентированность — одно из
+                наших многочисленных достоинств.</p>
               <i class="fa fa-bolt"></i>
             </div>
             <div class="font" v-scroll-reveal="{ delay: 600, duration:1500}">
               <h3>Быстрая доставка</h3>
               <p
                 class="pinf"
-              >От производства до рук клиента — один шаг Мы изо всех сил стараемся, чтобы защитные стекла находили свои смартфоны как можно быстрее.</p>
+              >От производства до рук клиента — один шаг Мы изо всех сил стараемся, чтобы защитные стекла находили свои
+                смартфоны как можно быстрее.</p>
               <i class="fa fa-truck"></i>
             </div>
             <div class="font" v-scroll-reveal="{ delay: 1000, duration:1500}">
               <h3>Всегда в наличии</h3>
               <p
                 class="pinf"
-              >Вы можете купить любые модели средним или крупным оптом, благодаря огромному ассортименту стекол, которые всегда доступны для заказа.</p>
+              >Вы можете купить любые модели средним или крупным оптом, благодаря огромному ассортименту стекол, которые
+                всегда доступны для заказа.</p>
               <i class="fa fa-thumbs-up"></i>
             </div>
           </div>
@@ -185,7 +194,8 @@
                   </div>
                   <div class="offset-md-1 col-md-5 col-sm-5">
                     <div class="review">
-                      Отличный уровень сервиса. Доставили посылку за пару дней. А цены очень приемлемые за подобную доставку.
+                      Отличный уровень сервиса. Доставили посылку за пару дней. А цены очень приемлемые за подобную
+                      доставку.
                       <div class="review-author">Игорь Минаев</div>
                     </div>
                   </div>
@@ -248,7 +258,8 @@
               class="order btn btn-warning btn-lg"
               data-toggle="modal"
               data-target="#exampleModalCenter"
-            >{{button}}</button>
+            >{{button}}
+            </button>
           </div>
         </div>
       </section>
@@ -259,9 +270,9 @@
             <div class="col-md-12">
               <p>
                 <strong>Телефон</strong>: 88005553535
-                <br />
+                <br/>
                 <strong>Email</strong>: glasstech@gmail.com
-                <br />
+                <br/>
                 <strong>Адрес</strong>: г.Орел, ул.Пушккина, д.35
               </p>
             </div>
@@ -270,17 +281,17 @@
                 <h3>Cвяжитесь с нами</h3>
                 <div class="form-group col-md-12">
                   <label for="inputName">Имя</label>
-                  <input v-model="firstname" type="text" class="form-control" id="inputName" />
+                  <input v-model="firstname" type="text" class="form-control" id="inputName"/>
                   <small v-if="!firstname">Укажите имя</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputSurname">Фамилия</label>
-                  <input v-model="lastname" type="text" class="form-control" id="inputSurname" />
+                  <input v-model="lastname" type="text" class="form-control" id="inputSurname"/>
                   <small v-if="!lastname">Укажите фамилию</small>
                 </div>
                 <div class="form-group col-md-12">
                   <label for="inputMail">Email</label>
-                  <input v-model="email2" type="email" class="form-control" id="inputMail" />
+                  <input v-model="email2" type="email" class="form-control" id="inputMail"/>
                   <small v-if="!reg.test(email2)">Укажите корректный email</small>
                 </div>
                 <div class="form-group col-md-12">
@@ -316,7 +327,8 @@
                 v-on:click="checkFeedback(firstname, lastname, theme, text, email2)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
-              >Отправить</button>
+              >Отправить
+              </button>
             </div>
           </div>
         </div>
@@ -367,7 +379,7 @@
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="inputCity">Город</label>
+                    <label for="inputTown">Город</label>
                     <select v-model="town" id="inputTown" class="form-control">
                       <option v-for="town in towns">{{town.name}}</option>
                     </select>
@@ -389,33 +401,33 @@
                 <div class="form-row">
                   <div class="form-group col-md-8">
                     <label for="inputAddress">Адрес</label>
-                    <input v-model="address" type="text" class="form-control" id="inputAddress" />
+                    <input v-model="address" type="text" class="form-control" id="inputAddress"/>
                     <small v-if="!address">Укажите адрес</small>
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputZip">Индекс</label>
-                    <input v-model="index" type="number" min="0" class="form-control" id="inputZip" />
+                    <input v-model="index" type="number" min="0" class="form-control" id="inputZip"/>
                     <small v-if="!index">Укажите индекс</small>
                   </div>
                 </div>
                 <h5>Выберете продукт</h5>
                 <div class="form-row">
                   <div class="form-group col-md-12">
-                    <label for="inputState">Модель устройства</label>
-                    <select
-                      @click="checkSum(), firstClient(), checkDiscount()"
-                      v-model="model"
-                      id="inputModel"
-                      class="form-control"
-                    >
-                      <option v-for="model in models">{{model.name}}</option>
-                    </select>
+                    <label for="inputModel">Модель устройства</label>
+                    <input v-model="model" type="text" class="form-control" id="inputModel"/>
                     <small v-if="!model">Укажите модель телефона</small>
                   </div>
                 </div>
                 <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="inputDisplay">Диагональ экрана (дюйм)</label>
+                    <input v-model="display" @click="checkPlus(), firstClient(), checkDiscount()" type="number" step="0.1" class="form-control" id="inputDisplay"/>
+                    <small v-if="!display">Укажите диагональ</small>
+                  </div>
+                </div>
+                <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="inputState">Тип стекла</label>
+                    <label for="inputGlass">Тип стекла</label>
                     <select
                       @click="checkSum(), firstClient(), checkDiscount()"
                       v-model="glass"
@@ -442,14 +454,14 @@
                 <div v-for="s in sum">
                   <h6>Итого: {{summa = s.price * count}} руб.</h6>
                 </div>
-                <div v-for="m in md">
-                  <h6>Надбавка за модель: {{nadb = m.plus * count}} руб.</h6>
+                <div>
+                  <h6>Надбавка за модель: {{nb = nadb * count}} руб.</h6>
                 </div>
                 <div>
                   <h6>Скидка: {{discount}} руб.</h6>
                 </div>
                 <div>
-                  <h4>Всего: {{itog = nadb + summa - discount}} руб.</h4>
+                  <h4>Всего: {{itog = nb + summa - discount}} руб.</h4>
                 </div>
                 <div
                   v-if="!alert"
@@ -471,10 +483,11 @@
             <div class="modal-footer">
               <button
                 id="make"
-                v-on:click="checkForm(email, town, address, index, model, glass, count, phone, summa, nadb, itog)"
+                v-on:click="checkForm(email, town, address, index, model, glass, count, phone, summa, nadb, itog, display)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
-              >Заказать</button>
+              >Заказать
+              </button>
             </div>
           </div>
         </div>
@@ -490,7 +503,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="enter">Вход</h5>
+              <h5 class="modal-title">Вход</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -499,16 +512,17 @@
               <div class="login">
                 <h3>Войти</h3>
                 <label for="inputE">Логин (E-mail)</label>
-                <input type="text" v-model="mail" class="form-control" id="inputE" required />
-                <br />
+                <input type="text" v-model="mail" class="form-control" id="inputE" required/>
+                <br/>
                 <label for="inputP">Пароль</label>
-                <input type="password" v-model="password" class="form-control" id="inputP" required />
-                <br />
+                <input type="password" v-model="password" class="form-control" id="inputP" required/>
+                <br/>
                 <button
                   class="btn btn-primary order btn btn-warning btn-lg"
                   data-dismiss="modal"
                   v-on:click="login"
-                >Войти</button>
+                >Войти
+                </button>
               </div>
             </div>
           </div>
@@ -520,653 +534,728 @@
 </template>
 
 <script>
-import MyHeader from "./Header.vue";
-import MyFooter from "./Footer.vue";
-import Parallax from "vue-parallaxy";
-import { db } from "../main.js";
-import { VueTelInput } from "vue-tel-input";
-import firebase from "firebase";
-import { log } from "util";
-export default {
-  name: "imain",
-  data() {
-    return {
-      reg: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
-      key: false,
-      flag: false,
-      alert: true,
-      alert2: true,
-      new: false,
-      towns: [],
-      models: [],
-      glasses: [],
-      orders: [],
-      feedbacks: [],
-      themes: [],
-      posts: [],
-      sum: [],
-      md: [],
-      cl: [],
-      mail: "pvlgaliguzov@gmail.com",
-      password: "1234qwer",
-      login2: "",
-      password2: "",
-      summa: "",
-      nadb: "",
-      itog: "",
-      discount: 0,
-      email: "",
-      email2: "",
-      town: "",
-      address: "",
-      index: "",
-      model: "",
-      glass: "",
-      count: "",
-      phone: "",
-      firstname: "",
-      lastname: "",
-      theme: "",
-      text: "",
-      button: "СДЕЛАТЬ ЗАКАЗ",
-      first: "Защитные стекла для телефонов",
-      ff:
-        'Наша компания занимается оптовой продает защитные стекла для смартфонов по всей России. У нас Вы можете выбрать защитное стекло для следующих марок смартфонов: Apple, Sony, Samsung, Xiaomi, Huawei, Lenovo, Meizu, Nokia, Microsoft, Alcatel, HTC, ASUS. Также в продаже имеются стекла к Apple iWatch и Apple iPad. Мы гарантируем высокое качество защитных стекол и самые низкие цены на них. Оформите заказ в три шага, нажав «Сделать Заказ»."',
-      second: "Наши преимущества",
-      sf: "Собственное производство",
-      ss: "Мониторинг рынка",
-      st: "Самые низкие цены",
-      sff:
-        "Реализуемые защитные стекла производятся на собственной фабрике. Мы гарантируем качество выпущенной продукции.",
-      ssf:
-        "Мы в курсе тенденций на рынке мобильных устройств! Смартфонам с самыми хрупкими экранами — самые надежные защитные стекла.",
-      stf:
-        "Мы гарантируем высокое качество продукции и самые низкие цены на защитные стекла. Цена товара Вас приятно удивит!",
-      third: "Наши продукты",
-      fourth: "Понравилось?",
-      fs: "При первом заказе скидка 10%"
-    };
-  },
-  firestore() {
-    return {
-      towns: db.collection("towns").orderBy("name"),
-      models: db.collection("models").orderBy("name"),
-      glasses: db.collection("glasses").orderBy("name"),
-      orders: db.collection("orders").orderBy("date"),
-      feedbacks: db.collection("feedbacks").orderBy("date"),
-      themes: db.collection("themes").orderBy("name")
-    };
-  },
-  methods: {
-    login() {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.mail, this.password)
-        .then(user => {
-          this.$router.replace("/admin");
-        })
-        .catch(err => {
-          alert(err.message);
-        });
-      this.key = true;
-    },
-    firstClient() {
-      let clArray = [];
-      db.collection("orders")
-        .where("email", "==", this.email)
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-            let cli = doc.data();
-            cli.id = doc.id;
-            clArray.push(cli);
-            console.log(doc.data());
-          });
-          this.cl = clArray;
-        });
-      if (this.cl.length == 0 && this.email != "") {
-        this.new = true;
-        console.log(this.new);
-      } else {
-        this.new = false;
-        console.log(this.new);
-      }
-    },
-    checkDiscount() {
-      if (this.count < 5 && this.new == true) {
-        this.itog = this.nadb + this.summa;
-        this.discount = Math.round((this.itog / 100) * 10);
-        this.itog = Math.round(this.itog - (this.itog / 100) * 10);
-      } else {
-        this.discount = 0;
-      }
-      if (this.count >= 5 && this.count < 30) {
-        if (this.new == true) {
-          this.itog = this.nadb + this.summa;
-          this.discount = Math.round((this.itog / 100) * 20);
-          this.itog = Math.round(this.itog - (this.itog / 100) * 20);
-        } else {
-          this.itog = this.nadb + this.summa;
-          this.discount = Math.round((this.itog / 100) * 10);
-          this.itog = Math.round(this.itog - (this.itog / 100) * 10);
-        }
-      }
-      if (this.count >= 30 && this.count < 60) {
-        if (this.new == true) {
-          this.itog = this.nadb + this.summa;
-          this.discount = Math.round((this.itog / 100) * 25);
-          this.itog = Math.round(this.itog - (this.itog / 100) * 25);
-        } else {
-          this.itog = this.nadb + this.summa;
-          this.discount = Math.round((this.itog / 100) * 15);
-          this.itog = Math.round(this.itog - (this.itog / 100) * 15);
-        }
-      }
-      if (this.count >= 60 && this.count < 100) {
-        if (this.new == true) {
-          this.itog = this.nadb + this.summa;
-          this.discount = Math.round((this.itog / 100) * 40);
-          this.itog = Math.round(this.itog - (this.itog / 100) * 40);
-        } else {
-          this.itog = this.nadb + this.summa;
-          this.discount = Math.round((this.itog / 100) * 30);
-          this.itog = Math.round(this.itog - (this.itog / 100) * 30);
-        }
-      }
-      if (this.count >= 100) {
-        if (this.new == true) {
-          this.itog = this.nadb + this.summa;
-          this.discount = Math.round((this.itog / 100) * 60);
-          this.itog = Math.round(this.itog - (this.itog / 100) * 60);
-        } else {
-          this.itog = this.nadb + this.summa;
-          this.discount = Math.round((this.itog / 100) * 50);
-          this.itog = Math.round(this.itog - (this.itog / 100) * 50);
-        }
-      }
-      console.log(this.itog, this.discount);
-    },
-    checkSum() {
-      let smArray = [];
-      db.collection("glasses")
-        .where("name", "==", this.glass)
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-            let sm = doc.data();
-            sm.id = doc.id;
-            smArray.push(sm);
-            console.log(doc.data());
-          });
-          this.sum = smArray;
-        });
-      let mdArray = [];
-      db.collection("models")
-        .where("name", "==", this.model)
-        .get()
-        .then(query => {
-          query.forEach(doc => {
-            let md = doc.data();
-            md.id = doc.id;
-            mdArray.push(md);
-            console.log(doc.data());
-          });
-          this.md = mdArray;
-        });
-    },
-    query() {
-      let postsArray = [];
-      db.collection("feedbacks")
-        .where("theme", "==", "Отзыв")
-        .limit(10)
-        .orderBy("date", "desc")
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-            let post = doc.data();
-            post.id = doc.id;
-            postsArray.push(post);
-            console.log(doc.data());
-          });
-          this.posts = postsArray;
-        });
-      this.flag = this.flag ? false : true;
-    },
-    checkForm(
-      email,
-      town,
-      address,
-      index,
-      model,
-      glass,
-      count,
-      phone,
-      summa,
-      nadb,
-      itog
-    ) {
-      let err_email = this.reg.test(email);
-      let err_town = town != "";
-      let err_phone = phone != "";
-      let err_address = address != "";
-      let err_index = index != "";
-      let err_model = model != "";
-      let err_glass = glass != "";
-      let err_count = count != "";
+    import MyHeader from "./Header.vue";
+    import MyFooter from "./Footer.vue";
+    import Parallax from "vue-parallaxy";
+    import {db} from "../main.js";
+    import {VueTelInput} from "vue-tel-input";
+    import firebase from "firebase";
+    import {log} from "util";
 
-      if (
-        err_email &&
-        err_town &&
-        err_phone &&
-        err_address &&
-        err_index &&
-        err_model &&
-        err_glass &&
-        err_count
-      ) {
-        const date = new Date();
-        db.collection("orders").add({
-          email,
-          town,
-          address,
-          index,
-          model,
-          glass,
-          count,
-          date,
-          phone,
-          summa,
-          nadb,
-          itog
-        });
-        this.alert = false;
-        this.email = "";
-        this.town = "";
-        this.address = "";
-        this.index = "";
-        this.model = "";
-        this.glass = "";
-        this.count = "";
-        this.phone = "";
-        this.discount = 0;
-      }
-    },
-    checkFeedback(firstname, lastname, theme, text, email2) {
-      let err_email2 = this.reg.test(email2);
-      let err_firstname = firstname != "";
-      let err_lastname = lastname != "";
-      let err_theme = theme != "";
-      let err_text = text != "";
+    export default {
+        name: "imain",
+        data() {
+            return {
+                reg: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
+                key: false,
+                flag: false,
+                alert: true,
+                alert2: true,
+                new: false,
+                towns: [],
+                models: [],
+                glasses: [],
+                orders: [],
+                feedbacks: [],
+                themes: [],
+                posts: [],
+                sum: [],
+                md: [],
+                cl: [],
+                mail: "pvlgaliguzov@gmail.com",
+                password: "1234qwer",
+                login2: "",
+                password2: "",
+                display: "",
+                summa: "",
+                nadb: "",
+                nb: "",
+                itog: "",
+                discount: 0,
+                email: "",
+                email2: "",
+                town: "",
+                address: "",
+                index: "",
+                model: "",
+                glass: "",
+                count: "",
+                phone: "",
+                firstname: "",
+                lastname: "",
+                theme: "",
+                text: "",
+                button: "СДЕЛАТЬ ЗАКАЗ",
+                first: "Защитные стекла для телефонов",
+                ff:
+                    'Наша компания занимается оптовой продает защитные стекла для смартфонов по всей России. У нас Вы можете выбрать защитное стекло для следующих марок смартфонов: Apple, Sony, Samsung, Xiaomi, Huawei, Lenovo, Meizu, Nokia, Microsoft, Alcatel, HTC, ASUS. Также в продаже имеются стекла к Apple iWatch и Apple iPad. Мы гарантируем высокое качество защитных стекол и самые низкие цены на них. Оформите заказ в три шага, нажав «Сделать Заказ»."',
+                second: "Наши преимущества",
+                sf: "Собственное производство",
+                ss: "Мониторинг рынка",
+                st: "Самые низкие цены",
+                sff:
+                    "Реализуемые защитные стекла производятся на собственной фабрике. Мы гарантируем качество выпущенной продукции.",
+                ssf:
+                    "Мы в курсе тенденций на рынке мобильных устройств! Смартфонам с самыми хрупкими экранами — самые надежные защитные стекла.",
+                stf:
+                    "Мы гарантируем высокое качество продукции и самые низкие цены на защитные стекла. Цена товара Вас приятно удивит!",
+                third: "Наши продукты",
+                fourth: "Понравилось?",
+                fs: "При первом заказе скидка 10%"
+            };
+        },
+        firestore() {
+            return {
+                towns: db.collection("towns").orderBy("name"),
+                models: db.collection("models").orderBy("name"),
+                glasses: db.collection("glasses").orderBy("name"),
+                orders: db.collection("orders").orderBy("date"),
+                feedbacks: db.collection("feedbacks").orderBy("date"),
+                themes: db.collection("themes").orderBy("name")
+            };
+        },
+        methods: {
+            login() {
+                firebase
+                    .auth()
+                    .signInWithEmailAndPassword(this.mail, this.password)
+                    .then(user => {
+                        this.$router.replace("/admin");
+                    })
+                    .catch(err => {
+                        alert(err.message);
+                    });
+                this.key = true;
+            },
+            firstClient() {
+                let clArray = [];
+                db.collection("orders")
+                    .where("email", "==", this.email)
+                    .get()
+                    .then(querySnapshot => {
+                        querySnapshot.forEach(doc => {
+                            let cli = doc.data();
+                            cli.id = doc.id;
+                            clArray.push(cli);
+                            console.log(doc.data());
+                        });
+                        this.cl = clArray;
+                    });
+                if (this.cl.length == 0 && this.email != "") {
+                    this.new = true;
+                    console.log(this.new);
+                } else {
+                    this.new = false;
+                    console.log(this.new);
+                }
+            },
+            checkPlus() {
+              if (this.display >= 3 && this.display <= 4) {
+                  this.nadb = 25
+              }
+                if (this.display >= 4.1 && this.display <= 4.9) {
+                    this.nadb = 50
+                }
+                if (this.display >= 5 && this.display <= 5.4) {
+                    this.nadb = 75
+                }
+                if (this.display >= 5.5 && this.display <= 5.9) {
+                    this.nadb = 100
+                }
+                if (this.display >= 6) {
+                    this.nadb = 125
+                }
+            },
+            checkDiscount() {
+                if (this.count < 5 && this.new == true) {
+                    this.itog = this.nb + this.summa;
+                    this.discount = Math.round((this.itog / 100) * 10);
+                    this.itog = Math.round(this.itog - (this.itog / 100) * 10);
+                } else {
+                    this.discount = 0;
+                }
+                if (this.count >= 5 && this.count < 30) {
+                    if (this.new == true) {
+                        this.itog = this.nb + this.summa;
+                        this.discount = Math.round((this.itog / 100) * 20);
+                        this.itog = Math.round(this.itog - (this.itog / 100) * 20);
+                        console.log(this.nb, this.summa, this.discount, this.itog)
+                    } else {
+                        this.itog = this.nb + this.summa;
+                        console.log(this.itog);
+                        this.discount = Math.round((this.itog / 100) * 10);
+                        this.itog = Math.round(this.itog - (this.itog / 100) * 10);
+                    }
+                }
+                if (this.count >= 30 && this.count < 60) {
+                    if (this.new == true) {
+                        this.itog = this.nb + this.summa;
+                        this.discount = Math.round((this.itog / 100) * 25);
+                        this.itog = Math.round(this.itog - (this.itog / 100) * 25);
+                    } else {
+                        this.itog = this.nb + this.summa;
+                        this.discount = Math.round((this.itog / 100) * 15);
+                        this.itog = Math.round(this.itog - (this.itog / 100) * 15);
+                    }
+                }
+                if (this.count >= 60 && this.count < 100) {
+                    if (this.new == true) {
+                        this.itog = this.nb + this.summa;
+                        this.discount = Math.round((this.itog / 100) * 40);
+                        this.itog = Math.round(this.itog - (this.itog / 100) * 40);
+                    } else {
+                        this.itog = this.nb + this.summa;
+                        this.discount = Math.round((this.itog / 100) * 30);
+                        this.itog = Math.round(this.itog - (this.itog / 100) * 30);
+                    }
+                }
+                if (this.count >= 100) {
+                    if (this.new == true) {
+                        this.itog = this.nb + this.summa;
+                        this.discount = Math.round((this.itog / 100) * 60);
+                        this.itog = Math.round(this.itog - (this.itog / 100) * 60);
+                    } else {
+                        this.itog = this.nb + this.summa;
+                        this.discount = Math.round((this.itog / 100) * 50);
+                        this.itog = Math.round(this.itog - (this.itog / 100) * 50);
+                    }
+                }
+                console.log(this.itog, this.discount);
+            },
+            checkSum() {
+                let smArray = [];
+                db.collection("glasses")
+                    .where("name", "==", this.glass)
+                    .get()
+                    .then(querySnapshot => {
+                        querySnapshot.forEach(doc => {
+                            let sm = doc.data();
+                            sm.id = doc.id;
+                            smArray.push(sm);
+                            console.log(doc.data());
+                        });
+                        this.sum = smArray;
+                    });
+                let mdArray = [];
+                db.collection("models")
+                    .where("name", "==", this.model)
+                    .get()
+                    .then(query => {
+                        query.forEach(doc => {
+                            let md = doc.data();
+                            md.id = doc.id;
+                            mdArray.push(md);
+                            console.log(doc.data());
+                        });
+                        this.md = mdArray;
+                    });
+            },
+            query() {
+                let postsArray = [];
+                db.collection("feedbacks")
+                    .where("theme", "==", "Отзыв")
+                    .limit(10)
+                    .orderBy("date", "desc")
+                    .get()
+                    .then(querySnapshot => {
+                        querySnapshot.forEach(doc => {
+                            let post = doc.data();
+                            post.id = doc.id;
+                            postsArray.push(post);
+                            console.log(doc.data());
+                        });
+                        this.posts = postsArray;
+                    });
+                this.flag = this.flag ? false : true;
+            },
+            checkForm(
+                email,
+                town,
+                address,
+                index,
+                model,
+                glass,
+                count,
+                phone,
+                summa,
+                nadb,
+                itog,
+                display
+            ) {
+                let err_email = this.reg.test(email);
+                let err_town = town != "";
+                let err_phone = phone != "";
+                let err_address = address != "";
+                let err_index = index != "";
+                let err_model = model != "";
+                let err_glass = glass != "";
+                let err_count = count != "";
+                let err_display = display != "";
 
-      if (
-        err_firstname &&
-        err_lastname &&
-        err_theme &&
-        err_text &&
-        err_email2
-      ) {
-        const date = new Date();
-        db.collection("feedbacks").add({
-          firstname,
-          lastname,
-          theme,
-          text,
-          date,
-          email2
-        });
-        this.alert2 = false;
-        this.firstname = "";
-        this.lastname = "";
-        this.theme = "";
-        this.text = "";
-        this.email2 = "";
-      }
-    }
-  },
-  components: { MyHeader, MyFooter, Parallax, VueTelInput }
-};
+                if (
+                    err_email &&
+                    err_town &&
+                    err_phone &&
+                    err_address &&
+                    err_index &&
+                    err_model &&
+                    err_glass &&
+                    err_count &&
+                    err_display
+                ) {
+                    const date = new Date();
+                    db.collection("orders").add({
+                        email,
+                        town,
+                        address,
+                        index,
+                        model,
+                        glass,
+                        count,
+                        date,
+                        phone,
+                        summa,
+                        nadb,
+                        itog,
+                        display
+                    });
+                    this.alert = false;
+                    this.email = "";
+                    this.town = "";
+                    this.address = "";
+                    this.index = "";
+                    this.model = "";
+                    this.glass = "";
+                    this.count = "";
+                    this.phone = "";
+                    this.display = "";
+                    this.discount = 0;
+                }
+            },
+            checkFeedback(firstname, lastname, theme, text, email2) {
+                let err_email2 = this.reg.test(email2);
+                let err_firstname = firstname != "";
+                let err_lastname = lastname != "";
+                let err_theme = theme != "";
+                let err_text = text != "";
+
+                if (
+                    err_firstname &&
+                    err_lastname &&
+                    err_theme &&
+                    err_text &&
+                    err_email2
+                ) {
+                    const date = new Date();
+                    db.collection("feedbacks").add({
+                        firstname,
+                        lastname,
+                        theme,
+                        text,
+                        date,
+                        email2
+                    });
+                    this.alert2 = false;
+                    this.firstname = "";
+                    this.lastname = "";
+                    this.theme = "";
+                    this.text = "";
+                    this.email2 = "";
+                }
+            }
+        },
+        components: {MyHeader, MyFooter, Parallax, VueTelInput}
+    };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
-#reviwes {
-  padding-top: 0px;
-  padding-bottom: 40px;
-  font-family: "Rubik", sans-serif;
-}
-#rew {
-  margin-top: 40px;
-}
-#make {
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-.cdrw {
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.rewp {
-  width: auto;
-}
-.card {
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
-  max-width: 550px;
-}
-.modal-footer {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-.review-author {
-  font-size: 22px;
-  font-weight: 500;
-  margin-top: 30px;
-  text-transform: uppercase;
-}
+  @import url("https://fonts.googleapis.com/css?family=Montserrat:300|Poiret+One|Roboto&display=swap");
 
-.carousel-indicators {
-  bottom: -58px;
-}
+  #reviwes {
+    padding-top: 0px;
+    padding-bottom: 40px;
+    font-family: "Rubik", sans-serif;
+  }
 
-.carousel-indicators li {
-  background-color: rgba(0, 0, 0, 0.5);
-}
+  #rew {
+    margin-top: 40px;
+  }
 
-.carousel-indicators .active {
-  background-color: #000;
-}
+  #make {
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
 
-.carousel-control-next-icon,
-.carousel-control-prev-icon {
-  width: 35px;
-  height: 35px;
-}
+  .cdrw {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
-.carousel-control-prev-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
-}
+  .rewp {
+    width: auto;
+  }
 
-.carousel-control-next-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-}
+  .card {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+    max-width: 550px;
+  }
 
-@media (max-width: 575px) {
-  .review {
-    padding-left: 40px;
-    padding-right: 20px;
+  .modal-footer {
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
-}
-.parallax-container {
-  position: relative;
-}
-.parallax-title {
-  position: absolute;
-  top: 30%;
-  left: 0;
-  right: 0;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  text-align: center;
-}
-small {
-  color: #f1890b;
-}
-button {
-  font-family: "Montserrat", sans-serif;
-}
-.font {
-  margin: auto;
-}
-h3 {
-  font-family: "Roboto", sans-serif;
-  font-size: 28px;
-}
-h1 {
-  font-family: "Roboto", sans-serif;
-  font-size: 48px;
-}
-.order_cd {
-  padding-bottom: 0px;
-  padding-top: 0px;
-  min-width: 300px;
-  margin-top: 0px !important;
-  margin-bottom: 10px !important;
-  border-radius: 0em !important;
-}
-.ctr {
-  margin-left: 20px;
-}
-.text {
-  padding-right: 5px;
-  padding-left: 5px;
-  padding-bottom: 20px;
-  border: 2px;
-  font-family: "Montserrat", sans-serif;
-}
-.cd {
-  max-width: 298px;
-  max-height: 520px;
-  margin: auto;
-  margin-top: 10px;
-}
-p {
-  width: auto !important;
-  margin: auto;
-  margin-bottom: 20px;
-}
-.carouselExampleControls {
-  width: auto;
-}
-.ico {
-  width: 380px;
-}
-h1 {
-  padding-top: 20px;
-}
-p {
-  width: 380px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-family: "Montserrat", sans-serif;
-}
-.row {
-  padding-top: 20px;
-}
-#advantages {
-  padding-bottom: 20px;
-}
-#image {
-  background-image: url("../../static/image/main.jpg");
-  background-position: center;
-  min-height: 680px;
-  width: 100%;
-  text-align: center;
-}
-#image2 {
-  background-image: url("../../static/image/zxc.png");
-  min-height: 360px;
-  min-width: 350px;
-  margin: auto;
-}
-.pinf {
-  max-width: 380px !important;
-}
-.container {
-  text-align: center;
-  padding-bottom: 20px;
-}
-.gray {
-  background-color: #dddddd;
-}
-#info {
-  padding-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-align: center;
-  max-width: 700px;
-  font-size: 20px;
-  font-family: "Montserrat", sans-serif;
-}
-.order {
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  /* max-width: 298px; */
-  /* padding-right: 0px;
-  padding-left: 0px;
-  padding-bottom: 0px;
-  padding-top: 0px; */
-}
-.btn-warning {
-  background: #e5ae09;
-  background: -moz-linear-gradient(
-    -45deg,
-    #e5ae09 0%,
-    #ffd044 50%,
-    #ffc107 51%,
-    #fc9014 71%,
-    #f1890b 100%
-  );
-  background: -webkit-linear-gradient(
-    -45deg,
-    #e5ae09 0%,
-    #ffd044 50%,
-    #ffc107 51%,
-    #fc9014 71%,
-    #f1890b 100%
-  );
-  background: linear-gradient(
-    135deg,
-    #e5ae09 0%,
-    #ffd044 50%,
-    #ffc107 51%,
-    #fc9014 71%,
-    #f1890b 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5ae09', endColorstr='#f1890b',GradientType=1 );
 
-  background-size: 400% 400%;
-  -webkit-animation: AnimationName 3s ease infinite;
-  -moz-animation: AnimationName 3s ease infinite;
-  animation: AnimationName 3s ease infinite;
-  -webkit-animation: AnimationName 3s ease infinite;
-  -moz-animation: AnimationName 3s ease infinite;
-  animation: AnimationName 3s ease infinite;
-  border: medium none;
-  color: #fff !important;
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
+  .review-author {
+    font-size: 22px;
+    font-weight: 500;
+    margin-top: 30px;
+    text-transform: uppercase;
   }
-  50% {
-    background-position: 100% 70%;
+
+  .carousel-indicators {
+    bottom: -58px;
   }
-  100% {
-    background-position: 0% 31%;
+
+  .carousel-indicators li {
+    background-color: rgba(0, 0, 0, 0.5);
   }
-}
-.btn-outline-light:hover {
-  color: #3f345f;
-}
-.btn-outline-warning:hover {
-  color: #ffffff;
-}
-.btn-sm {
-  font-size: 12px;
-  padding: 11px 25px;
-}
-.elements-page-btn .btn {
-  margin: 6px 3px;
-}
-.btn-primary {
-  background: #5a7ce2;
-  background: -moz-linear-gradient(
-    -45deg,
-    #5a7ce2 0%,
-    #8283e8 50%,
-    #5c5de8 51%,
-    #565bd8 71%,
-    #575cdb 100%
-  );
-  background: -webkit-linear-gradient(
-    -45deg,
-    #5a7ce2 0%,
-    #8283e8 50%,
-    #5c5de8 51%,
-    #565bd8 71%,
-    #575cdb 100%
-  );
-  background: linear-gradient(
-    135deg,
-    #5a7ce2 0%,
-    #8283e8 50%,
-    #5c5de8 51%,
-    #565bd8 71%,
-    #575cdb 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a7ce2', endColorstr='#575cdb',GradientType=1 );
-  background-size: 400% 400%;
-  -webkit-animation: AnimationName 3s ease infinite;
-  -moz-animation: AnimationName 3s ease infinite;
-  animation: AnimationName 3s ease infinite;
-  -webkit-animation: AnimationName 3s ease infinite;
-  -moz-animation: AnimationName 3s ease infinite;
-  animation: AnimationName 3s ease infinite;
-  border: medium none;
-}
-.btn-outline-primary:hover {
-  background-color: #5a7ce2;
-  border-color: #5a7ce2;
-  color: #fff;
-}
-@-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
+
+  .carousel-indicators .active {
+    background-color: #000;
   }
-  50% {
-    background-position: 100% 70%;
+
+  .carousel-control-next-icon,
+  .carousel-control-prev-icon {
+    width: 35px;
+    height: 35px;
   }
-  100% {
-    background-position: 0% 31%;
+
+  .carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
   }
-}
-@-moz-keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
+
+  .carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
   }
-  50% {
-    background-position: 100% 70%;
+
+  @media (max-width: 575px) {
+    .review {
+      padding-left: 40px;
+      padding-right: 20px;
+    }
   }
-  100% {
-    background-position: 0% 31%;
+
+  .parallax-container {
+    position: relative;
   }
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
+
+  .parallax-title {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
   }
-  50% {
-    background-position: 100% 70%;
+
+  small {
+    color: #f1890b;
   }
-  100% {
-    background-position: 0% 31%;
+
+  button {
+    font-family: "Montserrat", sans-serif;
   }
-}
-.btn-outline-light:hover {
-  color: #3f345f;
-}
-.btn-outline-warning:hover {
-  color: #ffffff;
-}
-.btn-sm {
-  font-size: 12px;
-  padding: 11px 25px;
-}
-.elements-page-btn .btn {
-  margin: 6px 3px;
-}
+
+  .font {
+    margin: auto;
+  }
+
+  h3 {
+    font-family: "Roboto", sans-serif;
+    font-size: 28px;
+  }
+
+  h1 {
+    font-family: "Roboto", sans-serif;
+    font-size: 48px;
+  }
+
+  .order_cd {
+    padding-bottom: 0px;
+    padding-top: 0px;
+    min-width: 300px;
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
+    border-radius: 0em !important;
+  }
+
+  .ctr {
+    margin-left: 20px;
+  }
+
+  .text {
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-bottom: 20px;
+    border: 2px;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .cd {
+    max-width: 298px;
+    max-height: 520px;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+  p {
+    width: auto !important;
+    margin: auto;
+    margin-bottom: 20px;
+  }
+
+  .carouselExampleControls {
+    width: auto;
+  }
+
+  .ico {
+    width: 380px;
+  }
+
+  h1 {
+    padding-top: 20px;
+  }
+
+  p {
+    width: 380px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .row {
+    padding-top: 20px;
+  }
+
+  #advantages {
+    padding-bottom: 20px;
+  }
+
+  #image {
+    background-image: url("../../static/image/main.jpg");
+    background-position: center;
+    min-height: 680px;
+    width: 100%;
+    text-align: center;
+  }
+
+  #image2 {
+    background-image: url("../../static/image/zxc.png");
+    min-height: 360px;
+    min-width: 350px;
+    margin: auto;
+  }
+
+  .pinf {
+    max-width: 380px !important;
+  }
+
+  .container {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .gray {
+    background-color: #dddddd;
+  }
+
+  #info {
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    max-width: 700px;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .order {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /* max-width: 298px; */
+    /* padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px; */
+  }
+
+  .btn-warning {
+    background: #e5ae09;
+    background: -moz-linear-gradient(
+      -45deg,
+      #e5ae09 0%,
+      #ffd044 50%,
+      #ffc107 51%,
+      #fc9014 71%,
+      #f1890b 100%
+    );
+    background: -webkit-linear-gradient(
+      -45deg,
+      #e5ae09 0%,
+      #ffd044 50%,
+      #ffc107 51%,
+      #fc9014 71%,
+      #f1890b 100%
+    );
+    background: linear-gradient(
+      135deg,
+      #e5ae09 0%,
+      #ffd044 50%,
+      #ffc107 51%,
+      #fc9014 71%,
+      #f1890b 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5ae09', endColorstr='#f1890b', GradientType=1);
+
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    border: medium none;
+    color: #fff !important;
+  }
+
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 31%;
+    }
+    50% {
+      background-position: 100% 70%;
+    }
+    100% {
+      background-position: 0% 31%;
+    }
+  }
+
+  .btn-outline-light:hover {
+    color: #3f345f;
+  }
+
+  .btn-outline-warning:hover {
+    color: #ffffff;
+  }
+
+  .btn-sm {
+    font-size: 12px;
+    padding: 11px 25px;
+  }
+
+  .elements-page-btn .btn {
+    margin: 6px 3px;
+  }
+
+  .btn-primary {
+    background: #5a7ce2;
+    background: -moz-linear-gradient(
+      -45deg,
+      #5a7ce2 0%,
+      #8283e8 50%,
+      #5c5de8 51%,
+      #565bd8 71%,
+      #575cdb 100%
+    );
+    background: -webkit-linear-gradient(
+      -45deg,
+      #5a7ce2 0%,
+      #8283e8 50%,
+      #5c5de8 51%,
+      #565bd8 71%,
+      #575cdb 100%
+    );
+    background: linear-gradient(
+      135deg,
+      #5a7ce2 0%,
+      #8283e8 50%,
+      #5c5de8 51%,
+      #565bd8 71%,
+      #575cdb 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5a7ce2', endColorstr='#575cdb', GradientType=1);
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    border: medium none;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: #5a7ce2;
+    border-color: #5a7ce2;
+    color: #fff;
+  }
+
+  @-webkit-keyframes AnimationName {
+    0% {
+      background-position: 0% 31%;
+    }
+    50% {
+      background-position: 100% 70%;
+    }
+    100% {
+      background-position: 0% 31%;
+    }
+  }
+
+  @-moz-keyframes AnimationName {
+    0% {
+      background-position: 0% 31%;
+    }
+    50% {
+      background-position: 100% 70%;
+    }
+    100% {
+      background-position: 0% 31%;
+    }
+  }
+
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 31%;
+    }
+    50% {
+      background-position: 100% 70%;
+    }
+    100% {
+      background-position: 0% 31%;
+    }
+  }
+
+  .btn-outline-light:hover {
+    color: #3f345f;
+  }
+
+  .btn-outline-warning:hover {
+    color: #ffffff;
+  }
+
+  .btn-sm {
+    font-size: 12px;
+    padding: 11px 25px;
+  }
+
+  .elements-page-btn .btn {
+    margin: 6px 3px;
+  }
 </style>
