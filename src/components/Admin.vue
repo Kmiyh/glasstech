@@ -8,133 +8,41 @@
         <div class="row">
           <div class="card col-md-5">
             <form>
-              <h5>Добавить модель телефона</h5>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputName">Название</label>
-                  <input v-model="name_m" type="text" class="form-control" id="inputName" />
-                </div>
-                <div class="form-group col-md-12">
-                  <label for="inputPlus">Надбавку</label>
-                  <input v-model="plus" type="number" class="form-control" id="inputPlus" />
-                </div>
-              </div>
-              <button
-                id="do"
-                v-on:click="addModel(name_m, plus)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-md"
-              >Добавить</button>
-            </form>
-          </div>
-          <div class="card col-md-5">
-            <form>
-              <h5>Удалить модель</h5>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputMd">Модель</label>
-                  <select v-model="name_md" id="inputMd" class="form-control">
-                    <option v-for="model in models">{{model.name}}</option>
-                  </select>
-                </div>
-              </div>
-              <button
-                v-on:click="deleteModel(name_md)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-md"
-              >Удалить</button>
-            </form>
-          </div>
-        </div>
-        <div class="row">
-          <div class="card col-md-5">
-            <form>
               <h5>Добавить город</h5>
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="inputName">Название</label>
-                  <input v-model="name_t" type="text" class="form-control" id="inputName" />
+                  <input v-model="name_t" type="text" class="form-control" id="inputName"/>
                 </div>
               </div>
               <button
                 id="do"
-                v-on:click="addTown(name_t)"
+                v-on:click.prevent="addTown(name_t)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-md"
-              >Добавить</button>
+              >Добавить
+              </button>
             </form>
           </div>
-          <div class="card col-md-5">
-            <form>
-              <h5>Удалить город</h5>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputTd">Город</label>
-                  <select v-model="name_td" id="inputTd" class="form-control">
-                    <option v-for="town in towns">{{town.name}}</option>
-                  </select>
-                </div>
-              </div>
-              <button
-                v-on:click="deleteTown(name_td)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-md"
-              >Удалить</button>
-            </form>
-          </div>
-        </div>
-        <div class="row">
           <div class="card col-md-5">
             <form>
               <h5>Добавить тему</h5>
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="inputName">Название</label>
-                  <input v-model="name_tm" type="text" class="form-control" id="inputName" />
+                  <input v-model="name_tm" type="text" class="form-control"/>
                 </div>
               </div>
               <button
-                id="do"
-                v-on:click="addTheme(name_tm)"
+                v-on:click.prevent="addTheme(name_tm)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-md"
-              >Добавить</button>
-            </form>
-          </div>
-          <div class="card col-md-5">
-            <form>
-              <h5>Удалить тему</h5>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputTh">Тема</label>
-                  <select v-model="name_th" id="inputTh" class="form-control">
-                    <option v-for="theme in themes">{{theme.name}}</option>
-                  </select>
-                </div>
-              </div>
-              <button
-                v-on:click="deleteTheme(name_th)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-md"
-              >Удалить</button>
+              >Добавить
+              </button>
             </form>
           </div>
         </div>
         <div class="row rw">
-          <div class="col-md-4">
-            <div>
-              <button
-                @click="flag_m = flag_m ? false : true;"
-                class="sr btn btn-primary btn-sm"
-                type="submit"
-              >Список моделей</button>
-            </div>
-            <div v-if="flag_m" v-for="model in models">
-              <div class="card cdrw">
-                <p>{{model.name}}</p>
-              </div>
-            </div>
-          </div>
           <div class="col-md-4">
             <div>
               <button
@@ -146,6 +54,12 @@
             <div v-if="flag_t" v-for="town in towns">
               <div class="card cdrw">
                 <p>{{town.name}}</p>
+                <button
+                  v-on:click="deleteTown(town.id)"
+                  type="submit"
+                  class="btn btn-primary order btn btn-warning btn-md"
+                >Удалить
+                </button>
               </div>
             </div>
           </div>
@@ -160,10 +74,51 @@
             <div v-if="flag_tm" v-for="theme in themes">
               <div class="card cdrw">
                 <p>{{theme.name}}</p>
+                <button
+                  v-on:click="deleteTheme(theme.id)"
+                  type="submit"
+                  class="btn btn-primary order btn btn-warning btn-md"
+                >Удалить
+                </button>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="row rw">
+          <div class="card col-md-5">
+            <form>
+              <h5>Обновить заказ</h5>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="code">Номер заказа</label>
+                  <input v-model="code" type="text" class="form-control" id="code"/>
+                  <label for="status">Выберете статус</label>
+                  <select v-model="status" id="status" class="form-control">
+                    <option>В обработке</option>
+                    <option>Изготавливается</option>
+                    <option>Упаковывается</option>
+                    <option>Передан доставщику</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                v-on:click.prevent="searchOrder(code, status)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-md"
+              >Обновить
+              </button>
+            </form>
+          </div>
+        </div>
+        <div>
+          <div v-if="!flag_o">
+            <div v-for="o in ord">
+              <p>{{o.model}}</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </main>
     <my-footer></my-footer>
@@ -171,238 +126,261 @@
 </template>
 
 <script>
-import MyHeader from "./Header.vue";
-import MyFooter from "./Footer.vue";
-import { db } from "../main.js";
-import firebase from "firebase";
-export default {
-  name: "my-admin",
-  data() {
-    return {
-      iden: "",
-      flag_m: false,
-      flag_t: false,
-      flag_tm: false,
-      name_m: "",
-      name_t: "",
-      name_tm: "",
-      name_md: "",
-      name_td: "",
-      name_th: "",
-      plus: "",
-      towns: [],
-      models: [],
-      themes: []
-    };
-  },
-  firestore() {
-    return {
-      towns: db.collection("towns").orderBy("name"),
-      models: db.collection("models").orderBy("name"),
-      themes: db.collection("themes").orderBy("name")
-    };
-  },
-  methods: {
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace("/");
-        });
+  import MyHeader from "./Header.vue";
+  import MyFooter from "./Footer.vue";
+  import {db} from "../main.js";
+  import firebase from "firebase";
+
+  export default {
+    name: "my-admin",
+    data() {
+      return {
+        status: "",
+        code: "",
+        iden: "",
+        flag_o: false,
+        flag_m: false,
+        flag_t: false,
+        flag_tm: false,
+        name_m: "",
+        name_t: "",
+        name_tm: "",
+        name_md: "",
+        name_td: "",
+        name_th: "",
+        plus: "",
+        towns: [],
+        models: [],
+        themes: [],
+        th: [],
+        ord: [],
+      };
     },
-    addModel(name, plus) {
-      db.collection("models").add({ name, plus });
+    firestore() {
+      return {
+        towns: db.collection("towns").orderBy("name"),
+        themes: db.collection("themes").orderBy("name")
+      };
     },
-    deleteModel(name) {
-      var del = db.collection("models").where("name", "==", name);
-      del.get().then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          doc.delete();
-        });
-      });
+    methods: {
+      logout() {
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            this.$router.replace("/");
+          });
+      },
+      searchOrder(code, status) {
+        db.collection('orders').doc(code).set({
+          status: status,
+        }, {merge: true});
+      },
+      deleteTheme(id) {
+        db.collection('themes').doc(id).delete();
+      },
+      deleteTown(id) {
+        db.collection('towns').doc(id).delete();
+      },
+      addTown(name) {
+        db.collection("towns").add({name});
+      },
+      addTheme(name) {
+        db.collection("themes").add({name});
+      }
     },
-    addTown(name) {
-      db.collection("towns").add({ name });
-    },
-    addTheme(name) {
-      db.collection("themes").add({ name });
-    }
-  },
-  components: { MyHeader, MyFooter }
-};
+    components: {MyHeader, MyFooter}
+  };
 </script>
 
 <style scoped>
-.sr {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-.rw {
-  text-align: center;
-  margin-bottom: 20px;
-  margin-top: 10px;
-}
-.information {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.card {
-  margin: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
-}
-.btn-warning {
-  margin-bottom: 10px;
-  background: #e5ae09;
-  background: -moz-linear-gradient(
-    -45deg,
-    #e5ae09 0%,
-    #ffd044 50%,
-    #ffc107 51%,
-    #fc9014 71%,
-    #f1890b 100%
-  );
-  background: -webkit-linear-gradient(
-    -45deg,
-    #e5ae09 0%,
-    #ffd044 50%,
-    #ffc107 51%,
-    #fc9014 71%,
-    #f1890b 100%
-  );
-  background: linear-gradient(
-    135deg,
-    #e5ae09 0%,
-    #ffd044 50%,
-    #ffc107 51%,
-    #fc9014 71%,
-    #f1890b 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5ae09', endColorstr='#f1890b',GradientType=1 );
+  .sr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 
-  background-size: 400% 400%;
-  -webkit-animation: AnimationName 3s ease infinite;
-  -moz-animation: AnimationName 3s ease infinite;
-  animation: AnimationName 3s ease infinite;
-  -webkit-animation: AnimationName 3s ease infinite;
-  -moz-animation: AnimationName 3s ease infinite;
-  animation: AnimationName 3s ease infinite;
-  border: medium none;
-  color: #fff !important;
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
+  .rw {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
   }
-  50% {
-    background-position: 100% 70%;
+
+  .information {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
-  100% {
-    background-position: 0% 31%;
+
+  .card {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
   }
-}
-.btn-outline-light:hover {
-  color: #3f345f;
-}
-.btn-outline-warning:hover {
-  color: #ffffff;
-}
-.btn-sm {
-  font-size: 12px;
-  padding: 11px 25px;
-}
-.elements-page-btn .btn {
-  margin: 6px 3px;
-}
-.btn-primary {
-  background: #5a7ce2;
-  background: -moz-linear-gradient(
-    -45deg,
-    #5a7ce2 0%,
-    #8283e8 50%,
-    #5c5de8 51%,
-    #565bd8 71%,
-    #575cdb 100%
-  );
-  background: -webkit-linear-gradient(
-    -45deg,
-    #5a7ce2 0%,
-    #8283e8 50%,
-    #5c5de8 51%,
-    #565bd8 71%,
-    #575cdb 100%
-  );
-  background: linear-gradient(
-    135deg,
-    #5a7ce2 0%,
-    #8283e8 50%,
-    #5c5de8 51%,
-    #565bd8 71%,
-    #575cdb 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a7ce2', endColorstr='#575cdb',GradientType=1 );
-  background-size: 400% 400%;
-  -webkit-animation: AnimationName 3s ease infinite;
-  -moz-animation: AnimationName 3s ease infinite;
-  animation: AnimationName 3s ease infinite;
-  -webkit-animation: AnimationName 3s ease infinite;
-  -moz-animation: AnimationName 3s ease infinite;
-  animation: AnimationName 3s ease infinite;
-  border: medium none;
-}
-.btn-outline-primary:hover {
-  background-color: #5a7ce2;
-  border-color: #5a7ce2;
-  color: #fff;
-}
-@-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
+
+  .btn-warning {
+    margin-bottom: 10px;
+    background: #e5ae09;
+    background: -moz-linear-gradient(
+      -45deg,
+      #e5ae09 0%,
+      #ffd044 50%,
+      #ffc107 51%,
+      #fc9014 71%,
+      #f1890b 100%
+    );
+    background: -webkit-linear-gradient(
+      -45deg,
+      #e5ae09 0%,
+      #ffd044 50%,
+      #ffc107 51%,
+      #fc9014 71%,
+      #f1890b 100%
+    );
+    background: linear-gradient(
+      135deg,
+      #e5ae09 0%,
+      #ffd044 50%,
+      #ffc107 51%,
+      #fc9014 71%,
+      #f1890b 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5ae09', endColorstr='#f1890b', GradientType=1);
+
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    border: medium none;
+    color: #fff !important;
   }
-  50% {
-    background-position: 100% 70%;
+
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 31%;
+    }
+    50% {
+      background-position: 100% 70%;
+    }
+    100% {
+      background-position: 0% 31%;
+    }
   }
-  100% {
-    background-position: 0% 31%;
+
+  .btn-outline-light:hover {
+    color: #3f345f;
   }
-}
-@-moz-keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
+
+  .btn-outline-warning:hover {
+    color: #ffffff;
   }
-  50% {
-    background-position: 100% 70%;
+
+  .btn-sm {
+    font-size: 12px;
+    padding: 11px 25px;
   }
-  100% {
-    background-position: 0% 31%;
+
+  .elements-page-btn .btn {
+    margin: 6px 3px;
   }
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 31%;
+
+  .btn-primary {
+    background: #5a7ce2;
+    background: -moz-linear-gradient(
+      -45deg,
+      #5a7ce2 0%,
+      #8283e8 50%,
+      #5c5de8 51%,
+      #565bd8 71%,
+      #575cdb 100%
+    );
+    background: -webkit-linear-gradient(
+      -45deg,
+      #5a7ce2 0%,
+      #8283e8 50%,
+      #5c5de8 51%,
+      #565bd8 71%,
+      #575cdb 100%
+    );
+    background: linear-gradient(
+      135deg,
+      #5a7ce2 0%,
+      #8283e8 50%,
+      #5c5de8 51%,
+      #565bd8 71%,
+      #575cdb 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5a7ce2', endColorstr='#575cdb', GradientType=1);
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+    border: medium none;
   }
-  50% {
-    background-position: 100% 70%;
+
+  .btn-outline-primary:hover {
+    background-color: #5a7ce2;
+    border-color: #5a7ce2;
+    color: #fff;
   }
-  100% {
-    background-position: 0% 31%;
+
+  @-webkit-keyframes AnimationName {
+    0% {
+      background-position: 0% 31%;
+    }
+    50% {
+      background-position: 100% 70%;
+    }
+    100% {
+      background-position: 0% 31%;
+    }
   }
-}
-.btn-outline-light:hover {
-  color: #3f345f;
-}
-.btn-outline-warning:hover {
-  color: #ffffff;
-}
-.btn-sm {
-  font-size: 12px;
-  padding: 11px 25px;
-}
-.elements-page-btn .btn {
-  margin: 6px 3px;
-}
+
+  @-moz-keyframes AnimationName {
+    0% {
+      background-position: 0% 31%;
+    }
+    50% {
+      background-position: 100% 70%;
+    }
+    100% {
+      background-position: 0% 31%;
+    }
+  }
+
+  @keyframes AnimationName {
+    0% {
+      background-position: 0% 31%;
+    }
+    50% {
+      background-position: 100% 70%;
+    }
+    100% {
+      background-position: 0% 31%;
+    }
+  }
+
+  .btn-outline-light:hover {
+    color: #3f345f;
+  }
+
+  .btn-outline-warning:hover {
+    color: #ffffff;
+  }
+
+  .btn-sm {
+    font-size: 12px;
+    padding: 11px 25px;
+  }
+
+  .elements-page-btn .btn {
+    margin: 6px 3px;
+  }
 </style>

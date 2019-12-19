@@ -804,6 +804,7 @@
                     err_display
                 ) {
                     const date = new Date();
+                    const status = 'В обработке';
                     db.collection("orders").add({
                         email,
                         town,
@@ -817,7 +818,8 @@
                         summa,
                         nadb,
                         itog,
-                        display
+                        status,
+                        display,
                     });
                     this.alert = false;
                     this.email = "";
