@@ -5,6 +5,37 @@
       <div class="container">
         <h1>Панель администратора</h1>
         <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
+
+        <div class="row rw">
+          <div class="card col-md-5">
+            <form>
+              <h5>Обновить заказ</h5>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="code">Номер заказа</label>
+                  <input v-model="code" type="text" class="form-control" id="code"/>
+                  <label for="status">Выберете статус</label>
+                  <select v-model="status" id="status" class="form-control">
+                    <option>В обработке</option>
+                    <option>Изготавливается</option>
+                    <option>Упаковывается</option>
+                    <option>Передан доставщику</option>
+                    <option>Доставляется</option>
+                    <option>В пункте выдачи</option>
+                    <option>Закрыт</option>
+                  </select>
+                </div>
+              </div>
+              <button
+                v-on:click.prevent="searchOrder(code, status)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-md"
+              >Обновить
+              </button>
+            </form>
+          </div>
+        </div>
+
         <div class="row">
           <div class="card col-md-5">
             <form>
@@ -43,7 +74,7 @@
           </div>
         </div>
         <div class="row rw">
-          <div class="col-md-4">
+          <div class="col-md-5 cdl">
             <div>
               <button
                 @click="flag_t = flag_t ? false : true;"
@@ -57,13 +88,13 @@
                 <button
                   v-on:click="deleteTown(town.id)"
                   type="submit"
-                  class="btn btn-primary order btn btn-warning btn-md"
+                  class="btn btn-primary order btn btn-warning btn-md lbt col-md-4 lbt"
                 >Удалить
                 </button>
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-5 cdl">
             <div>
               <button
                 @click="flag_tm = flag_tm ? false : true;"
@@ -77,48 +108,13 @@
                 <button
                   v-on:click="deleteTheme(theme.id)"
                   type="submit"
-                  class="btn btn-primary order btn btn-warning btn-md"
+                  class="btn btn-primary order btn btn-warning btn-md col-md-4 lbt"
                 >Удалить
                 </button>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="row rw">
-          <div class="card col-md-5">
-            <form>
-              <h5>Обновить заказ</h5>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="code">Номер заказа</label>
-                  <input v-model="code" type="text" class="form-control" id="code"/>
-                  <label for="status">Выберете статус</label>
-                  <select v-model="status" id="status" class="form-control">
-                    <option>В обработке</option>
-                    <option>Изготавливается</option>
-                    <option>Упаковывается</option>
-                    <option>Передан доставщику</option>
-                  </select>
-                </div>
-              </div>
-              <button
-                v-on:click.prevent="searchOrder(code, status)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-md"
-              >Обновить
-              </button>
-            </form>
-          </div>
-        </div>
-        <div>
-          <div v-if="!flag_o">
-            <div v-for="o in ord">
-              <p>{{o.model}}</p>
-            </div>
-          </div>
-        </div>
-
       </div>
     </main>
     <my-footer></my-footer>
@@ -142,15 +138,12 @@
         flag_m: false,
         flag_t: false,
         flag_tm: false,
-        name_m: "",
         name_t: "",
         name_tm: "",
-        name_md: "",
         name_td: "",
         name_th: "",
         plus: "",
         towns: [],
-        models: [],
         themes: [],
         th: [],
         ord: [],
@@ -175,6 +168,8 @@
         db.collection('orders').doc(code).set({
           status: status,
         }, {merge: true});
+        this.code = "";
+        this.status = "";
       },
       deleteTheme(id) {
         db.collection('themes').doc(id).delete();
@@ -184,9 +179,11 @@
       },
       addTown(name) {
         db.collection("towns").add({name});
+        this.name_t = "";
       },
       addTheme(name) {
         db.collection("themes").add({name});
+        this.name_tm = "";
       }
     },
     components: {MyHeader, MyFooter}
@@ -194,6 +191,14 @@
 </script>
 
 <style scoped>
+  .lbt {
+      margin: auto;
+  }
+
+  .cdl {
+    margin: 5px auto;
+  }
+
   .sr {
     margin-top: 5px;
     margin-bottom: 5px;
