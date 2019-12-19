@@ -37,6 +37,8 @@ exports.sendEmail = functions.firestore
                 <b>Количество: </b>${snap.data().count} шт.<br>
               </div>
               <hr>
+              <h5><b>Статус: </b>${snap.data().status}</h5>
+              <hr>
               <div>
                 <h3>ИТОГ: ${snap.data().itog} руб.</h3>
               </div>`
@@ -52,22 +54,9 @@ exports.updateOrder = functions.firestore
       from: "pvlgaliguzov@gmail.com",
       to: change.after.data().email,
       subject: "Ваш заказ на GlassTech",
-      html: `<h1>Данные заказа</h1>
-              <h3>Номер заказа: ${change.after.id}</h3>
-              <div>
-                <h3>Ваши контактные данные</h3>
-                <b>Город: </b>${change.after.data().town}<br>
-                <b>Адрес: </b>${change.after.data().address}<br>
-                <b>Индекс: </b>${change.after.data().index}<br>
-                <b>Телефон: </b>${change.after.data().phone}<br>
-              </div>
-              <div>
-                <h3>Выбранный товар</h3>
-                <b>Модель: </b>${change.after.data().model}<br>
-                <b>Диагональ экрана (дюйм): </b>${snap.data().display}<br>
-                <b>Тип стекла: </b>${change.after.data().glass}<br>
-                <b>Количество: </b>${change.after.data().count} шт.<br>
-              </div>
+      html: `<h5>Статус вашего заказа на GlassTech обновлен</h5>
+                <h3>Номер заказа: ${change.after.id}</h3>
+              <h5><b>Статус: </b>${change.after.data().status}</h5>
               <hr>
               <div>
                 <h3>ИТОГ: ${change.after.data().itog} руб.</h3>
