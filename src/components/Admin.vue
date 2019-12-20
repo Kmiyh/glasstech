@@ -6,7 +6,7 @@
         <h1>Панель администратора</h1>
         <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
 
-        <div class="row col-md-12">
+        <div class="row col-md-12 d">
           <div class="card col-md-12">
             <h5>Список заказов</h5>
             <input class="form-control" type="text" id="myInput" placeholder="Поиск" aria-label="Search"
@@ -76,7 +76,7 @@
           </div>
         </div>
 
-        <div class="row col-md-12">
+        <div class="row col-md-12 d">
           <div class="card col-md-12">
             <div class="row">
               <div class="col-md-6">
@@ -353,6 +353,10 @@
     max-height: 200px;
     list-style: none;
     padding-left: 10px;
+  }
+
+  .d {
+    margin: auto;
   }
 
   .lia {
