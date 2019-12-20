@@ -1,10 +1,41 @@
 <template>
   <div>
-    <my-header></my-header>
+    <my-header/>
     <main>
       <div class="container">
         <h1>Панель администратора</h1>
         <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
+
+        <div class="row">
+          <div class="card col-md-11">
+            <h5>Список заказов</h5>
+            <ul>
+              <li v-for="order in orders">
+                {{order.id}}
+                <a href="#" class="lia" v-on:click="showOrder(order.id)">Просмотреть</a>
+                <a href="#" class="lia" v-on:click="dOrder(order.id)">Удалить</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card col-md-11" v-for="order in sh_ord">
+            <h5>Информация о заказе</h5>
+            Номер заказа: {{time_id}} <br>
+            Модель телефона: {{order.model}} <br>
+            Размер экрана: {{order.display}} дм.<br>
+            Тип стекла: {{order.glass}} <br>
+            Количество: {{order.count}} шт.<br>
+            Итог заказа: {{order.summa}} руб.<br>
+            Статус: {{order.status}} <br>
+            <hr>
+            <h5>Контактная информация</h5>
+            Email: {{order.email}} <br>
+            Телефон: {{order.phone}} <br>
+            Город: {{order.town}} <br>
+            Адрес: {{order.address}} <br>
+            Индекс: {{order.index}} <br><br>
+          </div>
+        </div>
+
 
         <div class="row">
           <div class="card col-md-5">
@@ -144,7 +175,7 @@
         </div>
       </div>
     </main>
-    <my-footer></my-footer>
+    <my-footer/>
   </div>
 </template>
 
@@ -162,6 +193,7 @@
         code: "",
         del_code: "",
         iden: "",
+        show: "",
         flag_o: false,
         flag_m: false,
         flag_t: false,
@@ -177,11 +209,15 @@
         ord: [],
         town: "",
         theme: "",
+        orders: [],
+        sh_ord: [],
+        time_id: ""
       };
     },
     firestore() {
       return {
         towns: db.collection("towns").orderBy("name"),
+        orders: db.collection("orders").orderBy("date"),
         themes: db.collection("themes").orderBy("name")
       };
     },
@@ -193,6 +229,18 @@
           .then(() => {
             this.$router.replace("/");
           });
+      },
+      showOrder(id) {
+        let showArray = [];
+        this.time_id = id;
+        db.collection('orders').doc(id)
+        .get()
+        .then(doc => {
+          let sh = doc.data();
+          showArray.push(sh);
+        });
+        this.sh_ord = showArray;
+        console.log(this.sh_ord);
       },
       deleteOrder(del_code) {
         try {
@@ -246,6 +294,10 @@
         db.collection('towns').doc(id).delete();
       }
       ,
+      dOrder(id) {
+        db.collection('orders').doc(id).delete();
+      }
+      ,
       addTown(name) {
         db.collection('towns').doc(name)
           .get()
@@ -292,6 +344,18 @@
     color: #f1890b;
   }
 
+  ul {
+    overflow-y: scroll;
+    max-height: 200px;
+    list-style: none;
+  }
+
+  .lia {
+    float: right;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
   .lbt {
     margin: auto;
   }
@@ -308,10 +372,6 @@
     text-align: center;
     margin-bottom: 20px;
     margin-top: 10px;
-  }
-
-  .information {
-    margin: 10px auto;
   }
 
   .card {
