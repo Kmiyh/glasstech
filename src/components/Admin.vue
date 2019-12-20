@@ -79,6 +79,26 @@
         <div class="row col-md-12 d">
           <div class="card col-md-12">
             <div class="row">
+              <div class="col-md-12">
+                <h5>Обратная связь</h5>
+                <input class="form-control" type="text" id="myInput4" placeholder="Поиск" aria-label="Search"
+                       v-on:keyup="myFunction4()">
+                <ul id="myUL4">
+                  <li v-for="feed in feedbacks">
+                    <b><a href="#" style="pointer-events: none; cursor: default;" class="s">{{feed.theme}} ({{feed.email2}} - {{feed.lastname}} {{feed.firstname}}) - </a></b>
+                    <a href="#" style="pointer-events: none; cursor: default;" class="s size">{{feed.text}}</a>
+                    <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
+                    <hr>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row col-md-12 d">
+          <div class="card col-md-12">
+            <div class="row">
               <div class="col-md-6">
                 <h5>Список городов</h5>
                 <input class="form-control" type="text" id="myInput2" placeholder="Поиск" aria-label="Search"
@@ -182,6 +202,7 @@
         town: "",
         theme: "",
         orders: [],
+        feedbacks: [],
         sh_ord: [],
         time_id: ""
       };
@@ -190,6 +211,7 @@
       return {
         towns: db.collection("towns").orderBy("name"),
         orders: db.collection("orders").orderBy("date"),
+        feedbacks: db.collection("feedbacks").orderBy("date"),
         themes: db.collection("themes").orderBy("name")
       };
     },
@@ -250,6 +272,22 @@
           }
         }
       },
+      myFunction4() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById('myInput4');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL4");
+        li = ul.getElementsByTagName('li');
+
+        for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      },
       showOrder(id) {
         let showArray = [];
         this.time_id = id;
@@ -292,6 +330,10 @@
       ,
       deleteTown(id) {
         db.collection('towns').doc(id).delete();
+      }
+      ,
+      deleteFeedbacks(id) {
+        db.collection('feedbacks').doc(id).delete();
       }
       ,
       deleteOrder(id) {
@@ -403,6 +445,10 @@
 
   p {
     padding-top: 10px;
+  }
+
+  .size {
+    max-width: 50px;
   }
 
   .btn-warning {
@@ -570,7 +616,7 @@
     margin: 6px 3px;
   }
 
-  #myInput, #myInput2, #myInput3 {
+  #myInput, #myInput2, #myInput3, #myInput4 {
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 100%; /* Full-width */
