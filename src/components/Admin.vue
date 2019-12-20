@@ -9,10 +9,10 @@
         <div class="row">
           <div class="card col-md-11">
             <h5>Список заказов</h5>
-            <ul>
+            <input type="text" id="myInput" v-on:keyup="myFunction()" placeholder="Поиск">
+            <ul id="myUL">
               <li v-for="order in orders">
-                {{order.id}}
-                <a href="#" class="lia" v-on:click="showOrder(order.id)">Просмотреть</a>
+                <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
                 <a href="#" class="lia" v-on:click="dOrder(order.id)">Удалить</a>
               </li>
             </ul>
@@ -230,6 +230,22 @@
             this.$router.replace("/");
           });
       },
+      myFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById('myInput');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName('li');
+
+        for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      },
       showOrder(id) {
         let showArray = [];
         this.time_id = id;
@@ -381,6 +397,15 @@
 
   .card h5 {
     padding-top: 15px;
+  }
+
+  .s {
+    color: black;
+    text-decoration: none;
+  }
+
+  .s:hover {
+    color: orange;
   }
 
   p {
@@ -550,5 +575,15 @@
 
   .elements-page-btn .btn {
     margin: 6px 3px;
+  }
+
+  #myInput {
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
   }
 </style>
