@@ -6,7 +6,7 @@
         <h1>Панель администратора</h1>
         <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
 
-        <div class="row rw">
+        <div class="row">
           <div class="card col-md-5">
             <form>
               <h5>Обновить заказ</h5>
@@ -14,6 +14,8 @@
                 <div class="form-group col-md-12">
                   <label for="code">Номер заказа</label>
                   <input v-model="code" type="text" class="form-control" id="code"/>
+                  <small v-if="!code">Укажите номер заказа</small>
+                  <br><br>
                   <label for="status">Выберете статус</label>
                   <select v-model="status" id="status" class="form-control">
                     <option>В обработке</option>
@@ -24,16 +26,37 @@
                     <option>В пункте выдачи</option>
                     <option>Закрыт</option>
                   </select>
+                  <small v-if="!status">Укажите статус</small>
                 </div>
               </div>
               <button
-                v-on:click.prevent="searchOrder(code, status)"
+                v-on:click.prevent="updateOrder(code, status)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-md"
               >Обновить
               </button>
             </form>
           </div>
+
+          <div class="card col-md-5">
+            <form>
+              <h5>Удалить заказ</h5>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="code2">Номер заказа</label>
+                  <input v-model="del_code" type="text" class="form-control" id="code2"/>
+                  <small v-if="!del_code">Укажите номер заказа</small>
+                </div>
+              </div>
+              <button
+                v-on:click.prevent="deleteOrder(del_code)"
+                type="submit"
+                class="btn btn-primary order btn btn-warning btn-md"
+              >Удалить
+              </button>
+            </form>
+          </div>
+
         </div>
 
         <div class="row">
@@ -44,6 +67,7 @@
                 <div class="form-group col-md-12">
                   <label for="inputName">Название</label>
                   <input v-model="name_t" type="text" class="form-control" id="inputName"/>
+                  <small v-if="!town">Укажите тип стекла</small>
                 </div>
               </div>
               <button
@@ -62,6 +86,7 @@
                 <div class="form-group col-md-12">
                   <label for="inputName">Название</label>
                   <input v-model="name_tm" type="text" class="form-control"/>
+                  <small v-if="!theme">Укажите тип стекла</small>
                 </div>
               </div>
               <button
@@ -73,14 +98,15 @@
             </form>
           </div>
         </div>
-        <div class="row rw">
+        <div class="row">
           <div class="col-md-5 cdl">
             <div>
               <button
                 @click="flag_t = flag_t ? false : true;"
                 class="sr btn btn-primary btn-sm"
                 type="submit"
-              >Список городов</button>
+              >Список городов
+              </button>
             </div>
             <div v-if="flag_t" v-for="town in towns">
               <div class="card cdrw">
@@ -100,7 +126,8 @@
                 @click="flag_tm = flag_tm ? false : true;"
                 class="sr btn btn-primary btn-sm"
                 type="submit"
-              >Список тем</button>
+              >Список тем
+              </button>
             </div>
             <div v-if="flag_tm" v-for="theme in themes">
               <div class="card cdrw">
@@ -133,6 +160,7 @@
       return {
         status: "",
         code: "",
+        del_code: "",
         iden: "",
         flag_o: false,
         flag_m: false,
@@ -147,6 +175,8 @@
         themes: [],
         th: [],
         ord: [],
+        town: "",
+        theme: "",
       };
     },
     firestore() {
@@ -164,35 +194,106 @@
             this.$router.replace("/");
           });
       },
-      searchOrder(code, status) {
-        db.collection('orders').doc(code).set({
-          status: status,
-        }, {merge: true});
-        this.code = "";
-        this.status = "";
+      deleteOrder(del_code) {
+        try {
+          db.collection('orders').doc(del_code)
+            .get()
+            .then(doc => {
+              if (!doc.exists) {
+                alert('Такого заказа не существует. Проверьте введенные данные.')
+              } else {
+                let err_del_code = del_code != "";
+                if (err_del_code) {
+                  db.collection('orders').doc(del_code).delete();
+                }
+                this.del_code = "";
+                alert('Заказ удален')
+              }
+            })
+        } catch (e) {
+          alert('Нет такого документа')
+        }
       },
+      updateOrder(code, status) {
+        try {
+          db.collection('orders').doc(code)
+            .get()
+            .then(doc => {
+              if (!doc.exists) {
+                alert('Такого заказа не существует. Проверьте введенные данные.')
+              } else {
+                let err_code = code != "";
+                if (err_code) {
+                  db.collection('orders').doc(code).set({
+                    status: status,
+                  }, {merge: true});
+                }
+                this.code = "";
+                this.status = "";
+                alert('Статус заказа обновлен.')
+              }
+            })
+        } catch (e) {
+          alert('Нет такого документа')
+        }
+      }
+      ,
       deleteTheme(id) {
         db.collection('themes').doc(id).delete();
-      },
+      }
+      ,
       deleteTown(id) {
         db.collection('towns').doc(id).delete();
-      },
+      }
+      ,
       addTown(name) {
-        db.collection("towns").add({name});
-        this.name_t = "";
-      },
+        db.collection('towns').doc(name)
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              alert('Такой город уже существует')
+            } else {
+              let err_town = name != "";
+              if (err_town) {
+                db.collection("towns").doc(name).set({name});
+              }
+              this.name_t = "";
+              alert('Город добавлен')
+            }
+          });
+      }
+      ,
       addTheme(name) {
-        db.collection("themes").add({name});
-        this.name_tm = "";
+        db.collection('themes').doc(name)
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              alert('Такая тема уже существует')
+            } else {
+              let err_theme = name != "";
+              if (err_theme) {
+                db.collection("themes").doc(name).set({name});
+              }
+              this.name_tm = "";
+              alert('Тема добавлена')
+            }
+          });
       }
     },
-    components: {MyHeader, MyFooter}
-  };
+    components: {
+      MyHeader, MyFooter
+    }
+  }
+  ;
 </script>
 
 <style scoped>
+  small {
+    color: #f1890b;
+  }
+
   .lbt {
-      margin: auto;
+    margin: auto;
   }
 
   .cdl {
@@ -200,28 +301,30 @@
   }
 
   .sr {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px auto;
   }
 
-  .rw {
+  .cdrw {
     text-align: center;
     margin-bottom: 20px;
     margin-top: 10px;
   }
 
   .information {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px auto;
   }
 
   .card {
-    margin: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px auto;
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  }
+
+  .card h5 {
+    padding-top: 15px;
+  }
+
+  p {
+    padding-top: 10px;
   }
 
   .btn-warning {
