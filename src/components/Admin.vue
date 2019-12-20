@@ -6,7 +6,7 @@
         <h1>Панель администратора</h1>
         <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
 
-        <div class="row">
+        <div class="row col-md-12">
           <div class="card col-md-12">
             <h5>Список заказов</h5>
             <input class="form-control" type="text" id="myInput" placeholder="Поиск" aria-label="Search"
@@ -19,64 +19,64 @@
             </ul>
           </div>
           <div class="card col-md-12" v-for="order in sh_ord">
-            <div class="row col-md-7">
-              <h3 style="text-align: center">Заказ: {{time_id}}</h3>
-              <div class="col-md-7">
-                <h5>Информация о заказе</h5>
-                Модель телефона: {{order.model}} <br>
-                Размер экрана: {{order.display}} дм.<br>
-                Тип стекла: {{order.glass}} <br>
-                Количество: {{order.count}} шт.<br>
-                Итог заказа: {{order.itog}} руб.<br>
-                Статус: {{order.status}} <br>
-              </div>
-              <div class="col-md-8">
-                <h5>Контактная информация</h5>
-                Email: {{order.email}} <br>
-                Телефон: {{order.phone}} <br>
-                Город: {{order.town}} <br>
-                Адрес: {{order.address}} <br>
-                Индекс: {{order.index}} <br>
-              </div>
-              <div class="col-md-5">
-                <form>
-                  <h5>Обновить статус</h5>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <label for="status">Выберете статус</label>
-                      <select v-model="status" id="status" class="form-control">
-                        <option>В обработке</option>
-                        <option>Изготавливается</option>
-                        <option>Упаковывается</option>
-                        <option>Передан доставщику</option>
-                        <option>Доставляется</option>
-                        <option>В пункте выдачи</option>
-                        <option>Закрыт</option>
-                      </select>
-                      <small v-if="!status">Укажите статус</small>
+            <div class="row col-md-12">
+              <h3 style="text-align: center" class="col-md-12">Заказ: {{time_id}}</h3>
+              <div class="row col-md-12">
+                <div class="col-md-4">
+                  <h5>Информация о заказе</h5>
+                  Модель телефона: {{order.model}} <br>
+                  Размер экрана: {{order.display}} дм.<br>
+                  Тип стекла: {{order.glass}} <br>
+                  Количество: {{order.count}} шт.<br>
+                  Итог заказа: {{order.itog}} руб.<br>
+                  Статус: {{order.status}} <br>
+                </div>
+                <div class="col-md-4">
+                  <h5>Контактная информация</h5>
+                  Email: {{order.email}} <br>
+                  Телефон: {{order.phone}} <br>
+                  Город: {{order.town}} <br>
+                  Адрес: {{order.address}} <br>
+                  Индекс: {{order.index}} <br>
+                </div>
+                <div class="col-md-4">
+                  <form>
+                    <h5>Обновить статус</h5>
+                    <div class="form-row">
+                      <div class="form-group col-md-12">
+                        <label for="status">Выберете статус</label>
+                        <select v-model="status" id="status" class="form-control">
+                          <option>В обработке</option>
+                          <option>Изготавливается</option>
+                          <option>Упаковывается</option>
+                          <option>Передан доставщику</option>
+                          <option>Доставляется</option>
+                          <option>В пункте выдачи</option>
+                          <option>Закрыт</option>
+                        </select>
+                        <small v-if="!status">Укажите статус</small>
+                      </div>
                     </div>
-                  </div>
-                  <button
-                    v-on:click.prevent="updateOrder(time_id, status)"
-                    type="submit"
-                    class="btn btn-primary order btn btn-warning btn-md"
-                  >Обновить
-                  </button>
-                  <button
-                    v-on:click.prevent="deleteOrder(time_id)"
-                    type="submit"
-                    class="btn btn-primary order btn btn-warning btn-md"
-                  >Удалить
-                  </button>
-                </form>
+                    <button
+                      v-on:click.prevent="updateOrder(time_id, status)"
+                      type="submit"
+                      class="btn btn-primary order btn btn-warning btn-md"
+                    >Обновить
+                    </button>
+                    <button
+                      v-on:click.prevent="deleteOrder(time_id)"
+                      type="submit"
+                      class="btn btn-primary order btn btn-warning btn-md"
+                    >Удалить
+                    </button>
+                  </form>
+                </div>
               </div>
-            </div>
-            <div class="row">
             </div>
           </div>
         </div>
 
-        <div class="row">
+        <div class="row col-md-12">
           <div class="card col-md-12">
             <div class="row">
               <div class="col-md-6">
