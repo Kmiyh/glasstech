@@ -18,75 +18,66 @@
             </ul>
           </div>
           <div class="card col-md-11" v-for="order in sh_ord">
-            <h5>Информация о заказе</h5>
-            Номер заказа: {{time_id}} <br>
-            Модель телефона: {{order.model}} <br>
-            Размер экрана: {{order.display}} дм.<br>
-            Тип стекла: {{order.glass}} <br>
-            Количество: {{order.count}} шт.<br>
-            Итог заказа: {{order.summa}} руб.<br>
-            Статус: {{order.status}} <br>
-            <hr>
-            <h5>Контактная информация</h5>
-            Email: {{order.email}} <br>
-            Телефон: {{order.phone}} <br>
-            Город: {{order.town}} <br>
-            Адрес: {{order.address}} <br>
-            Индекс: {{order.index}} <br><br>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="card col-md-5">
-            <form>
-              <h5>Обновить заказ</h5>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="code">Номер заказа</label>
-                  <input v-model="code" type="text" class="form-control" id="code"/>
-                  <small v-if="!code">Укажите номер заказа</small>
-                  <br><br>
-                  <label for="status">Выберете статус</label>
-                  <select v-model="status" id="status" class="form-control">
-                    <option>В обработке</option>
-                    <option>Изготавливается</option>
-                    <option>Упаковывается</option>
-                    <option>Передан доставщику</option>
-                    <option>Доставляется</option>
-                    <option>В пункте выдачи</option>
-                    <option>Закрыт</option>
-                  </select>
-                  <small v-if="!status">Укажите статус</small>
-                </div>
+            <div class="row col-md-7">
+              <h3 style="text-align: center">Заказ: {{time_id}}</h3>
+              <div class="col-md-7">
+                <h5>Информация о заказе</h5>
+                Модель телефона: {{order.model}} <br>
+                Размер экрана: {{order.display}} дм.<br>
+                Тип стекла: {{order.glass}} <br>
+                Количество: {{order.count}} шт.<br>
+                Итог заказа: {{order.itog}} руб.<br>
+                Статус: {{order.status}} <br>
               </div>
-              <button
-                v-on:click.prevent="updateOrder(code, status)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-md"
-              >Обновить
-              </button>
-            </form>
+              <div class="col-md-8">
+                <h5>Контактная информация</h5>
+                Email: {{order.email}} <br>
+                Телефон: {{order.phone}} <br>
+                Город: {{order.town}} <br>
+                Адрес: {{order.address}} <br>
+                Индекс: {{order.index}} <br>
+              </div>
+              <div class="col-md-5">
+                <form>
+                  <h5>Обновить статус</h5>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label for="status">Выберете статус</label>
+                      <select v-model="status" id="status" class="form-control">
+                        <option>В обработке</option>
+                        <option>Изготавливается</option>
+                        <option>Упаковывается</option>
+                        <option>Передан доставщику</option>
+                        <option>Доставляется</option>
+                        <option>В пункте выдачи</option>
+                        <option>Закрыт</option>
+                      </select>
+                      <small v-if="!status">Укажите статус</small>
+                    </div>
+                  </div>
+                  <button
+                    v-on:click.prevent="updateOrder(time_id, status)"
+                    type="submit"
+                    class="btn btn-primary order btn btn-warning btn-md"
+                  >Обновить
+                  </button>
+                  <button
+                    v-on:click.prevent="dOrder(time_id)"
+                    type="submit"
+                    class="btn btn-primary order btn btn-warning btn-md"
+                  >Удалить
+                  </button>
+                </form>
+              </div>
+            </div>
+
+
+
+            <div class="row">
+
+            </div>
           </div>
 
-          <div class="card col-md-5">
-            <form>
-              <h5>Удалить заказ</h5>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="code2">Номер заказа</label>
-                  <input v-model="del_code" type="text" class="form-control" id="code2"/>
-                  <small v-if="!del_code">Укажите номер заказа</small>
-                </div>
-              </div>
-              <button
-                v-on:click.prevent="deleteOrder(del_code)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-md"
-              >Удалить
-              </button>
-            </form>
-          </div>
 
         </div>
 
@@ -250,11 +241,11 @@
         let showArray = [];
         this.time_id = id;
         db.collection('orders').doc(id)
-        .get()
-        .then(doc => {
-          let sh = doc.data();
-          showArray.push(sh);
-        });
+          .get()
+          .then(doc => {
+            let sh = doc.data();
+            showArray.push(sh);
+          });
         this.sh_ord = showArray;
         console.log(this.sh_ord);
       },
@@ -360,10 +351,15 @@
     color: #f1890b;
   }
 
+  h3 {
+    margin-top: 20px;
+  }
+
   ul {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 200px;
     list-style: none;
+    padding-left: 10px;
   }
 
   .lia {
@@ -582,7 +578,7 @@
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 100%; /* Full-width */
     font-size: 16px; /* Increase font-size */
-    padding: 12px 20px 12px 40px; /* Add some padding */
+    padding: 12px 10px 12px 40px; /* Add some padding */
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
   }
