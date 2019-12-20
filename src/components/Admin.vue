@@ -7,17 +7,18 @@
         <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
 
         <div class="row">
-          <div class="card col-md-11">
+          <div class="card col-md-12">
             <h5>Список заказов</h5>
-            <input type="text" id="myInput" v-on:keyup="myFunction()" placeholder="Поиск">
+            <input class="form-control" type="text" id="myInput" placeholder="Поиск" aria-label="Search"
+                   v-on:keyup="myFunction()">
             <ul id="myUL">
               <li v-for="order in orders">
                 <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
-                <a href="#" class="lia" v-on:click="dOrder(order.id)">Удалить</a>
+                <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
               </li>
             </ul>
           </div>
-          <div class="card col-md-11" v-for="order in sh_ord">
+          <div class="card col-md-12" v-for="order in sh_ord">
             <div class="row col-md-7">
               <h3 style="text-align: center">Заказ: {{time_id}}</h3>
               <div class="col-md-7">
@@ -62,7 +63,7 @@
                   >Обновить
                   </button>
                   <button
-                    v-on:click.prevent="dOrder(time_id)"
+                    v-on:click.prevent="deleteOrder(time_id)"
                     type="submit"
                     class="btn btn-primary order btn btn-warning btn-md"
                   >Удалить
@@ -70,99 +71,79 @@
                 </form>
               </div>
             </div>
+            <div class="row">
+            </div>
+          </div>
+        </div>
 
-
+        <div class="row">
+          <div class="card col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Список городов</h5>
+                <input class="form-control" type="text" id="myInput2" placeholder="Поиск" aria-label="Search"
+                       v-on:keyup="myFunction2()">
+                <ul id="myUL2">
+                  <li v-for="town in towns">
+                    <a href="#" style="pointer-events: none; cursor: default;" class="s">{{town.name}}</a>
+                    <a href="#" class="lia" v-on:click="deleteTown(town.id)">Удалить</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <form>
+                  <h5>Добавить город</h5>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <input v-model="name_t" type="text" class="form-control" id="inputName"/>
+                      <small v-if="!town">Укажите название города</small>
+                    </div>
+                  </div>
+                  <button
+                    id="do"
+                    v-on:click.prevent="addTown(name_t)"
+                    type="submit"
+                    class="btn btn-primary order btn btn-warning btn-md"
+                  >Добавить
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="card col-md-12">
 
             <div class="row">
-
-            </div>
-          </div>
-
-
-        </div>
-
-        <div class="row">
-          <div class="card col-md-5">
-            <form>
-              <h5>Добавить город</h5>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputName">Название</label>
-                  <input v-model="name_t" type="text" class="form-control" id="inputName"/>
-                  <small v-if="!town">Укажите тип стекла</small>
-                </div>
+              <div class="col-md-6">
+                <h5>Список тем</h5>
+                <input class="form-control" type="text" id="myInput3" placeholder="Поиск" aria-label="Search"
+                       v-on:keyup="myFunction3()">
+                <ul id="myUL3">
+                  <li v-for="theme in themes">
+                    <a href="#" style="pointer-events: none; cursor: default;" class="s">{{theme.name}}</a>
+                    <a href="#" class="lia" v-on:click="deleteTheme(theme.id)">Удалить</a>
+                  </li>
+                </ul>
               </div>
-              <button
-                id="do"
-                v-on:click.prevent="addTown(name_t)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-md"
-              >Добавить
-              </button>
-            </form>
-          </div>
-          <div class="card col-md-5">
-            <form>
-              <h5>Добавить тему</h5>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputName">Название</label>
-                  <input v-model="name_tm" type="text" class="form-control"/>
-                  <small v-if="!theme">Укажите тип стекла</small>
-                </div>
-              </div>
-              <button
-                v-on:click.prevent="addTheme(name_tm)"
-                type="submit"
-                class="btn btn-primary order btn btn-warning btn-md"
-              >Добавить
-              </button>
-            </form>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-5 cdl">
-            <div>
-              <button
-                @click="flag_t = flag_t ? false : true;"
-                class="sr btn btn-primary btn-sm"
-                type="submit"
-              >Список городов
-              </button>
-            </div>
-            <div v-if="flag_t" v-for="town in towns">
-              <div class="card cdrw">
-                <p>{{town.name}}</p>
-                <button
-                  v-on:click="deleteTown(town.id)"
-                  type="submit"
-                  class="btn btn-primary order btn btn-warning btn-md lbt col-md-4 lbt"
-                >Удалить
-                </button>
+              <div class="col-md-6">
+                <form>
+                  <h5>Добавить тему</h5>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <input v-model="name_tm" type="text" class="form-control"/>
+                      <small v-if="!theme">Укажите название темы</small>
+                    </div>
+                  </div>
+                  <button
+                    v-on:click.prevent="addTheme(name_tm)"
+                    type="submit"
+                    class="btn btn-primary order btn btn-warning btn-md"
+                  >Добавить
+                  </button>
+                </form>
               </div>
             </div>
           </div>
-          <div class="col-md-5 cdl">
-            <div>
-              <button
-                @click="flag_tm = flag_tm ? false : true;"
-                class="sr btn btn-primary btn-sm"
-                type="submit"
-              >Список тем
-              </button>
-            </div>
-            <div v-if="flag_tm" v-for="theme in themes">
-              <div class="card cdrw">
-                <p>{{theme.name}}</p>
-                <button
-                  v-on:click="deleteTheme(theme.id)"
-                  type="submit"
-                  class="btn btn-primary order btn btn-warning btn-md col-md-4 lbt"
-                >Удалить
-                </button>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </main>
@@ -237,6 +218,38 @@
           }
         }
       },
+      myFunction2() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById('myInput2');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL2");
+        li = ul.getElementsByTagName('li');
+
+        for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      },
+      myFunction3() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById('myInput3');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL3");
+        li = ul.getElementsByTagName('li');
+
+        for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      },
       showOrder(id) {
         let showArray = [];
         this.time_id = id;
@@ -248,26 +261,6 @@
           });
         this.sh_ord = showArray;
         console.log(this.sh_ord);
-      },
-      deleteOrder(del_code) {
-        try {
-          db.collection('orders').doc(del_code)
-            .get()
-            .then(doc => {
-              if (!doc.exists) {
-                alert('Такого заказа не существует. Проверьте введенные данные.')
-              } else {
-                let err_del_code = del_code != "";
-                if (err_del_code) {
-                  db.collection('orders').doc(del_code).delete();
-                }
-                this.del_code = "";
-                alert('Заказ удален')
-              }
-            })
-        } catch (e) {
-          alert('Нет такого документа')
-        }
       },
       updateOrder(code, status) {
         try {
@@ -301,7 +294,7 @@
         db.collection('towns').doc(id).delete();
       }
       ,
-      dOrder(id) {
+      deleteOrder(id) {
         db.collection('orders').doc(id).delete();
       }
       ,
@@ -573,7 +566,7 @@
     margin: 6px 3px;
   }
 
-  #myInput {
+  #myInput, #myInput2, #myInput3 {
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 100%; /* Full-width */
