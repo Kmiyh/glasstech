@@ -14,18 +14,19 @@ import {
 } from 'vuefire'
 
 Vue.use(VueScrollReveal);
-Vue.use(VueTelInput)
+Vue.use(VueTelInput);
 Vue.use(firestorePlugin);
 firebase.initializeApp({
-  apiKey: "AIzaSyAvlZ21px091cKs-WElvDIZOfRRB824fd8",
-  authDomain: "glass-6d5f0.firebaseapp.com",
-  databaseURL: "https://glass-6d5f0.firebaseio.com",
-  projectId: "glass-6d5f0",
-  storageBucket: "glass-6d5f0.appspot.com",
-  messagingSenderId: "46067386764",
-  appId: "1:46067386764:web:c7bbcaeecd0b123f982ea9"
-})
-export const db = firebase.firestore()
+  apiKey: "AIzaSyDa7rwmud3JhtjEx8gIaJ9utX40twzlg_A",
+  authDomain: "testglass-89c71.firebaseapp.com",
+  databaseURL: "https://testglass-89c71.firebaseio.com",
+  projectId: "testglass-89c71",
+  storageBucket: "testglass-89c71.appspot.com",
+  messagingSenderId: "687374579209",
+  appId: "1:687374579209:web:5847781a3a56b98c7f6ad8",
+  measurementId: "G-9Z24BKFL14"
+});
+export const db = firebase.firestore();
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

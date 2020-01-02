@@ -302,8 +302,13 @@
                   <small v-if="!theme">Укажите тему письма</small>
                 </div>
                 <div class="form-group col-md-12">
+                  <label for="inputTitle">Заголовок письма</label>
+                  <input v-model="title" type="email" class="form-control" id="inputTitle"/>
+                  <small v-if="!title">Укажите заголовок</small>
+                </div>
+                <div class="form-group col-md-12">
                   <label for="inputQuestion">Текст сообщения</label>
-                  <textarea v-model="text" class="col-md-12" rows="5"></textarea>
+                  <textarea v-model="text" class="col-md-12" rows="5"/>
                   <small v-if="!text">Введите текст письма</small>
                 </div>
                 <div
@@ -324,7 +329,7 @@
               </form>
               <button
                 id="do"
-                v-on:click="checkFeedback(firstname, lastname, theme, text, email2)"
+                v-on:click="checkFeedback(firstname, lastname, theme, title, text, email2)"
                 type="submit"
                 class="btn btn-primary order btn btn-warning btn-lg"
               >Отправить
@@ -574,6 +579,7 @@
                 discount: 0,
                 email: "",
                 email2: "",
+                title: "",
                 town: "",
                 address: "",
                 index: "",
@@ -834,11 +840,12 @@
                     this.discount = 0;
                 }
             },
-            checkFeedback(firstname, lastname, theme, text, email2) {
+            checkFeedback(firstname, lastname, theme, title, text, email2) {
                 let err_email2 = this.reg.test(email2);
                 let err_firstname = firstname != "";
                 let err_lastname = lastname != "";
                 let err_theme = theme != "";
+                let err_title = title != "";
                 let err_text = text != "";
 
                 if (
@@ -846,6 +853,7 @@
                     err_lastname &&
                     err_theme &&
                     err_text &&
+                    err_title &&
                     err_email2
                 ) {
                     const date = new Date();
@@ -854,6 +862,7 @@
                         lastname,
                         theme,
                         text,
+                        title,
                         date,
                         email2
                     });
@@ -861,6 +870,7 @@
                     this.firstname = "";
                     this.lastname = "";
                     this.theme = "";
+                    this.title = "";
                     this.text = "";
                     this.email2 = "";
                 }

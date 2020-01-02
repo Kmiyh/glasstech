@@ -44,7 +44,6 @@
                     <h5>Обновить статус</h5>
                     <div class="form-row">
                       <div class="form-group col-md-12">
-                        <label for="status">Выберете статус</label>
                         <select v-model="status" id="status" class="form-control">
                           <option>В обработке</option>
                           <option>Изготавливается</option>
@@ -81,22 +80,100 @@
             <div class="row">
               <div class="col-md-12">
                 <h5>Обратная связь</h5>
-                <input class="form-control" type="text" id="myInput4" placeholder="Поиск" aria-label="Search"
-                       v-on:keyup="myFunction4()">
-                <ul id="myUL4">
-                  <li v-for="feed in feedbacks">
-                    <b><a href="#" style="pointer-events: none; cursor: default;" class="s">{{feed.theme}} ({{feed.email2}} - {{feed.lastname}} {{feed.firstname}}) - </a></b>
-                    <a href="#" style="pointer-events: none; cursor: default;" class="s size">{{feed.text}}</a>
-                    <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
-                    <hr>
-                  </li>
-                </ul>
+                <div class="row col-md-12">
+                  <input class="form-control col-md-9" type="text" id="myInput4" placeholder="Поиск" aria-label="Search"
+                         v-on:keyup="myFunction4()">
+                  <select v-model="filter" style="margin-left: 10px;" v-on:click.prevent="filterFeedbacks(filter)" id="filter" class="form-control col-md-2">
+                    <option>Все</option>
+                    <option>Отзыв</option>
+                    <option>Вопрос</option>
+                    <option>Предложение</option>
+                  </select>
+                </div>
+                <div v-if="filter === 'Все'">
+                  <ul id="myUL4">
+                    <li v-for="feed in feedbacks">
+                      <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.theme}} от {{feed.lastname}}
+                        {{feed.firstname}} - {{feed.title}}</a>
+                      <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
+                    </li>
+                  </ul>
+                </div>
+                <div v-else>
+                  <ul id="myUL4">
+                    <li v-for="feed in f_feed">
+                      <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.theme}} от {{feed.lastname}}
+                        {{feed.firstname}} - {{feed.title}}</a>
+                      <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card col-md-12" v-for="feed in sh_feed">
+            <div class="row col-md-12">
+              <!--                    <h3 style="text-align: center" class="col-md-12">Заказ: {{time_id}}</h3>-->
+              <div class="row col-md-12">
+                <div class="col-md-9">
+                  <h5>Информация об отзыве</h5>
+                  Email: {{feed.email2}} <br>
+                  Имя: {{feed.firstname}}<br>
+                  Фамилия: {{feed.lastname}} <br>
+                  Тема письма: {{feed.theme}}<br>
+                  Заголовок: {{feed.title}}<br>
+                  Текст: {{feed.text}} <br>
+                </div>
+                <div class="col-md-3">
+                  <h5>Удалить отзыв</h5>
+                  <button
+                    v-on:click.prevent="deleteFeedbacks(time_id)"
+                    type="submit"
+                    class="btn btn-primary order btn btn-warning btn-md"
+                  >Удалить
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="row col-md-12 d">
+          <div class="card col-md-12">
+            <div class="row">
+              <div class="col-md-6">
+                <h5>Список стекол</h5>
+                <input class="form-control" type="text" id="myInput5" placeholder="Поиск" aria-label="Search"
+                       v-on:keyup="myFunction5()">
+                <ul id="myUL5">
+                  <li v-for="glass in glasses">
+                    <a href="#" style="pointer-events: none; cursor: default;" class="s">{{glass.name}} - {{glass.price}} руб.</a>
+                    <a href="#" class="lia" v-on:click="deleteGlass(glass.id)">Удалить</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <form>
+                  <h5>Добавить стекло</h5>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <input v-model="name_g" type="text" class="form-control" id="inputGlass"/>
+                      <small v-if="!glass">Укажите название стекла</small>
+                      <input v-model="price_g" type="text" class="form-control" id="inputGlassPrice"/>
+                      <small v-if="!price">Укажите стоимость стекла</small>
+                    </div>
+                  </div>
+                  <button
+                    v-on:click.prevent="addGlass(name_g, price_g)"
+                    type="submit"
+                    class="btn btn-primary order btn btn-warning btn-md"
+                  >Добавить
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
           <div class="card col-md-12">
             <div class="row">
               <div class="col-md-6">
@@ -130,8 +207,8 @@
               </div>
             </div>
           </div>
-          <div class="card col-md-12">
 
+          <div class="card col-md-12">
             <div class="row">
               <div class="col-md-6">
                 <h5>Список тем</h5>
@@ -190,20 +267,28 @@
         flag_m: false,
         flag_t: false,
         flag_tm: false,
+        filter: "Все",
+        f_feed: [],
         name_t: "",
         name_tm: "",
         name_td: "",
         name_th: "",
+        name_g: "",
+        price_g: "",
         plus: "",
+        price: "",
         towns: [],
         themes: [],
+        glasses: [],
         th: [],
         ord: [],
         town: "",
         theme: "",
+        glass: "",
         orders: [],
         feedbacks: [],
         sh_ord: [],
+        sh_feed: [],
         time_id: ""
       };
     },
@@ -212,7 +297,8 @@
         towns: db.collection("towns").orderBy("name"),
         orders: db.collection("orders").orderBy("date"),
         feedbacks: db.collection("feedbacks").orderBy("date"),
-        themes: db.collection("themes").orderBy("name")
+        themes: db.collection("themes").orderBy("name"),
+        glasses: db.collection("glasses").orderBy("name")
       };
     },
     methods: {
@@ -288,6 +374,37 @@
           }
         }
       },
+      myFunction5() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById('myInput5');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL5");
+        li = ul.getElementsByTagName('li');
+
+        for (i = 0; i < li.length; i++) {
+          a = li[i].getElementsByTagName("a")[0];
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+          } else {
+            li[i].style.display = "none";
+          }
+        }
+      },
+      filterFeedbacks(name) {
+        let feed = [];
+        db.collection("feedbacks")
+          .where("theme", "==", this.filter)
+          .get()
+          .then(query => {
+            query.forEach(doc => {
+              let md = doc.data();
+              md.id = doc.id;
+              feed.push(md);
+              console.log(doc.data());
+            });
+            this.f_feed = feed;
+          });
+      },
       showOrder(id) {
         let showArray = [];
         this.time_id = id;
@@ -298,6 +415,18 @@
             showArray.push(sh);
           });
         this.sh_ord = showArray;
+        console.log(this.sh_ord);
+      },
+      showFeedback(id) {
+        let showArray = [];
+        this.time_id = id;
+        db.collection('feedbacks').doc(id)
+          .get()
+          .then(doc => {
+            let sh = doc.data();
+            showArray.push(sh);
+          });
+        this.sh_feed = showArray;
         console.log(this.sh_ord);
       },
       updateOrder(code, status) {
@@ -340,6 +469,10 @@
         db.collection('orders').doc(id).delete();
       }
       ,
+      deleteGlass(id) {
+        db.collection('glasses').doc(id).delete();
+      }
+      ,
       addTown(name) {
         db.collection('towns').doc(name)
           .get()
@@ -370,6 +503,24 @@
               }
               this.name_tm = "";
               alert('Тема добавлена')
+            }
+          });
+      },
+      addGlass(name, price) {
+        db.collection('glasses').doc(name)
+          .get()
+          .then(doc => {
+            if (doc.exists) {
+              alert('Такое стекло уже существует')
+            } else {
+              let err_glass = name != "";
+              let err_price = price != "";
+              if (err_glass && err_price) {
+                db.collection("glasses").doc(name).set({name, price});
+              }
+              this.name_g = "";
+              this.price_g = "";
+              alert('Стекло добавлено')
             }
           });
       }

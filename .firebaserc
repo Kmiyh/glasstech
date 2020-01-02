@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "glass-6d5f0",
-    "glass": "glass-6d5f0"
+    "glass": "glass-6d5f0",
+    "testglass": "testglass-89c71"
   }
 }
