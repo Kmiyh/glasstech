@@ -411,7 +411,7 @@
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputZip">Индекс</label>
-                    <input v-model="index" type="number" min="0" class="form-control" id="inputZip"/>
+                    <input v-model="index" type="number" min="100000" max="999999" class="form-control" id="inputZip"/>
                     <small v-if="!index">Укажите индекс</small>
                   </div>
                 </div>

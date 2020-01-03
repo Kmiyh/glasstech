@@ -3,13 +3,13 @@
     <div id="footer" class="container">
       <div class="ftr">
         <a class="fb-ic" style="padding-left: 40px;">
-          <i class="fa fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+          <i class="fa fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"/>
         </a>
         <a class="tw-ic">
-          <i class="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+          <i class="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"/>
         </a>
         <a class="ins-ic">
-          <i class="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+          <i class="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"/>
         </a>
         <br />
         <br />
@@ -44,9 +44,7 @@ export default {
 a {
   cursor: pointer;
 }
-.cop {
-  text-align: center;
-}
+
 .f {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

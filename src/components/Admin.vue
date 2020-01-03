@@ -6,259 +6,292 @@
         <h1>Панель администратора</h1>
         <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
 
-        <div class="row col-md-12 d">
-          <div class="card col-md-12">
-            <h5>Список заказов</h5>
-            <input class="form-control" type="text" id="myInput" placeholder="Поиск" aria-label="Search"
-                   v-on:keyup="myFunction()">
-            <ul id="myUL">
-              <li v-for="order in orders">
-                <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
-                <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
-              </li>
-            </ul>
-          </div>
-          <div class="card col-md-12" v-for="order in sh_ord">
-            <div class="row col-md-12">
-              <h3 style="text-align: center" class="col-md-12">Заказ: {{time_id}}</h3>
-              <div class="row col-md-12">
-                <div class="col-md-4">
-                  <h5>Информация о заказе</h5>
-                  <b>Модель телефона:</b> {{order.model}} <br>
-                  <b>Размер экрана:</b> {{order.display}} дм.<br>
-                  <b>Тип стекла:</b> {{order.glass}} <br>
-                  <b>Количество:</b> {{order.count}} шт.<br>
-                  <b>Итог заказа:</b> {{order.itog}} руб.<br>
-                  <b>Статус:</b> {{order.status}} <br>
-                </div>
-                <div class="col-md-4">
-                  <h5>Контактная информация</h5>
-                  <b>Email:</b> {{order.email}} <br>
-                  <b>Телефон:</b> {{order.phone}} <br>
-                  <b>Город:</b> {{order.town}} <br>
-                  <b>Адрес:</b> {{order.address}} <br>
-                  <b>Индекс:</b> {{order.index}} <br>
-                </div>
-                <div class="col-md-4">
-                  <form>
-                    <h5>Обновить статус</h5>
-                    <div class="form-row">
-                      <div class="form-group col-md-12">
-                        <select v-model="status" id="status" class="form-control">
-                          <option>В обработке</option>
-                          <option>Изготавливается</option>
-                          <option>Упаковывается</option>
-                          <option>Передан доставщику</option>
-                          <option>Доставляется</option>
-                          <option>В пункте выдачи</option>
-                          <option>Закрыт</option>
-                        </select>
-                        <small v-if="!status">Укажите статус</small>
-                      </div>
+        <ul class="nav nav-tabs" id="myTab" role="tablist" style="overflow-y: hidden">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders"
+               aria-selected="true">Заказы</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#feedbacks" role="tab"
+               aria-controls="feedbacks" aria-selected="false">Обратная связь</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#data" role="tab" aria-controls="data"
+               aria-selected="false">Данные</a>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row col-md-12 d">
+              <div class="mn card col-md-12">
+                <h5>Список заказов</h5>
+                <input class="form-control" type="text" id="myInput" placeholder="Поиск" aria-label="Search"
+                       v-on:keyup="myFunction()">
+                <ul id="myUL">
+                  <li v-for="order in orders">
+                    <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
+                    <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card col-md-12" v-for="order in sh_ord">
+                <div class="row col-md-12">
+                  <h3 style="text-align: center" class="col-md-12">Заказ: {{time_id}}</h3>
+                  <div class="row col-md-12">
+                    <div class="col-md-6">
+                      <h5>Информация о заказе</h5>
+                      <b>Модель телефона:</b> {{order.model}} <br>
+                      <b>Размер экрана:</b> {{order.display}} дм.<br>
+                      <b>Тип стекла:</b> {{order.glass}} <br>
+                      <b>Количество:</b> {{order.count}} шт.<br>
+                      <b>Итог заказа:</b> {{order.itog}} руб.<br>
+                      <b>Статус:</b> {{order.status}} <br>
+                      <h5>Контактная информация</h5>
+                      <b>Email:</b> {{order.email}} <br>
+                      <b>Телефон:</b> {{order.phone}} <br>
+                      <b>Город:</b> {{order.town}} <br>
+                      <b>Адрес:</b> {{order.address}} <br>
+                      <b>Индекс:</b> {{order.index}} <br>
                     </div>
+                    <div class="col-md-6">
+                      <form>
+                        <h5>Обновить статус</h5>
+                        <div class="form-row">
+                          <div class="form-group col-md-12">
+                            <select v-model="status" id="status" class="form-control">
+                              <option>В обработке</option>
+                              <option>Изготавливается</option>
+                              <option>Упаковывается</option>
+                              <option>Передан доставщику</option>
+                              <option>Доставляется</option>
+                              <option>В пункте выдачи</option>
+                              <option>Закрыт</option>
+                            </select>
+                            <small v-if="!status">Укажите статус</small>
+                          </div>
+                        </div>
+                        <button
+                          v-on:click.prevent="updateOrder(time_id, status)"
+                          type="submit"
+                          class="btn btn-primary order btn btn-warning btn-md"
+                        >Обновить
+                        </button>
+                        <button
+                          v-on:click.prevent="deleteOrder(time_id)"
+                          type="submit"
+                          class="btn btn-primary order btn btn-warning btn-md"
+                        >Удалить
+                        </button>
+                        <h5>Написать ответ</h5>
+                        <div class="form-group">
+                          <input v-model="author2 = order.email" type="email" class="form-control" id="inputOrder"
+                                 disabled/>
+                        </div>
+                        <div class="form-group">
+                          <textarea v-model="text2" class="col-md-12" rows="5"/>
+                          <small v-if="!text2">Введите текст письма</small><br>
+                        </div>
+                        <button
+                          style="margin-top: 5px;"
+                          v-on:click="addLetter(text2, author2)"
+                          type="submit"
+                          class="btn btn-primary order btn btn-warning btn-md"
+                        >Отправить
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="feedbacks" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="row col-md-12 d">
+              <div class="card col-md-12">
+                <div class="row">
+                  <div class="mn col-md-12">
+                    <h5>Обратная связь</h5>
+                    <div class="row col-md-12">
+                      <input class="form-control col-md-9" type="text" id="myInput4" placeholder="Поиск"
+                             aria-label="Search"
+                             v-on:keyup="myFunction4()">
+                      <select v-model="filter" style="margin-left: 10px;" v-on:click.prevent="filterFeedbacks(filter)"
+                              id="filter" class="form-control col-md-2">
+                        <option>Все</option>
+                        <option>Отзыв</option>
+                        <option>Вопрос</option>
+                        <option>Предложение</option>
+                      </select>
+                    </div>
+                    <div v-if="filter === 'Все'">
+                      <ul id="myUL4">
+                        <li v-for="feed in feedbacks">
+                          <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.theme}} от {{feed.lastname}}
+                            {{feed.firstname}} - {{feed.title}}</a>
+                          <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div v-else>
+                      <ul id="myUL4">
+                        <li v-for="feed in f_feed">
+                          <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.theme}} от {{feed.lastname}}
+                            {{feed.firstname}} - {{feed.title}}</a>
+                          <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card col-md-12" v-for="feed in sh_feed">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5>Информация об отзыве</h5>
+                    <b>Email:</b> {{feed.email2}}<br>
+                    <b>Имя:</b> {{feed.firstname}}<br>
+                    <b>Фамилия:</b> {{feed.lastname}} <br>
+                    <b>Тема письма:</b> {{feed.theme}}<br>
+                    <b>Заголовок:</b> {{feed.title}}<br>
+                    <b>Текст:</b> {{feed.text}} <br>
+                  </div>
+                  <div class="col-md-6">
+                    <h5>Удалить отзыв</h5>
                     <button
-                      v-on:click.prevent="updateOrder(time_id, status)"
-                      type="submit"
-                      class="btn btn-primary order btn btn-warning btn-md"
-                    >Обновить
-                    </button>
-                    <button
-                      v-on:click.prevent="deleteOrder(time_id)"
+                      v-on:click.prevent="deleteFeedbacks(time_id)"
                       type="submit"
                       class="btn btn-primary order btn btn-warning btn-md"
                     >Удалить
                     </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row col-md-12 d">
-          <div class="card col-md-12">
-            <div class="row">
-              <div class="col-md-12">
-                <h5>Обратная связь</h5>
-                <div class="row col-md-12">
-                  <input class="form-control col-md-9" type="text" id="myInput4" placeholder="Поиск" aria-label="Search"
-                         v-on:keyup="myFunction4()">
-                  <select v-model="filter" style="margin-left: 10px;" v-on:click.prevent="filterFeedbacks(filter)"
-                          id="filter" class="form-control col-md-2">
-                    <option>Все</option>
-                    <option>Отзыв</option>
-                    <option>Вопрос</option>
-                    <option>Предложение</option>
-                  </select>
-                </div>
-                <div v-if="filter === 'Все'">
-                  <ul id="myUL4">
-                    <li v-for="feed in feedbacks">
-                      <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.theme}} от {{feed.lastname}}
-                        {{feed.firstname}} - {{feed.title}}</a>
-                      <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
-                    </li>
-                  </ul>
-                </div>
-                <div v-else>
-                  <ul id="myUL4">
-                    <li v-for="feed in f_feed">
-                      <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.theme}} от {{feed.lastname}}
-                        {{feed.firstname}} - {{feed.title}}</a>
-                      <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card col-md-12" v-for="feed in sh_feed">
-            <div class="row col-md-12">
-              <!--                    <h3 style="text-align: center" class="col-md-12">Заказ: {{time_id}}</h3>-->
-              <div class="row col-md-12">
-                <div class="col-md-7">
-                  <h5>Информация об отзыве</h5>
-                  <b>Email:</b> {{feed.email2}}<br>
-                  <b>Имя:</b> {{feed.firstname}}<br>
-                  <b>Фамилия:</b> {{feed.lastname}} <br>
-                  <b>Тема письма:</b> {{feed.theme}}<br>
-                  <b>Заголовок:</b> {{feed.title}}<br>
-                  <b>Текст:</b> {{feed.text}} <br>
-                </div>
-                <div class="col-md-5">
-                  <h5>Удалить отзыв</h5>
-                  <button
-                    v-on:click.prevent="deleteFeedbacks(time_id)"
-                    type="submit"
-                    class="btn btn-primary order btn btn-warning btn-md"
-                  >Удалить
-                  </button>
-                  <h5>Написать ответ</h5>
-                  <div class="form-group">
-                    <input v-model="author = feed.email2" type="email" class="form-control" id="inputAuthorOrder" disabled/>
-                  </div>
-                  <div class="form-group">
-                    <textarea v-model="text" class="col-md-12" rows="5"/>
-                    <small v-if="!text">Введите текст письма</small><br>
-                  </div>
-                  <button
-                    style="margin-top: 5px;"
-                    v-on:click="addLetter(text, author)"
-                    type="submit"
-                    class="btn btn-primary order btn btn-warning btn-md"
-                  >Отправить
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row col-md-12 d">
-          <div class="card col-md-12">
-            <div class="row">
-              <div class="col-md-6">
-                <h5>Список стекол</h5>
-                <input class="form-control" type="text" id="myInput5" placeholder="Поиск" aria-label="Search"
-                       v-on:keyup="myFunction5()">
-                <ul id="myUL5">
-                  <li v-for="glass in glasses">
-                    <a href="#" style="pointer-events: none; cursor: default;" class="s">{{glass.name}} -
-                      {{glass.price}}
-                      руб.</a>
-                    <a href="#" class="lia" v-on:click="deleteGlass(glass.id)">Удалить</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <form>
-                  <h5>Добавить стекло</h5>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <input v-model="name_g" type="text" class="form-control" id="inputGlass"/>
-                      <small v-if="!glass">Укажите название стекла</small>
-                      <input v-model="price_g" type="text" class="form-control" id="inputGlassPrice"/>
-                      <small v-if="!price">Укажите стоимость стекла</small>
+                    <h5>Написать ответ</h5>
+                    <div class="form-group">
+                      <input v-model="author = feed.email2" type="email" class="form-control" id="inputAuthorOrder"
+                             disabled/>
                     </div>
-                  </div>
-                  <button
-                    v-on:click.prevent="addGlass(name_g, price_g)"
-                    type="submit"
-                    class="btn btn-primary order btn btn-warning btn-md"
-                  >Добавить
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          <div class="card col-md-12">
-            <div class="row">
-              <div class="col-md-6">
-                <h5>Список городов</h5>
-                <input class="form-control" type="text" id="myInput2" placeholder="Поиск" aria-label="Search"
-                       v-on:keyup="myFunction2()">
-                <ul id="myUL2">
-                  <li v-for="town in towns">
-                    <a href="#" style="pointer-events: none; cursor: default;" class="s">{{town.name}}</a>
-                    <a href="#" class="lia" v-on:click="deleteTown(town.id)">Удалить</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <form>
-                  <h5>Добавить город</h5>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <input v-model="name_t" type="text" class="form-control" id="inputName"/>
-                      <small v-if="!town">Укажите название города</small>
+                    <div class="form-group">
+                      <textarea v-model="text" class="col-md-12" rows="5"/>
+                      <small v-if="!text">Введите текст письма</small><br>
                     </div>
+                    <button
+                      style="margin-top: 5px;"
+                      v-on:click="addLetter(text, author)"
+                      type="submit"
+                      class="btn btn-primary order btn btn-warning btn-md"
+                    >Отправить
+                    </button>
                   </div>
-                  <button
-                    id="do"
-                    v-on:click.prevent="addTown(name_t)"
-                    type="submit"
-                    class="btn btn-primary order btn btn-warning btn-md"
-                  >Добавить
-                  </button>
-                </form>
+                </div>
               </div>
             </div>
           </div>
-
-          <div class="card col-md-12">
-            <div class="row">
-              <div class="col-md-6">
-                <h5>Список тем</h5>
-                <input class="form-control" type="text" id="myInput3" placeholder="Поиск" aria-label="Search"
-                       v-on:keyup="myFunction3()">
-                <ul id="myUL3">
-                  <li v-for="theme in themes">
-                    <a href="#" style="pointer-events: none; cursor: default;" class="s">{{theme.name}}</a>
-                    <a href="#" class="lia" v-on:click="deleteTheme(theme.id)">Удалить</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <form>
-                  <h5>Добавить тему</h5>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <input v-model="name_tm" type="text" class="form-control"/>
-                      <small v-if="!theme">Укажите название темы</small>
-                    </div>
+          <div class="tab-pane fade" id="data" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="row col-md-12 d">
+              <div class="card col-md-12">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5>Список стекол</h5>
+                    <input class="form-control" type="text" id="myInput5" placeholder="Поиск" aria-label="Search"
+                           v-on:keyup="myFunction5()">
+                    <ul id="myUL5">
+                      <li v-for="glass in glasses">
+                        <a href="#" style="pointer-events: none; cursor: default;" class="s">{{glass.name}} -
+                          {{glass.price}}
+                          руб.</a>
+                        <a href="#" class="lia" v-on:click="deleteGlass(glass.id)">Удалить</a>
+                      </li>
+                    </ul>
                   </div>
-                  <button
-                    v-on:click.prevent="addTheme(name_tm)"
-                    type="submit"
-                    class="btn btn-primary order btn btn-warning btn-md"
-                  >Добавить
-                  </button>
-                </form>
+                  <div class="col-md-6">
+                    <form>
+                      <h5>Добавить стекло</h5>
+                      <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <input v-model="name_g" type="text" class="form-control" id="inputGlass"/>
+                          <small v-if="!glass">Укажите название стекла</small>
+                          <input v-model="price_g" type="number" class="form-control" id="inputGlassPrice"/>
+                          <small v-if="!price">Укажите стоимость стекла</small>
+                        </div>
+                      </div>
+                      <button
+                        v-on:click.prevent="addGlass(name_g, price_g)"
+                        type="submit"
+                        class="btn btn-primary order btn btn-warning btn-md"
+                      >Добавить
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card col-md-12">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5>Список городов</h5>
+                    <input class="form-control" type="text" id="myInput2" placeholder="Поиск" aria-label="Search"
+                           v-on:keyup="myFunction2()">
+                    <ul id="myUL2">
+                      <li v-for="town in towns">
+                        <a href="#" style="pointer-events: none; cursor: default;" class="s">{{town.name}}</a>
+                        <a href="#" class="lia" v-on:click="deleteTown(town.id)">Удалить</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <form>
+                      <h5>Добавить город</h5>
+                      <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <input v-model="name_t" type="text" class="form-control" id="inputName"/>
+                          <small v-if="!town">Укажите название города</small>
+                        </div>
+                      </div>
+                      <button
+                        id="do"
+                        v-on:click.prevent="addTown(name_t)"
+                        type="submit"
+                        class="btn btn-primary order btn btn-warning btn-md"
+                      >Добавить
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card col-md-12">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5>Список тем</h5>
+                    <input class="form-control" type="text" id="myInput3" placeholder="Поиск" aria-label="Search"
+                           v-on:keyup="myFunction3()">
+                    <ul id="myUL3">
+                      <li v-for="theme in themes">
+                        <a href="#" style="pointer-events: none; cursor: default;" class="s">{{theme.name}}</a>
+                        <a href="#" class="lia" v-on:click="deleteTheme(theme.id)">Удалить</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <form>
+                      <h5>Добавить тему</h5>
+                      <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <input v-model="name_tm" type="text" class="form-control"/>
+                          <small v-if="!theme">Укажите название темы</small>
+                        </div>
+                      </div>
+                      <button
+                        v-on:click.prevent="addTheme(name_tm)"
+                        type="submit"
+                        class="btn btn-primary order btn btn-warning btn-md"
+                      >Добавить
+                      </button>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </main>
@@ -304,6 +337,7 @@
         theme: "",
         glass: "",
         text: "",
+        text2: "",
         author: "",
         orders: [],
         feedbacks: [],
@@ -551,6 +585,7 @@
         });
         alert('Письмо отправлено!');
         this.text = "";
+        this.text2 = "";
       }
     },
     components: {
@@ -571,7 +606,7 @@
 
   ul {
     overflow-y: auto;
-    max-height: 200px;
+    max-height: 400px;
     list-style: none;
     padding-left: 10px;
   }
@@ -586,22 +621,12 @@
     margin-right: 5px;
   }
 
-  .lbt {
-    margin: auto;
-  }
-
-  .cdl {
-    margin: 5px auto;
-  }
-
   .sr {
     margin: 5px auto;
   }
 
-  .cdrw {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 10px;
+  .mn {
+    min-height: 600px;
   }
 
   .card {
