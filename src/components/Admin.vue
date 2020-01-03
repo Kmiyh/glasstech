@@ -626,7 +626,7 @@
   }
 
   .mn {
-    min-height: 700px;
+    min-height: 560px;
   }
 
   .card {
