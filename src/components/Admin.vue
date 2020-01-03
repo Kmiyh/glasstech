@@ -24,16 +24,40 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="home-tab">
             <div class="row col-md-12 d">
-              <div class="mn card col-md-12">
-                <h5>Список заказов</h5>
-                <input class="form-control" type="text" id="myInput" placeholder="Поиск" aria-label="Search"
-                       v-on:keyup="myFunction()">
-                <ul id="myUL">
-                  <li v-for="order in orders">
-                    <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
-                    <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
-                  </li>
-                </ul>
+              <div class="card col-md-12">
+                <div class="row">
+                  <div class="mn col-md-12">
+                    <h5>Список заказов</h5>
+                    <div class="row col-md-12">
+                      <input class="form-control col-md-9" type="text" id="myInput" placeholder="Поиск"
+                             aria-label="Search"
+                             v-on:keyup="myFunction()">
+                      <select v-model="filter2" style="margin-left: 10px;" v-on:click.prevent="filterOrders(filter2)"
+                              id="filter2" class="form-control col-md-2">
+                        <option>Все</option>
+                        <option>3D</option>
+                        <option>3D FIBER</option>
+                        <option>SILK SCREEN 2,5D</option>
+                      </select>
+                    </div>
+                    <div v-if="filter2 === 'Все'">
+                      <ul id="myUL">
+                        <li v-for="order in orders">
+                          <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
+                          <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div v-else>
+                      <ul id="myUL">
+                        <li v-for="order in g_feed">
+                          <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
+                          <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="card col-md-12" v-for="order in sh_ord">
                 <div class="row col-md-12">
@@ -103,6 +127,8 @@
                     </div>
                   </div>
                 </div>
+
+
               </div>
             </div>
           </div>
@@ -320,6 +346,8 @@
         flag_tm: false,
         filter: "Все",
         f_feed: [],
+        g_feed: [],
+        filter2: "Все",
         name_t: "",
         name_tm: "",
         name_td: "",
@@ -443,6 +471,21 @@
             li[i].style.display = "none";
           }
         }
+      },
+      filterOrders(name) {
+        let feed = [];
+        db.collection("orders")
+          .where("glass", "==", this.filter2)
+          .get()
+          .then(query => {
+            query.forEach(doc => {
+              let md = doc.data();
+              md.id = doc.id;
+              feed.push(md);
+              console.log(doc.data());
+            });
+            this.g_feed = feed;
+          });
       },
       filterFeedbacks(name) {
         let feed = [];
