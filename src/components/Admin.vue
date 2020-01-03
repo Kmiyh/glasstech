@@ -24,20 +24,20 @@
               <div class="row col-md-12">
                 <div class="col-md-4">
                   <h5>Информация о заказе</h5>
-                  Модель телефона: {{order.model}} <br>
-                  Размер экрана: {{order.display}} дм.<br>
-                  Тип стекла: {{order.glass}} <br>
-                  Количество: {{order.count}} шт.<br>
-                  Итог заказа: {{order.itog}} руб.<br>
-                  Статус: {{order.status}} <br>
+                  <b>Модель телефона:</b> {{order.model}} <br>
+                  <b>Размер экрана:</b> {{order.display}} дм.<br>
+                  <b>Тип стекла:</b> {{order.glass}} <br>
+                  <b>Количество:</b> {{order.count}} шт.<br>
+                  <b>Итог заказа:</b> {{order.itog}} руб.<br>
+                  <b>Статус:</b> {{order.status}} <br>
                 </div>
                 <div class="col-md-4">
                   <h5>Контактная информация</h5>
-                  Email: {{order.email}} <br>
-                  Телефон: {{order.phone}} <br>
-                  Город: {{order.town}} <br>
-                  Адрес: {{order.address}} <br>
-                  Индекс: {{order.index}} <br>
+                  <b>Email:</b> {{order.email}} <br>
+                  <b>Телефон:</b> {{order.phone}} <br>
+                  <b>Город:</b> {{order.town}} <br>
+                  <b>Адрес:</b> {{order.address}} <br>
+                  <b>Индекс:</b> {{order.index}} <br>
                 </div>
                 <div class="col-md-4">
                   <form>
@@ -83,7 +83,8 @@
                 <div class="row col-md-12">
                   <input class="form-control col-md-9" type="text" id="myInput4" placeholder="Поиск" aria-label="Search"
                          v-on:keyup="myFunction4()">
-                  <select v-model="filter" style="margin-left: 10px;" v-on:click.prevent="filterFeedbacks(filter)" id="filter" class="form-control col-md-2">
+                  <select v-model="filter" style="margin-left: 10px;" v-on:click.prevent="filterFeedbacks(filter)"
+                          id="filter" class="form-control col-md-2">
                     <option>Все</option>
                     <option>Отзыв</option>
                     <option>Вопрос</option>
@@ -115,22 +116,37 @@
             <div class="row col-md-12">
               <!--                    <h3 style="text-align: center" class="col-md-12">Заказ: {{time_id}}</h3>-->
               <div class="row col-md-12">
-                <div class="col-md-9">
+                <div class="col-md-7">
                   <h5>Информация об отзыве</h5>
-                  Email: {{feed.email2}} <br>
-                  Имя: {{feed.firstname}}<br>
-                  Фамилия: {{feed.lastname}} <br>
-                  Тема письма: {{feed.theme}}<br>
-                  Заголовок: {{feed.title}}<br>
-                  Текст: {{feed.text}} <br>
+                  <b>Email:</b> {{feed.email2}}<br>
+                  <b>Имя:</b> {{feed.firstname}}<br>
+                  <b>Фамилия:</b> {{feed.lastname}} <br>
+                  <b>Тема письма:</b> {{feed.theme}}<br>
+                  <b>Заголовок:</b> {{feed.title}}<br>
+                  <b>Текст:</b> {{feed.text}} <br>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                   <h5>Удалить отзыв</h5>
                   <button
                     v-on:click.prevent="deleteFeedbacks(time_id)"
                     type="submit"
                     class="btn btn-primary order btn btn-warning btn-md"
                   >Удалить
+                  </button>
+                  <h5>Написать ответ</h5>
+                  <div class="form-group">
+                    <input v-model="author = feed.email2" type="email" class="form-control" id="inputAuthorOrder" disabled/>
+                  </div>
+                  <div class="form-group">
+                    <textarea v-model="text" class="col-md-12" rows="5"/>
+                    <small v-if="!text">Введите текст письма</small><br>
+                  </div>
+                  <button
+                    style="margin-top: 5px;"
+                    v-on:click="addLetter(text, author)"
+                    type="submit"
+                    class="btn btn-primary order btn btn-warning btn-md"
+                  >Отправить
                   </button>
                 </div>
               </div>
@@ -147,7 +163,9 @@
                        v-on:keyup="myFunction5()">
                 <ul id="myUL5">
                   <li v-for="glass in glasses">
-                    <a href="#" style="pointer-events: none; cursor: default;" class="s">{{glass.name}} - {{glass.price}} руб.</a>
+                    <a href="#" style="pointer-events: none; cursor: default;" class="s">{{glass.name}} -
+                      {{glass.price}}
+                      руб.</a>
                     <a href="#" class="lia" v-on:click="deleteGlass(glass.id)">Удалить</a>
                   </li>
                 </ul>
@@ -285,6 +303,8 @@
         town: "",
         theme: "",
         glass: "",
+        text: "",
+        author: "",
         orders: [],
         feedbacks: [],
         sh_ord: [],
@@ -523,6 +543,14 @@
               alert('Стекло добавлено')
             }
           });
+      },
+      addLetter(text, email) {
+        db.collection('letters').add({
+          email,
+          text
+        });
+        alert('Письмо отправлено!');
+        this.text = "";
       }
     },
     components: {

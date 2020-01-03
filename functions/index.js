@@ -46,6 +46,21 @@ exports.sendEmail = functions.firestore
     return transporter.sendMail(mailOptions);
   });
 
+
+exports.sendLetter = functions.firestore
+  .document("letters/{letterId}")
+  .onCreate((snap, context) => {
+    console.log("success");
+    const mailOptions = {
+      from: "pvlgaliguzov@gmail.com",
+      to: snap.data().email,
+      subject: "Обратная связь GlassTech",
+      html: `<p>${snap.data().text}</p>`
+    };
+    return transporter.sendMail(mailOptions);
+  });
+
+
 exports.updateOrder = functions.firestore
   .document("orders/{orderId}")
   .onUpdate((change, context) => {
