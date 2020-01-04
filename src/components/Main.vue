@@ -399,7 +399,7 @@
                       placeholder
                       class="form-control"
                       id="inputPhone"
-                    ></vue-tel-input>
+                    />
                     <small v-if="!phone">Укажите номер телефона</small>
                   </div>
                 </div>

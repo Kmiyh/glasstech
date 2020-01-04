@@ -29,20 +29,39 @@
                   <div class="mn col-md-12">
                     <h5>Список заказов</h5>
                     <div class="row col-md-12">
-                      <input class="form-control col-md-9" type="text" id="myInput" placeholder="Поиск"
+                      <input class="form-control col-md-7" type="text" id="myInput" placeholder="Поиск"
                              aria-label="Search"
                              v-on:keyup="myFunction()">
-                      <select v-model="filter2" style="margin-left: 10px;" v-on:click.prevent="filterOrders(filter2)"
+                      <select v-model="filter2" style="margin-left: 10px;" v-on:click.prevent="filterOrders(filter2, filter3)"
                               id="filter2" class="form-control col-md-2">
                         <option>Все</option>
                         <option>3D</option>
                         <option>3D FIBER</option>
                         <option>SILK SCREEN 2,5D</option>
                       </select>
+                      <select v-model="filter3" style="margin-left: 10px;" v-on:click.prevent="filterOrders(filter2, filter3)"
+                              id="filter3" class="form-control col-md-2">
+                        <option>Все</option>
+                        <option>В обработке</option>
+                        <option>Изготавливается</option>
+                        <option>Упаковывается</option>
+                        <option>Передан доставщику</option>
+                        <option>Доставляется</option>
+                        <option>В пункте выдачи</option>
+                        <option>Закрыт</option>
+                      </select>
                     </div>
-                    <div v-if="filter2 === 'Все'">
+                    <div v-if="filter2 === 'Все' && filter3 === 'Все'">
                       <ul id="myUL">
                         <li v-for="order in orders">
+                          <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
+                          <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div v-else-if="(filter2 !== 'Все' && filter3 === 'Все') || (filter2 === 'Все' && filter3 !== 'Все')">
+                      <ul id="myUL">
+                        <li v-for="order in g_feed">
                           <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
                           <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
                         </li>
@@ -107,7 +126,7 @@
                           class="btn btn-primary order btn btn-warning btn-md"
                         >Удалить
                         </button>
-                        <h5>Написать ответ</h5>
+                        <h5>Связь с клиентом</h5>
                         <div class="form-group">
                           <input v-model="author2 = order.email" type="email" class="form-control" id="inputOrder"
                                  disabled/>
@@ -127,8 +146,6 @@
                     </div>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div>
@@ -348,6 +365,7 @@
         f_feed: [],
         g_feed: [],
         filter2: "Все",
+        filter3: "Все",
         name_t: "",
         name_tm: "",
         name_td: "",
@@ -472,20 +490,36 @@
           }
         }
       },
-      filterOrders(name) {
+      filterOrders(name, name2) {
         let feed = [];
-        db.collection("orders")
-          .where("glass", "==", this.filter2)
-          .get()
-          .then(query => {
-            query.forEach(doc => {
-              let md = doc.data();
-              md.id = doc.id;
-              feed.push(md);
-              console.log(doc.data());
+        if (this.filter2 !== 'Все' && this.filter3 === 'Все') {
+          db.collection("orders")
+            .where("glass", "==", this.filter2)
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                feed.push(md);
+                console.log(doc.data());
+              });
+              this.g_feed = feed;
             });
-            this.g_feed = feed;
-          });
+        }
+        else if (this.filter2 === 'Все' && this.filter3 !== 'Все') {
+          db.collection("orders")
+            .where("status", "==", this.filter3)
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                feed.push(md);
+                console.log(doc.data());
+              });
+              this.g_feed = feed;
+            });
+        }
       },
       filterFeedbacks(name) {
         let feed = [];
