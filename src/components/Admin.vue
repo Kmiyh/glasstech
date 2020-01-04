@@ -27,34 +27,46 @@
               <div class="card col-md-12">
                 <div class="row">
                   <div class="mn col-md-12">
-                    <h5>Список заказов</h5>
+                    <h5>Поиск заказа по номеру</h5>
                     <div class="row col-md-12">
-                      <input class="form-control col-md-7" type="text" id="myInput" placeholder="Поиск"
+                      <input class="form-control col-md-12" type="text" id="myInput" placeholder="Поиск"
                              aria-label="Search"
                              v-on:keyup="myFunction()">
-                      <select v-model="filter2" style="margin-left: 10px;"
-                              v-on:click.prevent="filterOrders(filter2, filter3)"
-                              id="filter2" class="form-control col-md-2">
-                        <option>Все</option>
-                        <option>3D</option>
-                        <option>3D FIBER</option>
-                        <option>SILK SCREEN 2,5D</option>
-                      </select>
-                      <select v-model="filter3" style="margin-left: 10px;"
-                              v-on:click.prevent="filterOrders(filter2, filter3)"
-                              id="filter3" class="form-control col-md-2">
-                        <option>Все</option>
-                        <option>В обработке</option>
-                        <option>Изготавливается</option>
-                        <option>Упаковывается</option>
-                        <option>Передан доставщику</option>
-                        <option>Доставляется</option>
-                        <option>В пункте выдачи</option>
-                        <option>Закрыт</option>
-                      </select>
+                    </div>
+                    <h5 style="padding-top: 0">Фильтровать</h5>
+                    <div class="row col-md-12">
+                      <div>
+                        <p style="margin-bottom: 0; padding-top: 0">по типу стекла</p>
+                        <select v-model="filter2"
+                                v-on:click.prevent="filterOrders(filter2, filter3)"
+                                id="filter2" class="form-control">
+                          <option>Все</option>
+                          <option>3D</option>
+                          <option>3D FIBER</option>
+                          <option>SILK SCREEN 2,5D</option>
+                        </select>
+                      </div>
+                      <div>
+                        <p style="margin-bottom: 0; margin-left: 10px; padding-top: 0">по статусу</p>
+                        <select v-model="filter3" style="margin-left: 10px;"
+                                v-on:click.prevent="filterOrders(filter2, filter3)"
+                                id="filter3" class="form-control">
+                          <option>Все</option>
+                          <option>В обработке</option>
+                          <option>Изготавливается</option>
+                          <option>Упаковывается</option>
+                          <option>Передан доставщику</option>
+                          <option>Доставляется</option>
+                          <option>В пункте выдачи</option>
+                          <option>Закрыт</option>
+                        </select>
+                      </div>
                     </div>
                     <div>
-                      Всего заказов: {{counter + 1}}
+                      <hr>
+                      <div class="row col-md-12">
+                        <h5 style="padding-top: 0">Список заказов: всего {{counter}} шт.</h5>
+                      </div>
                       <ul id="myUL">
                         <li v-for="order in g_feed">
                           <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
@@ -508,6 +520,7 @@
                 md.id = doc.id;
                 feed.push(md);
                 console.log(doc.data());
+                this.counter += 1;
               });
               this.g_feed = feed;
             });
@@ -522,6 +535,7 @@
                 md.id = doc.id;
                 feed.push(md);
                 console.log(doc.data());
+                this.counter += 1;
               });
               this.g_feed = feed;
             });
@@ -538,6 +552,7 @@
                 md.id = doc.id;
                 feed.push(md);
                 console.log(doc.data());
+                this.counter += 1;
               });
               this.g_feed = feed;
             });
@@ -687,7 +702,7 @@
         this.text2 = "";
       }
     },
-    created: function(){
+    created: function () {
       this.filterOrders();
       this.filterFeedbacks();
     },
