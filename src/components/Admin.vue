@@ -51,23 +51,8 @@
                         <option>Закрыт</option>
                       </select>
                     </div>
-                    <div v-if="filter2 === 'Все' && filter3 === 'Все'">
-                      <ul id="myUL">
-                        <li v-for="order in orders">
-                          <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
-                          <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div v-else-if="(filter2 !== 'Все' && filter3 === 'Все') || (filter2 === 'Все' && filter3 !== 'Все')">
-                      <ul id="myUL">
-                        <li v-for="order in g_feed">
-                          <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
-                          <a href="#" class="lia" v-on:click="deleteOrder(order.id)">Удалить</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div v-else>
+                    <div>
+                      Всего заказов: {{counter + 1}}
                       <ul id="myUL">
                         <li v-for="order in g_feed">
                           <a href="#" v-on:click="showOrder(order.id)" class="s">{{order.id}}</a>
@@ -352,6 +337,7 @@
     name: "my-admin",
     data() {
       return {
+        counter: 0,
         status: "",
         code: "",
         del_code: "",
@@ -492,9 +478,27 @@
       },
       filterOrders(name, name2) {
         let feed = [];
+        this.counter = 0;
         if (this.filter2 !== 'Все' && this.filter3 === 'Все') {
+          console.log('не все, все');
           db.collection("orders")
             .where("glass", "==", this.filter2)
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                feed.push(md);
+                console.log(doc.data());
+                this.counter += 1;
+              });
+              this.g_feed = feed;
+            });
+        }
+        if (this.filter2 === 'Все' && this.filter3 !== 'Все') {
+          console.log('все, не все');
+          db.collection("orders")
+            .where("status", "==", this.filter3)
             .get()
             .then(query => {
               query.forEach(doc => {
@@ -506,8 +510,24 @@
               this.g_feed = feed;
             });
         }
-        else if (this.filter2 === 'Все' && this.filter3 !== 'Все') {
+        if (this.filter2 === 'Все' && this.filter3 === 'Все') {
+          console.log('все, все');
           db.collection("orders")
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                feed.push(md);
+                console.log(doc.data());
+              });
+              this.g_feed = feed;
+            });
+        }
+        if (this.filter2 !== 'Все' && this.filter3 !== 'Все') {
+          console.log('не все, не все');
+          db.collection("orders")
+            .where("glass", "==", this.filter2)
             .where("status", "==", this.filter3)
             .get()
             .then(query => {
