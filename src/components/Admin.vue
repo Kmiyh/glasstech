@@ -119,18 +119,12 @@
                           class="btn btn-primary order btn btn-warning btn-md"
                         >Обновить
                         </button>
-                        <button
-                          v-on:click.prevent="deleteOrder(time_id)"
-                          type="submit"
-                          class="btn btn-primary order btn btn-warning btn-md"
-                        >Удалить
-                        </button>
                         <h5>Связь с клиентом</h5>
                         <div class="form-group">
                           <input v-model="author2 = order.email" type="email" class="form-control" id="inputOrder"
                                  disabled/>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="margin-bottom: 0">
                           <textarea v-model="text2" class="col-md-12" rows="5"/>
                           <small v-if="!text2">Введите текст письма</small><br>
                         </div>
@@ -140,6 +134,13 @@
                           type="submit"
                           class="btn btn-primary order btn btn-warning btn-md"
                         >Отправить
+                        </button>
+                        <h5>Удалить заказ</h5>
+                        <button
+                          v-on:click.prevent="deleteOrder(time_id)"
+                          type="submit"
+                          class="btn btn-primary order btn btn-warning btn-md"
+                        >Удалить
                         </button>
                       </form>
                     </div>
@@ -153,36 +154,46 @@
               <div class="card col-md-12">
                 <div class="row">
                   <div class="mn col-md-12">
-                    <h5>Обратная связь</h5>
+                    <h5>Поиск по заголовку письма</h5>
                     <div class="row col-md-12">
-                      <input class="form-control col-md-9" type="text" id="myInput4" placeholder="Поиск"
+                      <input class="form-control col-md-12" type="text" id="myInput4" placeholder="Поиск"
                              aria-label="Search"
                              v-on:keyup="myFunction4()">
-                      <select v-model="filter" style="margin-left: 10px;" v-on:click.prevent="filterFeedbacks(filter)"
-                              id="filter" class="form-control col-md-2">
-                        <option>Все</option>
-                        <option>Отзыв</option>
-                        <option>Вопрос</option>
-                        <option>Предложение</option>
-                      </select>
                     </div>
-                    <div v-if="filter === 'Все'">
-                      <ul id="myUL4">
-                        <li v-for="feed in feedbacks">
-                          <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.theme}} от {{feed.lastname}}
-                            {{feed.firstname}} - {{feed.title}}</a>
-                          <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
-                        </li>
-                      </ul>
+                    <h5 style="padding-top: 0">Фильтровать</h5>
+                    <div class="row col-md-12">
+                      <div>
+                        <p style="margin-bottom: 0; padding-top: 0">по типу письма</p>
+                        <select v-model="filter" v-on:click.prevent="filterFeedbacks(filter)"
+                                id="filter" class="form-control col-md-12">
+                          <option>Все</option>
+                          <option>Отзыв</option>
+                          <option>Вопрос</option>
+                          <option>Предложение</option>
+                        </select>
+                      </div>
                     </div>
-                    <div v-else>
-                      <ul id="myUL4">
-                        <li v-for="feed in f_feed">
-                          <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.theme}} от {{feed.lastname}}
-                            {{feed.firstname}} - {{feed.title}}</a>
-                          <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
-                        </li>
-                      </ul>
+                    <div>
+                      <hr>
+                      <div class="row col-md-12">
+                        <h5 style="padding-top: 0">Список писем: всего {{counter2}} шт.</h5>
+                      </div>
+                      <div v-if="filter === 'Все'">
+                        <ul id="myUL4">
+                          <li v-for="feed in feedbacks">
+                            <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.title}}</a>
+                            <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div v-else>
+                        <ul id="myUL4">
+                          <li v-for="feed in f_feed">
+                            <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.title}}</a>
+                            <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -199,19 +210,12 @@
                     <b>Текст:</b> {{feed.text}} <br>
                   </div>
                   <div class="col-md-6">
-                    <h5>Удалить отзыв</h5>
-                    <button
-                      v-on:click.prevent="deleteFeedbacks(time_id)"
-                      type="submit"
-                      class="btn btn-primary order btn btn-warning btn-md"
-                    >Удалить
-                    </button>
                     <h5>Написать ответ</h5>
                     <div class="form-group">
                       <input v-model="author = feed.email2" type="email" class="form-control" id="inputAuthorOrder"
                              disabled/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="margin-bottom: 0">
                       <textarea v-model="text" class="col-md-12" rows="5"/>
                       <small v-if="!text">Введите текст письма</small><br>
                     </div>
@@ -221,6 +225,13 @@
                       type="submit"
                       class="btn btn-primary order btn btn-warning btn-md"
                     >Отправить
+                    </button>
+                    <h5>Удалить отзыв</h5>
+                    <button
+                      v-on:click.prevent="deleteFeedbacks(time_id)"
+                      type="submit"
+                      class="btn btn-primary order btn btn-warning btn-md"
+                    >Удалить
                     </button>
                   </div>
                 </div>
@@ -352,6 +363,7 @@
     data() {
       return {
         counter: 0,
+        counter2: 0,
         status: "",
         code: "",
         del_code: "",
@@ -560,18 +572,36 @@
       },
       filterFeedbacks(name) {
         let feed = [];
-        db.collection("feedbacks")
-          .where("theme", "==", this.filter)
-          .get()
-          .then(query => {
-            query.forEach(doc => {
-              let md = doc.data();
-              md.id = doc.id;
-              feed.push(md);
-              console.log(doc.data());
+        this.counter2 = 0;
+        if (this.filter === 'Все') {
+          db.collection("feedbacks")
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                feed.push(md);
+                console.log(doc.data());
+                this.counter2 += 1;
+              });
+              this.f_feed = feed;
             });
-            this.f_feed = feed;
-          });
+        }
+        if (this.filter !== 'Все') {
+          db.collection("feedbacks")
+            .where("theme", "==", this.filter)
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                feed.push(md);
+                console.log(doc.data());
+                this.counter2 += 1;
+              });
+              this.f_feed = feed;
+            });
+        }
       },
       showOrder(id) {
         let showArray = [];
