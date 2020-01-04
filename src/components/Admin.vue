@@ -78,72 +78,70 @@
                 </div>
               </div>
               <div class="card col-md-12" v-for="order in sh_ord">
-                <div class="row col-md-12">
-                  <h3 style="text-align: center" class="col-md-12">Заказ: {{time_id}}</h3>
-                  <div class="row col-md-12">
-                    <div class="col-md-6">
-                      <h5>Информация о заказе</h5>
-                      <b>Модель телефона:</b> {{order.model}} <br>
-                      <b>Размер экрана:</b> {{order.display}} дм.<br>
-                      <b>Тип стекла:</b> {{order.glass}} <br>
-                      <b>Количество:</b> {{order.count}} шт.<br>
-                      <b>Итог заказа:</b> {{order.itog}} руб.<br>
-                      <b>Статус:</b> {{order.status}} <br>
-                      <h5>Контактная информация</h5>
-                      <b>Email:</b> {{order.email}} <br>
-                      <b>Телефон:</b> {{order.phone}} <br>
-                      <b>Город:</b> {{order.town}} <br>
-                      <b>Адрес:</b> {{order.address}} <br>
-                      <b>Индекс:</b> {{order.index}} <br>
-                    </div>
-                    <div class="col-md-6">
-                      <form>
-                        <h5>Обновить статус</h5>
-                        <div class="form-row">
-                          <div class="form-group col-md-12">
-                            <select v-model="status" id="status" class="form-control">
-                              <option>В обработке</option>
-                              <option>Изготавливается</option>
-                              <option>Упаковывается</option>
-                              <option>Передан доставщику</option>
-                              <option>Доставляется</option>
-                              <option>В пункте выдачи</option>
-                              <option>Закрыт</option>
-                            </select>
-                            <small v-if="!status">Укажите статус</small>
-                          </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h5>Информация о заказе</h5>
+                    <b>Номер заказа:</b> {{time_id}}<br>
+                    <b>Модель телефона:</b> {{order.model}} <br>
+                    <b>Размер экрана:</b> {{order.display}} дм.<br>
+                    <b>Тип стекла:</b> {{order.glass}} <br>
+                    <b>Количество:</b> {{order.count}} шт.<br>
+                    <b>Итог заказа:</b> {{order.itog}} руб.<br>
+                    <b>Статус:</b> {{order.status}} <br>
+                    <h5>Контактная информация</h5>
+                    <b>Email:</b> {{order.email}} <br>
+                    <b>Телефон:</b> {{order.phone}} <br>
+                    <b>Город:</b> {{order.town}} <br>
+                    <b>Адрес:</b> {{order.address}} <br>
+                    <b>Индекс:</b> {{order.index}} <br>
+                  </div>
+                  <div class="col-md-6">
+                    <form>
+                      <h5>Обновить статус</h5>
+                      <div class="form-row">
+                        <div class="form-group col-md-12">
+                          <select v-model="status" id="status" class="form-control">
+                            <option>В обработке</option>
+                            <option>Изготавливается</option>
+                            <option>Упаковывается</option>
+                            <option>Передан доставщику</option>
+                            <option>Доставляется</option>
+                            <option>В пункте выдачи</option>
+                            <option>Закрыт</option>
+                          </select>
+                          <small v-if="!status">Укажите статус</small>
                         </div>
-                        <button
-                          v-on:click.prevent="updateOrder(time_id, status)"
-                          type="submit"
-                          class="btn btn-primary order btn btn-warning btn-md"
-                        >Обновить
-                        </button>
-                        <h5>Связь с клиентом</h5>
-                        <div class="form-group">
-                          <input v-model="author2 = order.email" type="email" class="form-control" id="inputOrder"
-                                 disabled/>
-                        </div>
-                        <div class="form-group" style="margin-bottom: 0">
-                          <textarea v-model="text2" class="col-md-12" rows="5"/>
-                          <small v-if="!text2">Введите текст письма</small><br>
-                        </div>
-                        <button
-                          style="margin-top: 5px;"
-                          v-on:click="addLetter(text2, author2)"
-                          type="submit"
-                          class="btn btn-primary order btn btn-warning btn-md"
-                        >Отправить
-                        </button>
-                        <h5>Удалить заказ</h5>
-                        <button
-                          v-on:click.prevent="deleteOrder(time_id)"
-                          type="submit"
-                          class="btn btn-primary order btn btn-warning btn-md"
-                        >Удалить
-                        </button>
-                      </form>
-                    </div>
+                      </div>
+                      <button
+                        v-on:click.prevent="updateOrder(time_id, status)"
+                        type="submit"
+                        class="btn btn-primary order btn btn-warning btn-md"
+                      >Обновить
+                      </button>
+                      <h5>Связь с клиентом</h5>
+                      <div class="form-group">
+                        <input v-model="author2 = order.email" type="email" class="form-control" id="inputOrder"
+                               disabled/>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 0">
+                        <textarea v-model="text2" class="col-md-12" rows="5"/>
+                        <small v-if="!text2">Введите текст письма</small><br>
+                      </div>
+                      <button
+                        style="margin-top: 5px;"
+                        v-on:click="addLetter(text2, author2)"
+                        type="submit"
+                        class="btn btn-primary order btn btn-warning btn-md"
+                      >Отправить
+                      </button>
+                      <h5>Удалить заказ</h5>
+                      <button
+                        v-on:click.prevent="deleteOrder(time_id)"
+                        type="submit"
+                        class="btn btn-primary order btn btn-warning btn-md"
+                      >Удалить
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
