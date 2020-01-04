@@ -32,14 +32,16 @@
                       <input class="form-control col-md-7" type="text" id="myInput" placeholder="Поиск"
                              aria-label="Search"
                              v-on:keyup="myFunction()">
-                      <select v-model="filter2" style="margin-left: 10px;" v-on:click.prevent="filterOrders(filter2, filter3)"
+                      <select v-model="filter2" style="margin-left: 10px;"
+                              v-on:click.prevent="filterOrders(filter2, filter3)"
                               id="filter2" class="form-control col-md-2">
                         <option>Все</option>
                         <option>3D</option>
                         <option>3D FIBER</option>
                         <option>SILK SCREEN 2,5D</option>
                       </select>
-                      <select v-model="filter3" style="margin-left: 10px;" v-on:click.prevent="filterOrders(filter2, filter3)"
+                      <select v-model="filter3" style="margin-left: 10px;"
+                              v-on:click.prevent="filterOrders(filter2, filter3)"
                               id="filter3" class="form-control col-md-2">
                         <option>Все</option>
                         <option>В обработке</option>
@@ -684,6 +686,10 @@
         this.text = "";
         this.text2 = "";
       }
+    },
+    created: function(){
+      this.filterOrders();
+      this.filterFeedbacks();
     },
     components: {
       MyHeader, MyFooter
