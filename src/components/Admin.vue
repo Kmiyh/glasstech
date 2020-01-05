@@ -402,7 +402,7 @@
         name_th: "",
         name_g: "",
         price_g: "",
-        date_f: 0,
+        date_f: 'Все',
         plus: "",
         price: "",
         towns: [],
@@ -599,9 +599,24 @@
       filterFeedbacks(name) {
         let feed = [];
         this.counter2 = 0;
+        let date_time = Math.round(Date.now() * 0.001);
 
-
-
+        if (this.date_f === 'Все') {
+          db.collection("feedbacks")
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                console.log('Дата сегодняшняя: ' + date_time);
+                console.log('Дата отзыва: ' + doc.data().date.seconds);
+                feed.push(md);
+                console.log(doc.data());
+                this.counter2 += 1;
+              });
+              this.f_feed = feed;
+            });
+        }
         if (this.filter === 'Все') {
           db.collection("feedbacks")
             .get()
