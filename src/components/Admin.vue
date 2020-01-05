@@ -61,6 +61,17 @@
                           <option>Закрыт</option>
                         </select>
                       </div>
+                      <div style="margin-left: 10px;">
+                        <p style="margin-bottom: 0; margin-left: 10px; padding-top: 0">по дате создания</p>
+                        <select v-model="filter5" style="margin-left: 10px;"
+                                v-on:click.prevent="filterOrders()"
+                                id="filter5" class="form-control">
+                          <option>Все</option>
+                          <option>За день</option>
+                          <option>За неделю</option>
+                          <option>За месяц</option>
+                        </select>
+                      </div>
                       <div style="margin-top: auto;">
                         <button
                           id="o_filt"
@@ -418,6 +429,7 @@
         text2: "",
         author: "",
         filter4: 'Все',
+        filter5: 'Все',
         orders: [],
         feedbacks: [],
         sh_ord: [],
@@ -527,6 +539,7 @@
       resetFilterOrder() {
         this.filter2 = 'Все';
         this.filter3 = 'Все';
+        this.filter5 = 'Все';
       },
       resetFilterFeedback() {
         this.filter = 'Все';
@@ -535,7 +548,10 @@
       filterOrders(name, name2) {
         let feed = [];
         this.counter = 0;
-        if (this.filter2 !== 'Все' && this.filter3 === 'Все') {
+
+        let date_time = Date.now() * 0.001;
+
+        if (this.filter2 !== 'Все' && this.filter3 === 'Все' && this.filter5 === 'Все') {
           console.log('не все, все');
           db.collection("orders")
             .where("glass", "==", this.filter2)
@@ -548,10 +564,10 @@
                 console.log(doc.data());
                 this.counter += 1;
               });
-              this.date_f_mas = feed;
+              this.g_feed = feed;
             });
         }
-        if (this.filter2 === 'Все' && this.filter3 !== 'Все') {
+        if (this.filter2 === 'Все' && this.filter3 !== 'Все' && this.filter5 === 'Все') {
           console.log('все, не все');
           db.collection("orders")
             .where("status", "==", this.filter3)
@@ -567,7 +583,7 @@
               this.g_feed = feed;
             });
         }
-        if (this.filter2 === 'Все' && this.filter3 === 'Все') {
+        if (this.filter2 === 'Все' && this.filter3 === 'Все' && this.filter5 === 'Все') {
           console.log('все, все');
           db.collection("orders")
             .get()
@@ -582,7 +598,7 @@
               this.g_feed = feed;
             });
         }
-        if (this.filter2 !== 'Все' && this.filter3 !== 'Все') {
+        if (this.filter2 !== 'Все' && this.filter3 !== 'Все' && this.filter5 === 'Все') {
           console.log('не все, не все');
           db.collection("orders")
             .where("glass", "==", this.filter2)
@@ -595,6 +611,134 @@
                 feed.push(md);
                 console.log(doc.data());
                 this.counter += 1;
+              });
+              this.g_feed = feed;
+            });
+        }
+        if (this.filter2 === 'Все' && this.filter3 === 'Все' && this.filter5 !== 'Все') {
+          console.log('все, все, не все');
+          db.collection("orders")
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                let dr = Math.round((date_time - doc.data().date.seconds) / 3600 / 24);
+                console.log('Дата сегодняшняя: ' + date_time);
+                console.log('Дата заказа: ' + doc.data().date.seconds);
+                console.log('Разница в днях: ' + dr);
+                if (this.filter5 === 'За день' && dr === 0) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+                if (this.filter5 === 'За неделю' && dr >= 0 && dr <= 7) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+                if (this.filter5 === 'За месяц' && dr >= 0 && dr <= 31) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+              });
+              this.g_feed = feed;
+            });
+        }
+        if (this.filter2 === 'Все' && this.filter3 !== 'Все' && this.filter5 !== 'Все') {
+          console.log('все, все, не все');
+          db.collection("orders")
+            .where("status", "==", this.filter3)
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                let dr = Math.round((date_time - doc.data().date.seconds) / 3600 / 24);
+                console.log('Дата сегодняшняя: ' + date_time);
+                console.log('Дата заказа: ' + doc.data().date.seconds);
+                console.log('Разница в днях: ' + dr);
+                if (this.filter5 === 'За день' && dr === 0) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+                if (this.filter5 === 'За неделю' && dr >= 0 && dr <= 7) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+                if (this.filter5 === 'За месяц' && dr >= 0 && dr <= 31) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+              });
+              this.g_feed = feed;
+            });
+        }
+        if (this.filter2 !== 'Все' && this.filter3 === 'Все' && this.filter5 !== 'Все') {
+          console.log('все, все, не все');
+          db.collection("orders")
+            .where("glass", "==", this.filter2)
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                let dr = Math.round((date_time - doc.data().date.seconds) / 3600 / 24);
+                console.log('Дата сегодняшняя: ' + date_time);
+                console.log('Дата заказа: ' + doc.data().date.seconds);
+                console.log('Разница в днях: ' + dr);
+                if (this.filter5 === 'За день' && dr === 0) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+                if (this.filter5 === 'За неделю' && dr >= 0 && dr <= 7) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+                if (this.filter5 === 'За месяц' && dr >= 0 && dr <= 31) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+              });
+              this.g_feed = feed;
+            });
+        }
+        if (this.filter2 !== 'Все' && this.filter3 !== 'Все' && this.filter5 !== 'Все') {
+          console.log('все, все, не все');
+          db.collection("orders")
+            .where("status", "==", this.filter3)
+            .where("glass", "==", this.filter2)
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                let dr = Math.round((date_time - doc.data().date.seconds) / 3600 / 24);
+                console.log('Дата сегодняшняя: ' + date_time);
+                console.log('Дата заказа: ' + doc.data().date.seconds);
+                console.log('Разница в днях: ' + dr);
+                if (this.filter5 === 'За день' && dr === 0) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+                if (this.filter5 === 'За неделю' && dr >= 0 && dr <= 7) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
+                if (this.filter5 === 'За месяц' && dr >= 0 && dr <= 31) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter += 1;
+                }
               });
               this.g_feed = feed;
             });
