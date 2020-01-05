@@ -180,6 +180,16 @@
                           <option>Предложение</option>
                         </select>
                       </div>
+                      <div style="margin-left: 10px;">
+                        <p style="margin-bottom: 0; padding-top: 0">по дате создания</p>
+                        <select v-model="filter4" v-on:click.prevent="filterFeedbacks(filter4)"
+                                id="filter4" class="form-control col-md-12">
+                          <option>Все</option>
+                          <option>За день</option>
+                          <option>За неделю</option>
+                          <option>За месяц</option>
+                        </select>
+                      </div>
                       <div style="margin-top: auto;">
                         <button
                           id="f_filt"
@@ -196,15 +206,7 @@
                       <div class="row col-md-12">
                         <h5 style="padding-top: 0">Список писем: всего {{counter2}} шт.</h5>
                       </div>
-                      <div v-if="filter === 'Все'">
-                        <ul id="myUL4">
-                          <li v-for="feed in feedbacks">
-                            <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.title}}</a>
-                            <a href="#" class="lia" v-on:click="deleteFeedbacks(feed.id)">Удалить</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div v-else>
+                      <div>
                         <ul id="myUL4">
                           <li v-for="feed in f_feed">
                             <a href="#" v-on:click="showFeedback(feed.id)" class="s">{{feed.title}}</a>
@@ -402,7 +404,6 @@
         name_th: "",
         name_g: "",
         price_g: "",
-        date_f: 'Все',
         plus: "",
         price: "",
         towns: [],
@@ -416,9 +417,11 @@
         text: "",
         text2: "",
         author: "",
+        filter4: 'Все',
         orders: [],
         feedbacks: [],
         sh_ord: [],
+        date_f_mas: [],
         sh_feed: [],
         time_id: ""
       };
@@ -527,6 +530,7 @@
       },
       resetFilterFeedback() {
         this.filter = 'Все';
+        this.filter4 = 'Все';
       },
       filterOrders(name, name2) {
         let feed = [];
@@ -544,7 +548,7 @@
                 console.log(doc.data());
                 this.counter += 1;
               });
-              this.g_feed = feed;
+              this.date_f_mas = feed;
             });
         }
         if (this.filter2 === 'Все' && this.filter3 !== 'Все') {
@@ -599,25 +603,40 @@
       filterFeedbacks(name) {
         let feed = [];
         this.counter2 = 0;
-        let date_time = Math.round(Date.now() * 0.001);
 
-        if (this.date_f === 'Все') {
+        let date_time = Date.now() * 0.001;
+
+        if (this.filter === 'Все' && this.filter4 !== 'Все') {
           db.collection("feedbacks")
             .get()
             .then(query => {
               query.forEach(doc => {
                 let md = doc.data();
                 md.id = doc.id;
+                let dr = Math.round((date_time - doc.data().date.seconds) / 3600 / 24);
                 console.log('Дата сегодняшняя: ' + date_time);
                 console.log('Дата отзыва: ' + doc.data().date.seconds);
-                feed.push(md);
-                console.log(doc.data());
-                this.counter2 += 1;
+                console.log('Разница в днях: ' + dr);
+                if (this.filter4 === 'За день' && dr === 0) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter2 += 1;
+                }
+                if (this.filter4 === 'За неделю' && dr >= 0 && dr <= 7) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter2 += 1;
+                }
+                if (this.filter4 === 'За месяц' && dr >= 0 && dr <= 31) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter2 += 1;
+                }
               });
               this.f_feed = feed;
             });
         }
-        if (this.filter === 'Все') {
+        if (this.filter === 'Все' && this.filter4 === 'Все') {
           db.collection("feedbacks")
             .get()
             .then(query => {
@@ -631,7 +650,38 @@
               this.f_feed = feed;
             });
         }
-        if (this.filter !== 'Все') {
+        if (this.filter !== 'Все' && this.filter4 !== 'Все') {
+          db.collection("feedbacks")
+            .where("theme", "==", this.filter)
+            .get()
+            .then(query => {
+              query.forEach(doc => {
+                let md = doc.data();
+                md.id = doc.id;
+                let dr = Math.round((date_time - doc.data().date.seconds) / 3600 / 24);
+                console.log('Дата сегодняшняя: ' + date_time);
+                console.log('Дата отзыва: ' + doc.data().date.seconds);
+                console.log('Разница в днях: ' + dr);
+                if (this.filter4 === 'За день' && dr === 0) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter2 += 1;
+                }
+                if (this.filter4 === 'За неделю' && dr >= 0 && dr <= 7) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter2 += 1;
+                }
+                if (this.filter4 === 'За месяц' && dr >= 0 && dr <= 31) {
+                  feed.push(md);
+                  console.log(doc.data());
+                  this.counter2 += 1;
+                }
+              });
+              this.f_feed = feed;
+            });
+        }
+        if (this.filter !== 'Все' && this.filter4 === 'Все') {
           db.collection("feedbacks")
             .where("theme", "==", this.filter)
             .get()
