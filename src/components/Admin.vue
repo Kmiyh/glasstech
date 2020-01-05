@@ -61,6 +61,16 @@
                           <option>Закрыт</option>
                         </select>
                       </div>
+                      <div style="margin-top: auto;">
+                        <button
+                          id="o_filt"
+                          v-on:click.prevent= "resetFilterOrder(filter2, filter3), filterOrders(filter2, filter3)"
+                          style="margin-left: 20px; margin-bottom: 0"
+                          type="submit"
+                          class="btn btn-primary order btn btn-warning btn-md"
+                        >Сбросить
+                        </button>
+                      </div>
                     </div>
                     <div>
                       <hr>
@@ -169,6 +179,16 @@
                           <option>Вопрос</option>
                           <option>Предложение</option>
                         </select>
+                      </div>
+                      <div style="margin-top: auto;">
+                        <button
+                          id="f_filt"
+                          v-on:click.prevent= "resetFilterFeedback(filter), filterFeedbacks(filter)"
+                          style="margin-left: 10px; margin-bottom: 0"
+                          type="submit"
+                          class="btn btn-primary order btn btn-warning btn-md"
+                        >Сбросить
+                        </button>
                       </div>
                     </div>
                     <div>
@@ -382,6 +402,7 @@
         name_th: "",
         name_g: "",
         price_g: "",
+        date_f: 0,
         plus: "",
         price: "",
         towns: [],
@@ -500,6 +521,13 @@
           }
         }
       },
+      resetFilterOrder() {
+        this.filter2 = 'Все';
+        this.filter3 = 'Все';
+      },
+      resetFilterFeedback() {
+        this.filter = 'Все';
+      },
       filterOrders(name, name2) {
         let feed = [];
         this.counter = 0;
@@ -571,6 +599,9 @@
       filterFeedbacks(name) {
         let feed = [];
         this.counter2 = 0;
+
+
+
         if (this.filter === 'Все') {
           db.collection("feedbacks")
             .get()
@@ -681,7 +712,6 @@
                 db.collection("towns").doc(name).set({name});
               }
               this.name_t = "";
-              alert('Город добавлен')
             }
           });
       }
@@ -695,10 +725,14 @@
             } else {
               let err_theme = name != "";
               if (err_theme) {
-                db.collection("themes").doc(name).set({name});
+                try {
+                  db.collection("themes").doc(name).set({name});
+                  this.name_tm = "";
+                }
+                catch (e) {
+                  alert('Нет прав доступа')
+                }
               }
-              this.name_tm = "";
-              alert('Тема добавлена')
             }
           });
       },
@@ -716,7 +750,6 @@
               }
               this.name_g = "";
               this.price_g = "";
-              alert('Стекло добавлено')
             }
           });
       },
@@ -729,11 +762,13 @@
         this.text = "";
         this.text2 = "";
       }
-    },
+    }
+    ,
     created: function () {
       this.filterOrders();
       this.filterFeedbacks();
-    },
+    }
+    ,
     components: {
       MyHeader, MyFooter
     }
