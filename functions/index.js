@@ -8,7 +8,7 @@ var transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "pvlgaliguzov@gmail.com",
+    user: "@gmail.com",
     pass: ""
   }
 });
@@ -17,7 +17,7 @@ exports.sendEmail = functions.firestore
   .onCreate((snap, context) => {
     console.log("success");
     const mailOptions = {
-      from: "pvlgaliguzov@gmail.com",
+      from: "@gmail.com",
       to: snap.data().email,
       subject: "Ваш заказ на GlassTech",
       html: `<h1>Данные заказа</h1>
@@ -52,7 +52,7 @@ exports.sendLetter = functions.firestore
   .onCreate((snap, context) => {
     console.log("success");
     const mailOptions = {
-      from: "pvlgaliguzov@gmail.com",
+      from: "@gmail.com",
       to: snap.data().email,
       subject: "Обратная связь GlassTech",
       html: `<p>${snap.data().text}</p>`
@@ -66,7 +66,7 @@ exports.updateOrder = functions.firestore
   .onUpdate((change, context) => {
     console.log("success");
     const mailOptions = {
-      from: "pvlgaliguzov@gmail.com",
+      from: "@gmail.com",
       to: change.after.data().email,
       subject: "Ваш заказ на GlassTech",
       html: `<h5>Статус вашего заказа на GlassTech обновлен</h5>
@@ -86,12 +86,47 @@ exports.sendFeedback = functions.firestore
     console.log("success");
     const mailOptions = {
       from: snap.data().email2,
-      to: "pvlgaliguzov@gmail.com",
+      to: "@gmail.com",
       subject: "Обратная связь GlassTech",
       html: `<h3>${snap.data().firstname} ${snap.data().lastname} - ${snap.data().email2}</h3>
               <div>
                 <b>Тема письма: </b>${snap.data().theme}</br>
                 <p>${snap.data().text}</p>
+              </div>`
+    };
+    return transporter.sendMail(mailOptions);
+  });
+
+exports.deleteFeedback = functions.firestore
+  .document("feedbacks/{feedbackId}")
+  .onDelete((snap, context) => {
+    console.log("success");
+    const mailOptions = {
+      from: "@gmail.com",
+      to: snap.data().email2,
+      subject: "Обратная связь GlassTech",
+      html: `<h3>Ваш отзыв на сайте GlassTech удален</h3>
+              <div>
+                <p>Ваш отзыв на сайте GlassTech удален в связи с нарушением правил сообщества. Возможно в вашем отзыве
+                были использованы словосочетания содержащие ненормативную лексику.</p>
+              </div>`
+    };
+    return transporter.sendMail(mailOptions);
+  });
+
+exports.deleteOrder = functions.firestore
+  .document("orders/{orderId}")
+  .onDelete((snap, context) => {
+    console.log("success");
+    const mailOptions = {
+      from: "@gmail.com",
+      to: snap.data().email,
+      subject: "Ваш заказ на GlassTech",
+      html: `<h3>Ваш заказ на сайте GlassTech удален</h3>
+              <div>
+                <p>Ваш заказ на сайте GlassTech был отменен. Если вы не отменяли ваш заказ, то, пожалуйста, напишите
+                нам на нашу почту (qqq@qq.qq) или позвоните по номеру телефона 8 (800) 555 35-35, чтобы уточнить данные по
+                заказу или восстановить его.</p>
               </div>`
     };
     return transporter.sendMail(mailOptions);
