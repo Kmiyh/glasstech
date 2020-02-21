@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Main from "@/components/Main";
 import Admin from "@/components/Admin";
+import Products from "@/components/Products";
 import VueScrollTo from "vue-scrollto";
 import firebase from "firebase";
 import { log } from "util";
@@ -27,6 +28,12 @@ const router = new Router({
       meta: {
         requiresAuth: true
       },
+      props: true
+    },
+    {
+      path: "/products",
+      name: "Products",
+      component: Products,
       props: true
     }
   ]

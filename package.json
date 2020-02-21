@@ -13,7 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "firebase": "^7.2.2",
+    "firebase": "^7.9.0",
     "vue": "^2.5.2",
     "vue-parallaxy": "^1.1.1",
     "vue-router": "^3.0.1",
