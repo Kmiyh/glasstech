@@ -123,6 +123,11 @@
               </div>
             </div>
           </div>
+          <div class="container" style="margin-top: 10px;">
+            <button class="sr btn btn-primary btn-sm" type="submit">
+              <router-link to="/products" style="color: white; text-decoration: none;">ВСЕ ТОВАРЫ</router-link>
+            </button>
+          </div>
         </div>
       </section>
       <section class="gray">
@@ -605,7 +610,7 @@
                     "Мы в курсе тенденций на рынке мобильных устройств! Смартфонам с самыми хрупкими экранами — самые надежные защитные стекла.",
                 stf:
                     "Мы гарантируем высокое качество продукции и самые низкие цены на защитные стекла. Цена товара Вас приятно удивит!",
-                third: "Наши продукты",
+                third: "Популярные товары",
                 fourth: "Понравилось?",
                 fs: "При первом заказе скидка 10%"
             };
