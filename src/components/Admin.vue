@@ -1,11 +1,9 @@
 <template>
   <div>
-    <my-header/>
+    <my-aheader></my-aheader>
     <main>
       <div class="container">
         <h1>Панель администратора</h1>
-        <button class="sr btn btn-primary btn-md" v-on:click="logout">Выйти</button>
-
         <ul class="nav nav-tabs" id="myTab" role="tablist" style="overflow-y: hidden">
           <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders"
@@ -384,7 +382,7 @@
 </template>
 
 <script>
-  import MyHeader from "./Header.vue";
+  import AdminHeader from "./AdminHeader.vue";
   import MyFooter from "./Footer.vue";
   import {db} from "../main.js";
   import firebase from "firebase";
@@ -393,6 +391,7 @@
     name: "my-admin",
     data() {
       return {
+        page: "admin",
         counter: 0,
         counter2: 0,
         status: "",
@@ -448,14 +447,6 @@
       };
     },
     methods: {
-      logout() {
-        firebase
-          .auth()
-          .signOut()
-          .then(() => {
-            this.$router.replace("/");
-          });
-      },
       myFunction() {
         var input, filter, ul, li, a, i;
         input = document.getElementById('myInput');
@@ -979,7 +970,7 @@
     }
     ,
     components: {
-      MyHeader, MyFooter
+      'my-aheader': AdminHeader, MyFooter
     }
   }
   ;
@@ -1011,12 +1002,8 @@
     margin-right: 5px;
   }
 
-  .sr {
-    margin: 5px auto;
-  }
-
   .mn {
-    min-height: 560px;
+    min-height: 615px;
   }
 
   .card {
@@ -1039,10 +1026,6 @@
 
   p {
     padding-top: 10px;
-  }
-
-  .size {
-    max-width: 50px;
   }
 
   .btn-warning {

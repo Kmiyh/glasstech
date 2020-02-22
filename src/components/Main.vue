@@ -556,6 +556,7 @@
         name: "imain",
         data() {
             return {
+                page: "main",
                 reg: /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/,
                 key: false,
                 flag: false,
