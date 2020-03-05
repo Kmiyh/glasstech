@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Main from "@/components/Main";
 import Admin from "@/components/Admin";
 import Products from "@/components/Products";
+import Room from "@/components/Room";
 import VueScrollTo from "vue-scrollto";
 import firebase from "firebase";
 import { log } from "util";
@@ -31,6 +32,15 @@ const router = new Router({
       props: true
     },
     {
+      path: "/room",
+      name: "Room",
+      component: Room,
+      meta: {
+        requiresAuth: true
+      },
+      props: true
+    },
+    {
       path: "/products",
       name: "Products",
       component: Products,
@@ -49,13 +59,17 @@ router.beforeEach((to, from, next) => {
       console.log("curUser " + currentUser);
       console.log("reqA " + requiresAuth);
 
-      if (requiresAuth && !currentUser) {
+      if (requiresAuth && !currentUser && currentUser.isAnonymous) {
         next("/");
         console.log("not");
-      } else if (!requiresAuth && currentUser) {
+      } else if (!requiresAuth && currentUser && currentUser.email === 'pvlgaliguzov@gmail.com') {
         next("/admin");
-        console.log("yesa");
-      } else {
+        console.log(currentUser.email);
+      } else if (!requiresAuth && currentUser && currentUser.email !== 'pvlgaliguzov@gmail.com') {
+        next('/room');
+        console.log(currentUser.email);
+      }
+      else {
         next();
         console.log("else");
       }

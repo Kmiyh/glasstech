@@ -4,7 +4,7 @@
     <main>
       <div class="container">
         <h1>Панель администратора</h1>
-        <ul class="nav nav-tabs" id="myTab" role="tablist" style="overflow-y: hidden">
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist" style="overflow-y: hidden">
           <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders"
                aria-selected="true">Заказы</a>
@@ -22,65 +22,73 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="orders" role="tabpanel" aria-labelledby="home-tab">
             <div class="row col-md-12 d">
-              <div class="card col-md-12">
+
+
+              <div class="card d col-md-3" style="margin-right: 10px;">
+                <h5 style="padding-top: 15px;">Фильтр</h5>
+                <div class="col-md-12" style="padding-left: 0; padding-right: 0">
+                  <div>
+                    <p style="margin-bottom: 0; padding-top: 0">по типу стекла</p>
+                    <select v-model="filter2"
+                            v-on:click.prevent="filterOrders(filter2, filter3)"
+                            id="filter2" class="form-control">
+                      <option>Все</option>
+                      <option>3D</option>
+                      <option>3D FIBER</option>
+                      <option>SILK SCREEN 2,5D</option>
+                    </select>
+                  </div>
+                  <div>
+                    <p style="margin-bottom: 0; padding-top: 0">по статусу</p>
+                    <select v-model="filter3"
+                            v-on:click.prevent="filterOrders(filter2, filter3)"
+                            id="filter3" class="form-control">
+                      <option>Все</option>
+                      <option>В обработке</option>
+                      <option>Изготавливается</option>
+                      <option>Упаковывается</option>
+                      <option>Передан доставщику</option>
+                      <option>Доставляется</option>
+                      <option>В пункте выдачи</option>
+                      <option>Закрыт</option>
+                    </select>
+                  </div>
+                  <div>
+                    <p style="margin-bottom: 0; padding-top: 0">по дате создания</p>
+                    <select v-model="filter5"
+                            v-on:click.prevent="filterOrders()"
+                            id="filter5" class="form-control">
+                      <option>Все</option>
+                      <option>За день</option>
+                      <option>За неделю</option>
+                      <option>За месяц</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button
+                      id="o_filt"
+                      v-on:click.prevent="resetFilterOrder(filter2, filter3), filterOrders(filter2, filter3)"
+                      style="margin-bottom: 10px; margin-top: 10px;"
+                      type="submit"
+                      class="btn btn-primary order btn btn-warning btn-md"
+                    >Сбросить
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card col-md-8" style="margin-left: 10px;">
                 <div class="row">
                   <div class="mn col-md-12">
-                    <h5>Поиск заказа по номеру</h5>
+                    <h5>Поиск</h5>
+                    <p style="margin-bottom: 0; padding-top: 0">по номеру заказа</p>
                     <div class="row col-md-12">
                       <input class="form-control col-md-12" type="text" id="myInput" placeholder="Поиск"
                              aria-label="Search"
                              v-on:keyup="myFunction()">
                     </div>
-                    <h5 style="padding-top: 0">Фильтровать</h5>
-                    <div class="row col-md-12">
-                      <div>
-                        <p style="margin-bottom: 0; padding-top: 0">по типу стекла</p>
-                        <select v-model="filter2"
-                                v-on:click.prevent="filterOrders(filter2, filter3)"
-                                id="filter2" class="form-control">
-                          <option>Все</option>
-                          <option>3D</option>
-                          <option>3D FIBER</option>
-                          <option>SILK SCREEN 2,5D</option>
-                        </select>
-                      </div>
-                      <div>
-                        <p style="margin-bottom: 0; margin-left: 10px; padding-top: 0">по статусу</p>
-                        <select v-model="filter3" style="margin-left: 10px;"
-                                v-on:click.prevent="filterOrders(filter2, filter3)"
-                                id="filter3" class="form-control">
-                          <option>Все</option>
-                          <option>В обработке</option>
-                          <option>Изготавливается</option>
-                          <option>Упаковывается</option>
-                          <option>Передан доставщику</option>
-                          <option>Доставляется</option>
-                          <option>В пункте выдачи</option>
-                          <option>Закрыт</option>
-                        </select>
-                      </div>
-                      <div style="margin-left: 10px;">
-                        <p style="margin-bottom: 0; margin-left: 10px; padding-top: 0">по дате создания</p>
-                        <select v-model="filter5" style="margin-left: 10px;"
-                                v-on:click.prevent="filterOrders()"
-                                id="filter5" class="form-control">
-                          <option>Все</option>
-                          <option>За день</option>
-                          <option>За неделю</option>
-                          <option>За месяц</option>
-                        </select>
-                      </div>
-                      <div style="margin-top: auto;">
-                        <button
-                          id="o_filt"
-                          v-on:click.prevent= "resetFilterOrder(filter2, filter3), filterOrders(filter2, filter3)"
-                          style="margin-left: 20px; margin-bottom: 0"
-                          type="submit"
-                          class="btn btn-primary order btn btn-warning btn-md"
-                        >Сбросить
-                        </button>
-                      </div>
-                    </div>
+
                     <div>
                       <hr>
                       <div class="row col-md-12">
@@ -96,71 +104,88 @@
                   </div>
                 </div>
               </div>
-              <div class="card col-md-12" v-for="order in sh_ord">
-                <div class="row">
-                  <div class="col-md-6">
-                    <h5>Информация о заказе</h5>
-                    <b>Номер заказа:</b> {{time_id}}<br>
-                    <b>Модель телефона:</b> {{order.model}} <br>
-                    <b>Размер экрана:</b> {{order.display}} дм.<br>
-                    <b>Тип стекла:</b> {{order.glass}} <br>
-                    <b>Количество:</b> {{order.count}} шт.<br>
-                    <b>Итог заказа:</b> {{order.itog}} руб.<br>
-                    <b>Статус:</b> {{order.status}} <br>
-                    <h5>Контактная информация</h5>
-                    <b>Email:</b> {{order.email}} <br>
-                    <b>Телефон:</b> {{order.phone}} <br>
-                    <b>Город:</b> {{order.town}} <br>
-                    <b>Адрес:</b> {{order.address}} <br>
-                    <b>Индекс:</b> {{order.index}} <br>
+              <div class="row col-md-12 d" v-for="order in sh_ord" style="padding-right: 0; padding-left: 0;">
+                <div class="card d col-md-3" style="margin-right: 10px;">
+                  <h5>Связь с клиентом</h5>
+                  <div class="form-group">
+                    <input v-model="author2 = order.email" type="email" class="form-control" id="inputOrder"
+                           disabled/>
                   </div>
-                  <div class="col-md-6">
-                    <form>
-                      <h5>Обновить статус</h5>
-                      <div class="form-row">
-                        <div class="form-group col-md-12">
-                          <select v-model="status" id="status" class="form-control">
-                            <option>В обработке</option>
-                            <option>Изготавливается</option>
-                            <option>Упаковывается</option>
-                            <option>Передан доставщику</option>
-                            <option>Доставляется</option>
-                            <option>В пункте выдачи</option>
-                            <option>Закрыт</option>
-                          </select>
-                          <small v-if="!status">Укажите статус</small>
-                        </div>
+                  <div class="form-group" style="margin-bottom: 0">
+                    <textarea v-model="text2" class="col-md-12" rows="6"/>
+                    <small v-if="!text2">Введите текст письма</small><br>
+                  </div>
+                  <button
+                    style="margin-top: 0px;"
+                    v-on:click="addLetter(text2, author2)"
+                    type="submit"
+                    class="btn btn-primary order btn btn-warning btn-md"
+                  >Отправить
+                  </button>
+                </div>
+                <div class="card col-md-8" style="margin-left: 10px;">
+                  <div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <h5>Информация о заказе</h5>
+                        <b>Номер заказа:</b> {{time_id}}<br>
+                        <b>Модель телефона:</b> {{order.model}} <br>
+                        <b>Размер экрана:</b> {{order.display}} дм.<br>
+                        <b>Тип стекла:</b> {{order.glass}} <br>
+                        <b>Количество:</b> {{order.count}} шт.<br>
+                        <b>Итог заказа:</b> {{order.itog}} руб.<br>
+                        <b>Статус:</b> {{order.status}} <br>
                       </div>
-                      <button
-                        v-on:click.prevent="updateOrder(time_id, status)"
-                        type="submit"
-                        class="btn btn-primary order btn btn-warning btn-md"
-                      >Обновить
-                      </button>
-                      <h5>Связь с клиентом</h5>
-                      <div class="form-group">
-                        <input v-model="author2 = order.email" type="email" class="form-control" id="inputOrder"
-                               disabled/>
+                      <div class="col-md-6">
+                        <h5>Контактная информация</h5>
+                        <b>Email:</b> {{order.email}} <br>
+                        <b>Телефон:</b> {{order.phone}} <br>
+                        <b>Город:</b> {{order.town}} <br>
+                        <b>Адрес:</b> {{order.address}} <br>
+                        <b>Индекс:</b> {{order.index}} <br>
                       </div>
-                      <div class="form-group" style="margin-bottom: 0">
-                        <textarea v-model="text2" class="col-md-12" rows="5"/>
-                        <small v-if="!text2">Введите текст письма</small><br>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <form>
+                          <h5 style="padding-top: 0">Обновить статус</h5>
+                          <div class="form-row row">
+                            <div class="form-group col-md-7">
+                              <select v-model="status" id="status" class="form-control">
+                                <option>В обработке</option>
+                                <option>Изготавливается</option>
+                                <option>Упаковывается</option>
+                                <option>Передан доставщику</option>
+                                <option>Доставляется</option>
+                                <option>В пункте выдачи</option>
+                                <option>Закрыт</option>
+                              </select>
+                              <small v-if="!status">Укажите статус</small>
+                            </div>
+                            <div class="col-md-4">
+                              <button
+                                v-on:click.prevent="updateOrder(time_id, status)"
+                                type="submit"
+                                class="btn btn-primary order btn btn-warning btn-md"
+                              >Обновить
+                              </button>
+                            </div>
+                          </div>
+                        </form>
                       </div>
-                      <button
-                        style="margin-top: 5px;"
-                        v-on:click="addLetter(text2, author2)"
-                        type="submit"
-                        class="btn btn-primary order btn btn-warning btn-md"
-                      >Отправить
-                      </button>
-                      <h5>Удалить заказ</h5>
-                      <button
-                        v-on:click.prevent="deleteOrder(time_id)"
-                        type="submit"
-                        class="btn btn-primary order btn btn-warning btn-md"
-                      >Удалить
-                      </button>
-                    </form>
+                      <div class="col-md-6">
+                        <form>
+                          <h5 style="padding-top: 0">Удалить заказ</h5>
+                          <button
+                            v-on:click.prevent="deleteOrder(time_id)"
+                            type="submit"
+                            class="btn btn-primary order btn btn-warning btn-md"
+                          >Удалить
+                          </button>
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -168,47 +193,53 @@
           </div>
           <div class="tab-pane fade" id="feedbacks" role="tabpanel" aria-labelledby="profile-tab">
             <div class="row col-md-12 d">
-              <div class="card col-md-12">
+
+
+              <div class="card d col-md-3" style="margin-right: 10px;">
+                <h5 style="padding-top: 15px;">Фильтр</h5>
+                <div class="col-md-12" style="padding-left: 0; padding-right: 0">
+                  <div>
+                    <p style="margin-bottom: 0; padding-top: 0">по типу письма</p>
+                    <select v-model="filter" v-on:click.prevent="filterFeedbacks(filter)"
+                            id="filter" class="form-control col-md-12">
+                      <option>Все</option>
+                      <option>Отзыв</option>
+                      <option>Вопрос</option>
+                      <option>Предложение</option>
+                    </select>
+                  </div>
+                  <div>
+                    <p style="margin-bottom: 0; padding-top: 0">по дате создания</p>
+                    <select v-model="filter4" v-on:click.prevent="filterFeedbacks(filter4)"
+                            id="filter4" class="form-control col-md-12">
+                      <option>Все</option>
+                      <option>За день</option>
+                      <option>За неделю</option>
+                      <option>За месяц</option>
+                    </select>
+                  </div>
+                  <div style="margin-top: 10px;">
+                    <button
+                      id="f_filt"
+                      v-on:click.prevent="resetFilterFeedback(filter), filterFeedbacks(filter)"
+                      type="submit"
+                      class="btn btn-primary order btn btn-warning btn-md"
+                    >Сбросить
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="card col-md-8" style="margin-left: 10px;">
                 <div class="row">
                   <div class="mn col-md-12">
-                    <h5>Поиск по заголовку письма</h5>
+                    <h5>Поиск</h5>
+                    <p style="margin-bottom: 0; padding-top: 0">по заголовку письма</p>
                     <div class="row col-md-12">
                       <input class="form-control col-md-12" type="text" id="myInput4" placeholder="Поиск"
                              aria-label="Search"
                              v-on:keyup="myFunction4()">
-                    </div>
-                    <h5 style="padding-top: 0">Фильтровать</h5>
-                    <div class="row col-md-12">
-                      <div>
-                        <p style="margin-bottom: 0; padding-top: 0">по типу письма</p>
-                        <select v-model="filter" v-on:click.prevent="filterFeedbacks(filter)"
-                                id="filter" class="form-control col-md-12">
-                          <option>Все</option>
-                          <option>Отзыв</option>
-                          <option>Вопрос</option>
-                          <option>Предложение</option>
-                        </select>
-                      </div>
-                      <div style="margin-left: 10px;">
-                        <p style="margin-bottom: 0; padding-top: 0">по дате создания</p>
-                        <select v-model="filter4" v-on:click.prevent="filterFeedbacks(filter4)"
-                                id="filter4" class="form-control col-md-12">
-                          <option>Все</option>
-                          <option>За день</option>
-                          <option>За неделю</option>
-                          <option>За месяц</option>
-                        </select>
-                      </div>
-                      <div style="margin-top: auto;">
-                        <button
-                          id="f_filt"
-                          v-on:click.prevent= "resetFilterFeedback(filter), filterFeedbacks(filter)"
-                          style="margin-left: 10px; margin-bottom: 0"
-                          type="submit"
-                          class="btn btn-primary order btn btn-warning btn-md"
-                        >Сбросить
-                        </button>
-                      </div>
                     </div>
                     <div>
                       <hr>
@@ -227,9 +258,28 @@
                   </div>
                 </div>
               </div>
-              <div class="card col-md-12" v-for="feed in sh_feed">
-                <div class="row">
-                  <div class="col-md-6">
+
+              <div class="row d col-md-12" v-for="feed in sh_feed" style="padding-right: 0; padding-left: 0;">
+                <div class="card d col-md-3" style="margin-right: 10px;">
+                  <h5>Написать</h5>
+                  <div class="form-group">
+                    <input v-model="author = feed.email2" type="email" class="form-control" id="inputAuthorOrder"
+                           disabled/>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 0">
+                    <textarea v-model="text" class="col-md-12" rows="6"/>
+                    <small v-if="!text">Введите текст письма</small><br>
+                  </div>
+                  <button
+                    style="margin-top: 5px;"
+                    v-on:click="addLetter(text, author)"
+                    type="submit"
+                    class="btn btn-primary order btn btn-warning btn-md"
+                  >Отправить
+                  </button>
+                </div>
+                <div class="card col-md-8" style="margin-left: 10px;">
+                  <div>
                     <h5>Информация об отзыве</h5>
                     <b>Email:</b> {{feed.email2}}<br>
                     <b>Имя:</b> {{feed.firstname}}<br>
@@ -238,23 +288,7 @@
                     <b>Заголовок:</b> {{feed.title}}<br>
                     <b>Текст:</b> {{feed.text}} <br>
                   </div>
-                  <div class="col-md-6">
-                    <h5>Написать ответ</h5>
-                    <div class="form-group">
-                      <input v-model="author = feed.email2" type="email" class="form-control" id="inputAuthorOrder"
-                             disabled/>
-                    </div>
-                    <div class="form-group" style="margin-bottom: 0">
-                      <textarea v-model="text" class="col-md-12" rows="5"/>
-                      <small v-if="!text">Введите текст письма</small><br>
-                    </div>
-                    <button
-                      style="margin-top: 5px;"
-                      v-on:click="addLetter(text, author)"
-                      type="submit"
-                      class="btn btn-primary order btn btn-warning btn-md"
-                    >Отправить
-                    </button>
+                  <div>
                     <h5>Удалить отзыв</h5>
                     <button
                       v-on:click.prevent="deleteFeedbacks(time_id)"
@@ -385,7 +419,6 @@
   import AdminHeader from "./AdminHeader.vue";
   import MyFooter from "./Footer.vue";
   import {db} from "../main.js";
-  import firebase from "firebase";
 
   export default {
     name: "my-admin",
@@ -865,14 +898,15 @@
                 alert('Такого заказа не существует. Проверьте введенные данные.')
               } else {
                 let err_code = code != "";
-                if (err_code) {
+                let err_status = status !="";
+                if (err_code && err_status) {
                   db.collection('orders').doc(code).set({
                     status: status,
                   }, {merge: true});
+                  alert('Статус заказа обновлен.')
                 }
                 this.code = "";
                 this.status = "";
-                alert('Статус заказа обновлен.')
               }
             })
         } catch (e) {
@@ -928,8 +962,7 @@
                 try {
                   db.collection("themes").doc(name).set({name});
                   this.name_tm = "";
-                }
-                catch (e) {
+                } catch (e) {
                   alert('Нет прав доступа')
                 }
               }
